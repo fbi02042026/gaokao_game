@@ -1,0 +1,65 @@
+# Unity/Tuanjie Engine
+[Tt]emp/
+[Ll]ibrary/
+[Uu]ser[Ss]ettings/
+ExportedObj/
+.obj/
+*.booproj
+*.csproj
+*.sln
+*.sln.meta
+*.suo
+*.user
+*.userprefs
+*.unityproj
+*.sln.meta
+Assembly-CSharp.csproj.meta
+Assembly-CSharp-Editor.csproj.meta
+*.asset.meta
+*.meta
+*.png
+*.jpg
+*.tga
+*.wav
+*.mp3
+*.mp4
+*.anim
+*.controller
+*.prefab
+*.unity
+*.physicMaterial
+*.physicMaterial.meta
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Build
+Build/
+Builds/
+*.apk
+*.aab
+*.exe
+*.dmg
+*.app
+*.ipa
+
+# Logs
+*.log
+logs/
+
+# Local Configuration
+local.properties

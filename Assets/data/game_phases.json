@@ -1,0 +1,354 @@
+{
+  "phases": [
+    {
+      "id": "high_school",
+      "name": "高中三年",
+      "duration": "3 years",
+      "gameDays": 1095,
+      "startYear": 2024,
+      "endYear": 2027,
+      "keyEvents": [
+        {
+          "id": "first_day",
+          "day": 1,
+          "title": "高一开学第一天",
+          "description": "踏入高中校园，新的旅程开始"
+        },
+        {
+          "id": "分班考试",
+          "day": 30,
+          "title": "分班考试",
+          "description": "决定你进入哪个层次的班级"
+        },
+        {
+          "id": "文理分科",
+          "day": 365,
+          "title": "文理分科",
+          "description": "做出人生第一个重大选择"
+        },
+        {
+          "id": "高考报名",
+          "day": 1000,
+          "title": "高考报名",
+          "description": "确认你的考场和考号"
+        }
+      ],
+      "activities": [
+        {
+          "id": "study",
+          "name": "学习",
+          "statEffects": {
+            "intelligence": 5
+          },
+          "timeCost": 4,
+          "available": true
+        },
+        {
+          "id": "exercise",
+          "name": "锻炼",
+          "statEffects": {
+            "physical": 5
+          },
+          "timeCost": 2,
+          "available": true
+        },
+        {
+          "id": "socialize",
+          "name": "社交",
+          "statEffects": {
+            "social": 3,
+            "emotion": 2
+          },
+          "timeCost": 2,
+          "available": true
+        },
+        {
+          "id": "rest",
+          "name": "休息",
+          "statEffects": {
+            "willpower": 3,
+            "emotion": 2
+          },
+          "timeCost": 4,
+          "available": true
+        }
+      ]
+    },
+    {
+      "id": "gaokao",
+      "name": "高考",
+      "duration": "3 days",
+      "gameDays": 3,
+      "startYear": 2027,
+      "endYear": 2027,
+      "keyEvents": [
+        {
+          "id": "exam_day1",
+          "day": 1,
+          "title": "语文/数学考试",
+          "description": "高考第一天，保持冷静"
+        },
+        {
+          "id": "exam_day2",
+          "day": 2,
+          "title": "文理综/外语考试",
+          "description": "高考第二天，坚持到底"
+        },
+        {
+          "id": "exam_day3",
+          "day": 3,
+          "title": "高考结束",
+          "description": "三年苦读终于结束"
+        }
+      ],
+      "subjects": [
+        {
+          "id": "chinese",
+          "name": "语文",
+          "weight": 1.5,
+          "baseDifficulty": 0.6
+        },
+        {
+          "id": "math",
+          "name": "数学",
+          "weight": 1.5,
+          "baseDifficulty": 0.7
+        },
+        {
+          "id": "english",
+          "name": "英语",
+          "weight": 1.0,
+          "baseDifficulty": 0.5
+        },
+        {
+          "id": "comprehensive",
+          "name": "文理综",
+          "weight": 2.0,
+          "baseDifficulty": 0.65
+        }
+      ]
+    },
+    {
+      "id": "choose_major",
+      "name": "填报志愿",
+      "duration": "2 weeks",
+      "gameDays": 14,
+      "startYear": 2027,
+      "endYear": 2027,
+      "universities": [
+        {
+          "id": "top_985",
+          "name": "顶尖985大学",
+          "minScore": 680,
+          "reputation": 100,
+          "careerBonus": 50
+        },
+        {
+          "id": "regular_985",
+          "name": "普通985大学",
+          "minScore": 650,
+          "reputation": 85,
+          "careerBonus": 40
+        },
+        {
+          "id": "top_211",
+          "name": "顶尖211大学",
+          "minScore": 620,
+          "reputation": 75,
+          "careerBonus": 35
+        },
+        {
+          "id": "regular_211",
+          "name": "普通211大学",
+          "minScore": 580,
+          "reputation": 65,
+          "careerBonus": 30
+        },
+        {
+          "id": "regular_university",
+          "name": "普通一本",
+          "minScore": 530,
+          "reputation": 50,
+          "careerBonus": 20
+        }
+      ],
+      "majors": [
+        {
+          "id": "computer_science",
+          "name": "计算机科学与技术",
+          "category": "工学",
+          "difficulty": 0.8,
+          "careerProspects": 95
+        },
+        {
+          "id": "medicine",
+          "name": "临床医学",
+          "category": "医学",
+          "difficulty": 0.85,
+          "careerProspects": 90
+        },
+        {
+          "id": "law",
+          "name": "法学",
+          "category": "法学",
+          "difficulty": 0.7,
+          "careerProspects": 75
+        },
+        {
+          "id": "finance",
+          "name": "金融学",
+          "category": "经济学",
+          "difficulty": 0.75,
+          "careerProspects": 85
+        },
+        {
+          "id": "education",
+          "name": "教育学",
+          "category": "教育学",
+          "difficulty": 0.6,
+          "careerProspects": 70
+        }
+      ]
+    },
+    {
+      "id": "university",
+      "name": "大学四年",
+      "duration": "4 years",
+      "gameDays": 1460,
+      "startYear": 2027,
+      "endYear": 2031,
+      "activities": [
+        {
+          "id": "attend_class",
+          "name": "上课",
+          "statEffects": {
+            "intelligence": 3
+          },
+          "timeCost": 6
+        },
+        {
+          "id": "part_time_job",
+          "name": "兼职",
+          "statEffects": {
+            "social": 4,
+            "emotion": -2
+          },
+          "timeCost": 4,
+          "rewards": {
+            "money": 100
+          }
+        },
+        {
+          "id": "club_activities",
+          "name": "社团活动",
+          "statEffects": {
+            "social": 5,
+            "creativity": 2
+          },
+          "timeCost": 3
+        },
+        {
+          "id": "internship",
+          "name": "实习",
+          "statEffects": {
+            "intelligence": 4,
+            "social": 3
+          },
+          "timeCost": 8,
+          "rewards": {
+            "experience": 200
+          }
+        }
+      ],
+      "events": [
+        {
+          "id": "freshman_year",
+          "day": 1,
+          "title": "大学开学",
+          "type": "milestone"
+        },
+        {
+          "id": "campus_election",
+          "day": 180,
+          "title": "学生会选举",
+          "type": "choice"
+        },
+        {
+          "id": "graduation",
+          "day": 1460,
+          "title": "大学毕业",
+          "type": "milestone"
+        }
+      ]
+    },
+    {
+      "id": "career",
+      "name": "职场人生",
+      "duration": "20 years",
+      "gameDays": 7300,
+      "startYear": 2031,
+      "endYear": 2050,
+      "careerPaths": [
+        {
+          "id": "tech_company",
+          "name": "科技公司",
+          "startingSalary": 15000,
+          "salaryGrowth": 0.15,
+          "workload": 0.8,
+          "stress": 0.7
+        },
+        {
+          "id": "government",
+          "name": "政府机关",
+          "startingSalary": 8000,
+          "salaryGrowth": 0.05,
+          "workload": 0.5,
+          "stress": 0.4
+        },
+        {
+          "id": "entrepreneur",
+          "name": "创业",
+          "startingSalary": 0,
+          "salaryGrowth": 0.3,
+          "workload": 1.0,
+          "stress": 1.0,
+          "risk": 0.5
+        },
+        {
+          "id": "teacher",
+          "name": "教师",
+          "startingSalary": 10000,
+          "salaryGrowth": 0.08,
+          "workload": 0.6,
+          "stress": 0.5
+        }
+      ],
+      "events": [
+        {
+          "id": "first_job",
+          "day": 1,
+          "title": "第一份工作",
+          "type": "milestone"
+        },
+        {
+          "id": "promotion",
+          "day": 365,
+          "title": "第一次晋升",
+          "type": "achievement"
+        },
+        {
+          "id": "marriage",
+          "day": 1000,
+          "title": "结婚",
+          "type": "life_event"
+        },
+        {
+          "id": "retirement",
+          "day": 7300,
+          "title": "退休",
+          "type": "ending"
+        }
+      ]
+    }
+  ]
+}

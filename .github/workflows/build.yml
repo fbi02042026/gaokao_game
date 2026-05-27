@@ -1,0 +1,62 @@
+name: Build Game
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-wechat:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: Build for WeChat
+      run: |
+        echo "微信小游戏构建配置"
+        echo "需要团结引擎CLI工具"
+    
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: wechat-build
+        path: build/wechat/
+
+  build-douyin:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: Build for Douyin
+      run: |
+        echo "抖音小游戏构建配置"
+        echo "需要团结引擎CLI工具"
+
+  build-taptap:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: Build for TapTap
+      run: |
+        echo "TapTap构建配置"
+        echo "需要团结引擎CLI工具"

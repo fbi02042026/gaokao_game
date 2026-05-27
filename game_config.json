@@ -1,0 +1,18 @@
+{
+  "GameTitle": "高考人生模拟器",
+  "Version": "1.0.0",
+  "Engine": "Tuanjie Engine",
+  "TargetPlatforms": ["WeChatMiniGame", "DouyinMiniGame", "TapTap", "iOS", "Android"],
+  "AspectRatio": "9:16",
+  "Gameplay": {
+    "Core": "天赋养成 + 时间推进",
+    "Phases": ["高中", "高考", "选专业", "大学", "职场"],
+    "CycleTime": "2-3天真实时间一轮",
+    "TotalPlaytime": "30分钟可完成当天流程"
+  },
+  "Features": {
+    "TalentSystem": "贯穿全流程，影响各阶段表现",
+    "NewGamePlus": "二周目获得'前世记忆'天赋",
+    "SaveSystem": "本地JSON存档"
+  }
+}

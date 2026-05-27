@@ -1,0 +1,238 @@
+{
+  "talents": [
+    {
+      "id": "memory_past_life",
+      "name": "前世记忆",
+      "description": "二周目专属天赋，记得所有选择带来的结果",
+      "icon": "talent_memory",
+      "rarity": "legendary",
+      "effects": [
+        {
+          "type": "special_ability",
+          "target": "all_choices",
+          "value": 1,
+          "description": "重复选择时触发既视感提示"
+        }
+      ],
+      "unlockCondition": "complete_one_playthrough",
+      "maxLevel": 1,
+      "phaseAvailability": ["high_school", "gaokao", "choose_major", "university", "career"]
+    },
+    {
+      "id": "photographic_memory",
+      "name": "过目不忘",
+      "description": "记忆力大幅提升，学习效率+50%",
+      "icon": "talent_memory",
+      "rarity": "rare",
+      "effects": [
+        {
+          "type": "stat_boost",
+          "target": "study_efficiency",
+          "value": 50,
+          "description": "学习效率提升50%"
+        },
+        {
+          "type": "stat_boost",
+          "target": "memory",
+          "value": 30,
+          "description": "记忆力+30"
+        }
+      ],
+      "unlockCondition": "random_chance",
+      "maxLevel": 3,
+      "phaseAvailability": ["high_school", "university"]
+    },
+    {
+      "id": "emotional_control",
+      "name": "情绪管理",
+      "description": "考试时不易紧张，发挥稳定",
+      "icon": "talent_calm",
+      "rarity": "common",
+      "effects": [
+        {
+          "type": "stat_boost",
+          "target": "exam_stability",
+          "value": 30,
+          "description": "考试发挥稳定性+30%"
+        },
+        {
+          "type": "stat_boost",
+          "target": "emotion",
+          "value": 10,
+          "description": "情商+10"
+        }
+      ],
+      "unlockCondition": "story_event",
+      "maxLevel": 5,
+      "phaseAvailability": ["high_school", "gaokao", "university"]
+    },
+    {
+      "id": "time_manipulation",
+      "name": "时间操控",
+      "description": "每天比别人多出2小时学习时间",
+      "icon": "talent_time",
+      "rarity": "epic",
+      "effects": [
+        {
+          "type": "stat_boost",
+          "target": "daily_study_time",
+          "value": 120,
+          "description": "每日可用学习时间+2小时"
+        },
+        {
+          "type": "unlock_feature",
+          "target": "time_skip",
+          "value": 1,
+          "description": "解锁时间跳跃功能"
+        }
+      ],
+      "unlockCondition": "special_choice",
+      "maxLevel": 1,
+      "phaseAvailability": ["high_school", "university"]
+    },
+    {
+      "id": "social_butterfly",
+      "name": "社交达人",
+      "description": "人脉广泛，获得更多隐藏事件",
+      "icon": "talent_social",
+      "rarity": "rare",
+      "effects": [
+        {
+          "type": "unlock_feature",
+          "target": "hidden_events",
+          "value": 5,
+          "description": "解锁5个隐藏社交事件"
+        },
+        {
+          "type": "stat_boost",
+          "target": "social",
+          "value": 20,
+          "description": "社交能力+20"
+        }
+      ],
+      "unlockCondition": "relationship_max",
+      "maxLevel": 1,
+      "phaseAvailability": ["high_school", "university", "career"]
+    },
+    {
+      "id": "lucky_star",
+      "name": "幸运星",
+      "description": "运势爆棚，关键时刻运气+40%",
+      "icon": "talent_lucky",
+      "rarity": "epic",
+      "effects": [
+        {
+          "type": "stat_boost",
+          "target": "luck",
+          "value": 40,
+          "description": "关键时刻成功率+40%"
+        },
+        {
+          "type": "stat_boost",
+          "target": "critical_chance",
+          "value": 15,
+          "description": "暴击率+15%"
+        }
+      ],
+      "unlockCondition": "random_chance",
+      "maxLevel": 3,
+      "phaseAvailability": ["gaokao", "choose_major", "career"]
+    },
+    {
+      "id": "quick_learner",
+      "name": "速学者",
+      "description": "快速掌握新知识，理解力+30%",
+      "icon": "talent_study",
+      "rarity": "common",
+      "effects": [
+        {
+          "type": "stat_boost",
+          "target": "comprehension",
+          "value": 30,
+          "description": "理解力提升30%"
+        },
+        {
+          "type": "stat_boost",
+          "target": "intelligence",
+          "value": 15,
+          "description": "智力+15"
+        }
+      ],
+      "unlockCondition": "auto_unlock_early",
+      "maxLevel": 5,
+      "phaseAvailability": ["high_school", "university"]
+    },
+    {
+      "id": "physical_genius",
+      "name": "运动天才",
+      "description": "体育满分，强身健体",
+      "icon": "talent_sport",
+      "rarity": "common",
+      "effects": [
+        {
+          "type": "stat_boost",
+          "target": "physical_score",
+          "value": 100,
+          "description": "体育成绩必定满分"
+        },
+        {
+          "type": "stat_boost",
+          "target": "physical",
+          "value": 25,
+          "description": "体质+25"
+        }
+      ],
+      "unlockCondition": "auto_unlock_early",
+      "maxLevel": 1,
+      "phaseAvailability": ["high_school"]
+    },
+    {
+      "id": "creative_genius",
+      "name": "创意天才",
+      "description": "灵感迸发，创造力+35%",
+      "icon": "talent_creative",
+      "rarity": "rare",
+      "effects": [
+        {
+          "type": "stat_boost",
+          "target": "creativity",
+          "value": 35,
+          "description": "创造力+35"
+        },
+        {
+          "type": "unlock_feature",
+          "target": "creative_projects",
+          "value": 3,
+          "description": "解锁3个创意项目"
+        }
+      ],
+      "unlockCondition": "random_chance",
+      "maxLevel": 1,
+      "phaseAvailability": ["university", "career"]
+    },
+    {
+      "id": "iron_will",
+      "name": "钢铁意志",
+      "description": "意志坚定，压力承受+50%",
+      "icon": "talent_will",
+      "rarity": "epic",
+      "effects": [
+        {
+          "type": "stat_boost",
+          "target": "willpower",
+          "value": 50,
+          "description": "意志力+50"
+        },
+        {
+          "type": "stat_boost",
+          "target": "stress_resistance",
+          "value": 40,
+          "description": "抗压能力+40%"
+        }
+      ],
+      "unlockCondition": "story_event",
+      "maxLevel": 3,
+      "phaseAvailability": ["gaokao", "university", "career"]
+    }
+  ]
+}
