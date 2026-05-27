@@ -1,0 +1,100 @@
+{
+  "personalities": [
+    {
+      "id": "academic",
+      "name": "学霸型",
+      "description": "擅长学习，智力突出",
+      "type": "Academic",
+      "baseIntelligence": 20,
+      "basePhysical": 0,
+      "baseEmotion": 0,
+      "baseSocial": 0,
+      "baseCreativity": 5,
+      "baseLuck": 0,
+      "baseWillpower": 10,
+      "strengths": ["学习效率高", "考试成绩好", "理解能力强"],
+      "weaknesses": ["社交能力弱", "运动能力差"],
+      "suitableMajors": ["cs", "ai", "medicine"],
+      "suitableCareers": ["工程师", "医生", "研究员"],
+      "gaokaoBonus": 15,
+      "careerBonus": 10
+    },
+    {
+      "id": "creative",
+      "name": "创意型",
+      "description": "富有创造力，想象力丰富",
+      "type": "Creative",
+      "baseIntelligence": 5,
+      "basePhysical": 0,
+      "baseEmotion": 5,
+      "baseSocial": 0,
+      "baseCreativity": 20,
+      "baseLuck": 5,
+      "baseWillpower": 0,
+      "strengths": ["创意无限", "艺术天赋", "思维活跃"],
+      "weaknesses": ["执行力弱", "容易分心"],
+      "suitableMajors": ["design", "arts"],
+      "suitableCareers": ["设计师", "艺术家", "创业者"],
+      "gaokaoBonus": 5,
+      "careerBonus": 15
+    },
+    {
+      "id": "social",
+      "name": "社交型",
+      "description": "善于交际，人脉广泛",
+      "type": "Social",
+      "baseIntelligence": 0,
+      "basePhysical": 0,
+      "baseEmotion": 10,
+      "baseSocial": 20,
+      "baseCreativity": 0,
+      "baseLuck": 5,
+      "baseWillpower": 0,
+      "strengths": ["人脉广泛", "沟通能力强", "情商高"],
+      "weaknesses": ["学习时间少", "容易分心"],
+      "suitableMajors": ["management", "marketing"],
+      "suitableCareers": ["企业家", "销售", "公关"],
+      "gaokaoBonus": -5,
+      "careerBonus": 20
+    },
+    {
+      "id": "balanced",
+      "name": "均衡型",
+      "description": "各项能力均衡发展",
+      "type": "Balanced",
+      "baseIntelligence": 5,
+      "basePhysical": 5,
+      "baseEmotion": 5,
+      "baseSocial": 5,
+      "baseCreativity": 5,
+      "baseLuck": 5,
+      "baseWillpower": 5,
+      "strengths": ["适应能力强", "综合素质高", "潜力大"],
+      "weaknesses": ["没有特别突出"],
+      "suitableMajors": ["cs", "management", "finance"],
+      "suitableCareers": ["管理者", "创业者"],
+      "gaokaoBonus": 5,
+      "careerBonus": 10
+    }
+  ],
+  "memories": [
+    {
+      "id": "memory_first_day",
+      "title": "高一开学第一天",
+      "content": "新的旅程开始了...",
+      "relatedEventId": "first_day",
+      "unlockPhase": "HighSchool",
+      "isDejaVuTrigger": true,
+      "dejaVuText": "这一幕好像在哪里见过..."
+    },
+    {
+      "id": "memory_gaokao",
+      "title": "高考那三天",
+      "content": "决定命运的时刻...",
+      "relatedEventId": "gaokao_main",
+      "unlockPhase": "Gaokao",
+      "isDejaVuTrigger": true,
+      "dejaVuText": "这场景似曾相识..."
+    }
+  ]
+}

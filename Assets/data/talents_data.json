@@ -1,0 +1,28 @@
+{
+  "talents": [
+    {
+      "id": "memory_past_life",
+      "name": "前世记忆",
+      "description": "二周目专属天赋",
+      "rarity": "Legendary",
+      "type": "Permanent",
+      "effects": [{"type": "special_ability", "target": "deja_vu", "value": 1}],
+      "triggerPhases": ["All"],
+      "unlockCondition": "complete_one_playthrough",
+      "iconPath": "Talents/memory",
+      "maxLevel": 1
+    },
+    {
+      "id": "photographic_memory",
+      "name": "过目不忘",
+      "description": "学习效率+50%",
+      "rarity": "Rare",
+      "type": "Passive",
+      "effects": [{"type": "stat_boost", "target": "study_efficiency", "value": 50}],
+      "triggerPhases": ["HighSchool", "College"],
+      "unlockCondition": "random_chance",
+      "iconPath": "Talents/photographic",
+      "maxLevel": 3
+    }
+  ]
+}
