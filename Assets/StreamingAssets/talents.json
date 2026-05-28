@@ -1,0 +1,194 @@
+[
+  {
+    "id": "T01",
+    "name": "考前突击",
+    "icon": "🧠",
+    "rarity": "common",
+    "effects": {
+      "highschool": "平时成绩一般，期末/月考前触发'突击模式'事件",
+      "gaokao": "基础分-10，但随机+20~50，波动大",
+      "major": { "boost": ["工学", "法学"], "warn": ["医学", "建筑学"] },
+      "career": "deadline战士，项目冲刺型，35岁后吃力"
+    },
+    "statModifiers": {
+      "highschool": { "intellect": -5, "mental": -5, "social": 0, "health": 0 },
+      "gaokao": { "baseBonus": -10, "volatility": 35, "critChance": 0.3, "critBonus": 50 }
+    }
+  },
+  {
+    "id": "T02",
+    "name": "天赋异禀",
+    "icon": "🧠",
+    "rarity": "rare",
+    "effects": {
+      "highschool": "学习力初始+20，课堂事件自动得高分",
+      "gaokao": "基础分高，发挥稳定",
+      "major": { "boost": ["理学", "工学"], "warn": [] },
+      "career": "技术天才路线，但可能眼高手低"
+    },
+    "statModifiers": {
+      "highschool": { "intellect": 20, "mental": 0, "social": 0, "health": 0 },
+      "gaokao": { "baseBonus": 15, "volatility": 5, "critChance": 0, "critBonus": 0 }
+    }
+  },
+  {
+    "id": "T03",
+    "name": "心态稳定",
+    "icon": "💪",
+    "rarity": "common",
+    "effects": {
+      "highschool": "压力事件不影响属性，焦虑事件自动通过",
+      "gaokao": "发挥波动减少50%，几乎不失误",
+      "major": { "boost": ["医学", "法学", "经济学"], "warn": [] },
+      "career": "抗压能力强，裁员不慌"
+    },
+    "statModifiers": {
+      "highschool": { "intellect": 0, "mental": 10, "social": 0, "health": 0 },
+      "gaokao": { "baseBonus": 0, "volatility": -15, "critChance": 0, "critBonus": 0 }
+    }
+  },
+  {
+    "id": "T04",
+    "name": "超常发挥",
+    "icon": "💪",
+    "rarity": "rare",
+    "effects": {
+      "highschool": "大考有概率爆分，但平时成绩普通",
+      "gaokao": "10%概率+30分，5%概率-20分",
+      "major": { "boost": [], "warn": [] },
+      "career": "关键场合爆发型，面试超常但可能翻车"
+    },
+    "statModifiers": {
+      "highschool": { "intellect": 0, "mental": 0, "social": 0, "health": 0 },
+      "gaokao": { "baseBonus": 0, "volatility": 30, "critChance": 0.1, "critBonus": 30 }
+    }
+  },
+  {
+    "id": "T05",
+    "name": "人见人爱",
+    "icon": "🎭",
+    "rarity": "common",
+    "effects": {
+      "highschool": "NPC好感度+10，解锁隐藏社交事件",
+      "gaokao": "不直接影响分数",
+      "major": { "boost": ["管理学", "文学", "教育学"], "warn": [] },
+      "career": "人脉型发展，靠关系内推进大厂"
+    },
+    "statModifiers": {
+      "highschool": { "intellect": 0, "mental": 0, "social": 10, "health": 0 },
+      "gaokao": { "baseBonus": 0, "volatility": 0, "critChance": 0, "critBonus": 0 }
+    }
+  },
+  {
+    "id": "T06",
+    "name": "社团之王",
+    "icon": "🎭",
+    "rarity": "rare",
+    "effects": {
+      "highschool": "自动加入精英社团，社交力+25",
+      "gaokao": "不直接影响分数",
+      "major": { "boost": ["管理学", "文学", "政治学"], "warn": [] },
+      "career": "管理型路线，但可能忽略技术深度"
+    },
+    "statModifiers": {
+      "highschool": { "intellect": 0, "mental": 0, "social": 25, "health": 0 },
+      "gaokao": { "baseBonus": 0, "volatility": 0, "critChance": 0, "critBonus": 0 }
+    }
+  },
+  {
+    "id": "T07",
+    "name": "锦鲤附体",
+    "icon": "🍀",
+    "rarity": "rare",
+    "effects": {
+      "highschool": "随机事件偏向正面",
+      "gaokao": "各科5%概率+10",
+      "major": { "boost": [], "warn": [] },
+      "career": "运气型，踩中风口行业"
+    },
+    "statModifiers": {
+      "highschool": { "intellect": 0, "mental": 0, "social": 0, "health": 5 },
+      "gaokao": { "baseBonus": 0, "volatility": 0, "critChance": 0.05, "critBonus": 10 }
+    }
+  },
+  {
+    "id": "T08",
+    "name": "考神降临",
+    "icon": "🍀",
+    "rarity": "epic",
+    "effects": {
+      "highschool": "一科成绩随机爆表",
+      "gaokao": "指定一科直接设为满分或接近满分",
+      "major": { "boost": [], "warn": [] },
+      "career": "天赋型，某领域惊人直觉，其他领域平庸"
+    },
+    "statModifiers": {
+      "highschool": { "intellect": 0, "mental": 0, "social": 0, "health": 0 },
+      "gaokao": { "baseBonus": 0, "volatility": 0, "critChance": 0.2, "critBonus": 60 }
+    }
+  },
+  {
+    "id": "T09",
+    "name": "执着钻研",
+    "icon": "🔬",
+    "rarity": "common",
+    "effects": {
+      "highschool": "学习力持续累加（越学越强），但社交力-10",
+      "gaokao": "分数随复习时间线性增长，不会波动",
+      "major": { "boost": ["医学", "理学", "农学"], "warn": ["管理学", "文学"] },
+      "career": "专家型路线，读博深造顺利但错过社交机会"
+    },
+    "statModifiers": {
+      "highschool": { "intellect": 0, "mental": 0, "social": -10, "health": 0 },
+      "gaokao": { "baseBonus": 0, "volatility": -10, "critChance": 0, "critBonus": 0 }
+    }
+  },
+  {
+    "id": "T10",
+    "name": "灵光一闪",
+    "icon": "💡",
+    "rarity": "rare",
+    "effects": {
+      "highschool": "创造力+20，竞赛类事件有加成",
+      "gaokao": "不直接影响分数，但作文/主观题可能加分",
+      "major": { "boost": ["艺术学", "工学", "文学"], "warn": [] },
+      "career": "创意型，提出爆款方案但被认为不靠谱"
+    },
+    "statModifiers": {
+      "highschool": { "intellect": 5, "mental": 0, "social": 5, "health": 0 },
+      "gaokao": { "baseBonus": 5, "volatility": 0, "critChance": 0, "critBonus": 0 }
+    }
+  },
+  {
+    "id": "T11",
+    "name": "随遇而安",
+    "icon": "🌊",
+    "rarity": "common",
+    "effects": {
+      "highschool": "幸福度不容易下降，负面事件影响减半",
+      "gaokao": "发挥稳定但不会超常",
+      "major": { "boost": ["教育学", "管理学", "理学"], "warn": ["经济学", "工学"] },
+      "career": "佛系型，幸福感高但财富天花板低"
+    },
+    "statModifiers": {
+      "highschool": { "intellect": 0, "mental": 0, "social": 0, "health": 10 },
+      "gaokao": { "baseBonus": 0, "volatility": -10, "critChance": 0, "critBonus": 0 }
+    }
+  },
+  {
+    "id": "T12",
+    "name": "逆风翻盘",
+    "icon": "🔥",
+    "rarity": "epic",
+    "effects": {
+      "highschool": "低分段时触发额外事件和选项",
+      "gaokao": "分数越低，随机加成越高",
+      "major": { "boost": [], "warn": [] },
+      "career": "逆袭型，被拒后反弹更强"
+    },
+    "statModifiers": {
+      "highschool": { "intellect": 0, "mental": 0, "social": 0, "health": 0 },
+      "gaokao": { "baseBonus": 0, "volatility": 20, "critChance": 0.15, "critBonus": 40 }
+    }
+  }
+]

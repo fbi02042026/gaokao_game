@@ -1,201 +1,107 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using GaokaoLife.Models;
+using UnityEngine.UI;
 
-namespace GaokaoLife.Managers
+public class ShareManager : MonoBehaviour
 {
-    public class ShareManager : MonoBehaviour
+    public static ShareManager Instance { get; private set; }
+
+    [Header("分享卡片模板")]
+    public RectTransform cardTemplate;
+
+    void Awake()
     {
-        public static ShareManager Instance { get; private set; }
+        if (Instance == null) { Instance = this; DontDestroyOnLoad(gameObject); }
+        else { Destroy(gameObject); }
+    }
 
-        private bool isShareAvailable;
-        private Texture2D shareImage;
+    public Texture2D GeneratePersonalityCard(PersonalityResult data)
+    {
+        int w = 750, h = 1334;
+        Texture2D tex = new Texture2D(w, h, TextureFormat.RGBA32, false);
 
-        public event Action OnShareCompleted;
-        public event Action OnShareCancelled;
+        Color bgTop = ThemeColors.Secondary;
+        Color bgBottom = ThemeColors.GradientBaseBottom;
 
-        void Awake()
+        for (int y = 0; y < h; y++)
         {
-            if (Instance == null)
-            {
-                Instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            isShareAvailable = PlatformManager.Instance?.HasFeature("share") ?? false;
-            
-            Debug.Log("[ShareManager] 分享管理器初始化完成");
+            float t = (float)y / h;
+            Color bg = Color.Lerp(bgTop, bgBottom, t);
+            for (int x = 0; x < w; x++)
+                tex.SetPixel(x, y, bg);
         }
 
-        public void ShareText(string title, string description, string query = "")
+        tex.Apply();
+        Debug.Log($"[ShareManager] 生成人格卡片: {data?.personality?.name}");
+        return tex;
+    }
+
+    public Texture2D GenerateEndingCard(string endingText, string college, string major, int satisfaction)
+    {
+        int w = 750, h = 1334;
+        Texture2D tex = new Texture2D(w, h, TextureFormat.RGBA32, false);
+
+        Color bgTop = ThemeColors.ShareCardEndingTop[0];
+        Color bgBottom = ThemeColors.ShareCardEndingTop[1];
+
+        for (int y = 0; y < h; y++)
         {
-            if (!isShareAvailable)
-            {
-                Debug.Log("[ShareManager] 分享功能不可用");
-                return;
-            }
-
-            var platform = PlatformManager.Instance?.CurrentPlatform ?? PlatformType.Editor;
-
-            switch (platform)
-            {
-                case PlatformType.WeChat:
-                    ShareToWeChat(title, description, query);
-                    break;
-                case PlatformType.Douyin:
-                    ShareToDouyin(title, description, query);
-                    break;
-                default:
-                    SimulateShare(title, description);
-                    break;
-            }
+            float t = (float)y / h;
+            Color bg = Color.Lerp(bgTop, bgBottom, t);
+            for (int x = 0; x < w; x++)
+                tex.SetPixel(x, y, bg);
         }
 
-        public void ShareWithImage(string title, string description, Texture2D image, string query = "")
+        tex.Apply();
+        Debug.Log($"[ShareManager] 生成结局卡片: {endingText}");
+        return tex;
+    }
+
+    public Texture2D GenerateKnowledgeCard(string majorName, string funFact)
+    {
+        int w = 750, h = 1334;
+        Texture2D tex = new Texture2D(w, h, TextureFormat.RGBA32, false);
+
+        Color bgTop = ThemeColors.ShareCardKnowledgeTop[0];
+        Color bgBottom = ThemeColors.ShareCardKnowledgeTop[1];
+
+        for (int y = 0; y < h; y++)
         {
-            if (!isShareAvailable)
-            {
-                Debug.Log("[ShareManager] 分享功能不可用");
-                return;
-            }
-
-            shareImage = image;
-            
-            byte[] imageBytes = image.EncodeToPNG();
-            string imagePath = Application.persistentDataPath + "/share_image.png";
-            System.IO.File.WriteAllBytes(imagePath, imageBytes);
-
-            var platform = PlatformManager.Instance?.CurrentPlatform ?? PlatformType.Editor;
-
-            switch (platform)
-            {
-                case PlatformType.WeChat:
-                    ShareImageToWeChat(title, description, imagePath, query);
-                    break;
-                case PlatformType.Douyin:
-                    ShareImageToDouyin(title, description, imagePath, query);
-                    break;
-                default:
-                    SimulateShareWithImage(title, description);
-                    break;
-            }
+            float t = (float)y / h;
+            Color bg = Color.Lerp(bgTop, bgBottom, t);
+            for (int x = 0; x < w; x++)
+                tex.SetPixel(x, y, bg);
         }
 
-        public void ShareGameResult(PlayerState player, LifeResult result)
+        tex.Apply();
+        Debug.Log($"[ShareManager] 生成冷知识卡片: {majorName}");
+        return tex;
+    }
+
+    public void Share(string type)
+    {
+#if UNITY_WECHAT_GAME
+        Debug.Log($"[ShareManager] 微信分享: {type}");
+#elif UNITY_BYTE_DANCE_MINI_GAME
+        Debug.Log($"[ShareManager] 抖音分享: {type}");
+#else
+        GUIUtility.systemCopyBuffer = GetShareText(type);
+        Debug.Log($"[ShareManager] 复制分享文案: {type}");
+#endif
+    }
+
+    private string GetShareTitle(string type)
+    {
+        return type switch
         {
-            string title = GetShareTitle(result);
-            string description = GetShareDescription(player, result);
-            
-            ShareText(title, description, $"score={result.satisfactionScore}");
-        }
+            "personality" => "我是🔬理性探索者！你呢？",
+            "ending" => "我选了计算机，30岁居然...",
+            "knowledge" => "心理学原来不是读心术！",
+            _ => "来测测你的高考人格！"
+        };
+    }
 
-        private string GetShareTitle(LifeResult result)
-        {
-            switch (result.ending)
-            {
-                case LifeEnding.Excellent:
-                    return "🌟 人生巅峰！";
-                case LifeEnding.Good:
-                    return "✨ 幸福人生！";
-                case LifeEnding.Average:
-                    return "📊 平凡人生";
-                case LifeEnding.Poor:
-                    return "💪 继续努力";
-                default:
-                    return "🎮 高考人生模拟器";
-            }
-        }
-
-        private string GetShareDescription(PlayerState player, LifeResult result)
-        {
-            string college = "";
-            if (!string.IsNullOrEmpty(player.admittedCollegeId))
-            {
-                college = $"考入{payer.admittedCollegeId}";
-            }
-
-            return $"我在高考人生模拟器中获得{result.satisfactionScore}分满意度！" +
-                   $"高考分数:{player.gaokaoScore} " +
-                   $"最终职级:{player.careerLevel}级";
-        }
-
-        private void ShareToWeChat(string title, string description, string query)
-        {
-            Debug.Log($"[ShareManager] 分享到微信: {title}");
-            OnShareCompleted?.Invoke();
-        }
-
-        private void ShareToDouyin(string title, string description, string query)
-        {
-            Debug.Log($"[ShareManager] 分享到抖音: {title}");
-            OnShareCompleted?.Invoke();
-        }
-
-        private void ShareImageToWeChat(string title, string description, string imagePath, string query)
-        {
-            Debug.Log($"[ShareManager] 带图片分享到微信: {title}");
-            OnShareCompleted?.Invoke();
-        }
-
-        private void ShareImageToDouyin(string title, string description, string imagePath, string query)
-        {
-            Debug.Log($"[ShareManager] 带图片分享到抖音: {title}");
-            OnShareCompleted?.Invoke();
-        }
-
-        private void SimulateShare(string title, string description)
-        {
-            Debug.Log($"[ShareManager] 模拟分享:");
-            Debug.Log($"  标题: {title}");
-            Debug.Log($"  描述: {description}");
-            OnShareCompleted?.Invoke();
-        }
-
-        private void SimulateShareWithImage(string title, string description)
-        {
-            Debug.Log($"[ShareManager] 模拟带图片分享:");
-            Debug.Log($"  标题: {title}");
-            Debug.Log($"  描述: {description}");
-            Debug.Log($"  图片: 已生成");
-            OnShareCompleted?.Invoke();
-        }
-
-        public Texture2D GenerateShareImage(PlayerState player, LifeResult result)
-        {
-            int width = 512;
-            int height = 512;
-            Texture2D texture = new Texture2D(width, height);
-            Color[] colors = new Color[width * height];
-
-            for (int y = 0; y < height; y++)
-            {
-                for (int x = 0; x < width; x++)
-                {
-                    float gradient = (float)(x + y) / (width + height);
-                    colors[y * width + x] = Color.Lerp(Color.blue, Color.cyan, gradient);
-                }
-            }
-
-            texture.SetPixels(colors);
-            texture.Apply();
-
-            return texture;
-        }
-
-        public void SetShareAvailability(bool available)
-        {
-            isShareAvailable = available;
-        }
-
-        public bool IsShareAvailable()
-        {
-            return isShareAvailable;
-        }
+    private string GetShareText(string type)
+    {
+        return GetShareTitle(type) + " #高考人生";
     }
 }

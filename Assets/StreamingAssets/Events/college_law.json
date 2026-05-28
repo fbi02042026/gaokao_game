@@ -1,0 +1,64 @@
+[
+  {
+    "id": "LAW_001", "name": "第一次辩论赛", "stage": "college", "tags": ["法学", "挑战"],
+    "triggerCondition": null, "interactionType": "choice",
+    "choiceContent": { "description": "辩论赛你选什么位置？", "choices": [
+      {"id": "A", "text": "一辩（立论）", "icon": "📋"},
+      {"id": "B", "text": "二辩（攻辩）", "icon": "⚔️"},
+      {"id": "C", "text": "三辩（总结）", "icon": "🎯"}
+    ]},
+    "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key":"A","value":{"statKeys":["intellect","social"],"statValues":[5,3],"narrative":"立论逻辑清晰，为团队拿下关键分。"}},
+      {"key":"B","value":{"statKeys":["social","mental"],"statValues":[8,3],"narrative":"攻辩气势如虹，对方被问得哑口无言。"}},
+      {"key":"C","value":{"statKeys":["intellect","mental"],"statValues":[5,5],"narrative":"总结陈词感动全场，最佳辩手！"}}
+    ]
+  },
+  {
+    "id": "LAW_002", "name": "模拟法庭", "stage": "college", "tags": ["法学", "实践"],
+    "triggerCondition": {"minGrade": 3, "minIntellect": 0, "requiredEvent": null}, "interactionType": "sort",
+    "sortContent": { "description": "按案件重要性排列你的辩护策略", "items": ["证据收集", "法律论证", "情感打动", "程序正义"], "showProbability": true },
+    "choiceContent": null, "mergeContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key":"optimal","value":{"statKeys":["intellect","social"],"statValues":[10,5],"narrative":"策略得当，模拟法庭完胜！"}},
+      {"key":"risky","value":{"statKeys":["mental"],"statValues":[-5],"narrative":"策略失误，但学到了宝贵的实战经验。"}}
+    ]
+  },
+  {
+    "id": "LAW_003", "name": "律所实习", "stage": "college", "tags": ["法学", "职业"],
+    "triggerCondition": {"minGrade": 4, "minIntellect": 0, "requiredEvent": null}, "interactionType": "choice",
+    "choiceContent": { "description": "律所实习第一个任务", "choices": [
+      {"id": "A", "text": "整理卷宗（基础但扎实）", "icon": "📁"},
+      {"id": "B", "text": "跟律师出庭（学习实战）", "icon": "⚖️"},
+      {"id": "C", "text": "主动争取写法律意见书", "icon": "✍️"}
+    ]},
+    "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key":"A","value":{"statKeys":["intellect","mental"],"statValues":[5,5],"narrative":"基础扎实，律师对你印象很好。"}},
+      {"key":"B","value":{"statKeys":["social","intellect"],"statValues":[8,3],"narrative":"庭审现场比书本震撼一百倍。"}},
+      {"key":"C","value":{"statKeys":["intellect","social"],"statValues":[10,5],"narrative":"你的意见书被合伙人夸奖了！"}}
+    ]
+  },
+  {
+    "id": "LAW_004", "name": "法考倒计时", "stage": "college", "tags": ["法学", "考试"],
+    "triggerCondition": {"minGrade": 5, "minIntellect": 0, "requiredEvent": null}, "interactionType": "timing",
+    "timingContent": { "description": "法考冲刺！快速答题", "duration": 60, "targetCount": 10 },
+    "choiceContent": null, "mergeContent": null, "sortContent": null, "sliderContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key":"success","value":{"statKeys":["intellect","mental"],"statValues":[10,5],"narrative":"法考通过！法律生涯开启！"}},
+      {"key":"fail","value":{"statKeys":["mental"],"statValues":[-15],"narrative":"法考没过...明年再战。"}}
+    ]
+  },
+  {
+    "id": "LAW_005", "name": "法律援助", "stage": "college", "tags": ["法学", "公益"],
+    "triggerCondition": null, "interactionType": "dialog",
+    "dialogContent": { "description": "法律援助中心的老人", "npcId": "npc_elder", "lines": [
+      "小伙子，我这房子要被开发商强拆了...","我不懂法律，你能帮帮我吗？",
+      "家里就剩我一个人了。","谢谢你愿意听我说这些。"
+    ]},
+    "choiceContent": null, "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null,
+    "outcomeList": [
+      {"key":"default","value":{"statKeys":["mental","social"],"statValues":[8,5],"narrative":"帮老人讨回了公道，这是法律的温度。"}}
+    ]
+  }
+]

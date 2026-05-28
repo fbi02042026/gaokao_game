@@ -1,11 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using GaokaoLife.Models;
 
-namespace GaokaoLife.Engine
-{
-    public class LifeEngine : MonoBehaviour
+public class LifeEngine : MonoBehaviour
     {
         public static LifeEngine Instance { get; private set; }
 
@@ -299,4 +296,15 @@ namespace GaokaoLife.Engine
         Average,
         Poor
     }
-}
+
+    [Serializable]
+    public class StatEffects
+    {
+        public int intelligence;
+        public int physical;
+        public int emotion;
+        public int social;
+        public int creativity;
+        public int luck;
+        public int willpower;
+    }

@@ -1,0 +1,65 @@
+[
+  {
+    "id": "MED_001", "name": "第一次解剖课", "stage": "college", "tags": ["医学", "挑战"],
+    "triggerCondition": null, "interactionType": "choice",
+    "choiceContent": { "description": "第一次进解剖实验室，你什么感受？", "choices": [
+      {"id": "A", "text": "兴奋，终于等到这一天！", "icon": "🔬"},
+      {"id": "B", "text": "紧张，差点晕过去", "icon": "😰"},
+      {"id": "C", "text": "冷静，认真学习", "icon": "📝"}
+    ]},
+    "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key":"A","value":{"statKeys":["intellect","mental"],"statValues":[5,-5],"narrative":"热情是最好的老师，但记得也要注意心态调整。"}},
+      {"key":"B","value":{"statKeys":["mental","health"],"statValues":[-10,5],"narrative":"慢慢就习惯了，每个医学生都这样过来的。"}},
+      {"key":"C","value":{"statKeys":["intellect","mental"],"statValues":[8,3],"narrative":"稳扎稳打的学习态度将为临床打下坚实基础。"}}
+    ]
+  },
+  {
+    "id": "MED_002", "name": "规培选择", "stage": "college", "tags": ["医学", "职业"],
+    "triggerCondition": {"minGrade": 4, "minIntellect": 0, "requiredEvent": null}, "interactionType": "choice",
+    "choiceContent": { "description": "毕业后去哪规培？", "choices": [
+      {"id": "A", "text": "三甲医院（竞争激烈）", "icon": "🏥"},
+      {"id": "B", "text": "家乡二甲医院（轻松）", "icon": "🏠"},
+      {"id": "C", "text": "继续读研（延迟就业）", "icon": "📚"}
+    ]},
+    "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key":"A","value":{"statKeys":["intellect","social"],"statValues":[10,5],"narrative":"三甲三年，脱一层皮，但履历金光闪闪。"}},
+      {"key":"B","value":{"statKeys":["mental","health"],"statValues":[10,5],"narrative":"小医院也有大舞台，至少不用天天熬夜。"}},
+      {"key":"C","value":{"statKeys":["intellect"],"statValues":[8],"narrative":"学历是硬通货，多读三年不亏。"}}
+    ]
+  },
+  {
+    "id": "MED_003", "name": "急诊科第一夜", "stage": "college", "tags": ["医学", "压力"],
+    "triggerCondition": null, "interactionType": "timing",
+    "timingContent": { "description": "紧急抢救！30秒内完成心肺复苏", "duration": 30, "targetCount": 3 },
+    "choiceContent": null, "mergeContent": null, "sortContent": null, "sliderContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key":"success","value":{"statKeys":["mental","health"],"statValues":[5,-5],"narrative":"抢救成功！虽然累但成就感爆棚。"}},
+      {"key":"fail","value":{"statKeys":["mental"],"statValues":[-10],"narrative":"没救回来...记住这个教训。"}}
+    ]
+  },
+  {
+    "id": "MED_004", "name": "导师对话", "stage": "college", "tags": ["医学", "社交"],
+    "triggerCondition": {"minGrade": 3, "minIntellect": 0, "requiredEvent": null}, "interactionType": "dialog",
+    "dialogContent": { "description": "导师找你谈话", "npcId": "npc_professor", "lines": [
+      "你最近的临床实习怎么样？","医学这条路很苦，你想清楚了吗？",
+      "我当年也想过放弃，但每次看到病人康复的笑容...","坚持下去，你会成为一名好医生的。"
+    ]},
+    "choiceContent": null, "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null,
+    "outcomeList": [
+      {"key":"default","value":{"statKeys":["mental","social"],"statValues":[5,3],"narrative":"导师的话让你更加坚定了学医的决心。"}}
+    ]
+  },
+  {
+    "id": "MED_005", "name": "科研还是临床", "stage": "college", "tags": ["医学", "选择"],
+    "triggerCondition": {"minGrade": 5, "minIntellect": 0, "requiredEvent": null}, "interactionType": "slider",
+    "sliderContent": { "description": "分配你最后一年的精力", "categories": [
+      {"name":"临床实习","icon":"🏥"},{"name":"科研论文","icon":"📄"},{"name":"复习考研","icon":"📚"}
+    ], "totalPoints": 10 },
+    "choiceContent": null, "mergeContent": null, "sortContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key":"default","value":{"statKeys":[],"statValues":[],"narrative":"时间分配决定了你的职业方向。"}}
+    ]
+  }
+]

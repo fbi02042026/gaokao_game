@@ -6,14 +6,7 @@
       "description": "二周目专属天赋，记得所有选择带来的结果",
       "rarity": "Legendary",
       "type": "Permanent",
-      "effects": [
-        {
-          "type": "special_ability",
-          "target": "deja_vu",
-          "value": 1,
-          "description": "触发既视感效果"
-        }
-      ],
+      "effects": [{"type": "special_ability", "target": "deja_vu", "value": 1}],
       "triggerPhases": ["All"],
       "unlockCondition": "complete_one_playthrough",
       "iconPath": "Talents/memory_past_life",
@@ -22,21 +15,13 @@
     {
       "id": "photographic_memory",
       "name": "过目不忘",
-      "description": "记忆力大幅提升，学习效率+50%",
+      "description": "学习效率+50%",
       "rarity": "Rare",
       "type": "Passive",
-      "effects": [
-        {
-          "type": "stat_boost",
-          "target": "study_efficiency",
-          "value": 50,
-          "description": "学习效率+50%",
-          "isPercentage": true
-        }
-      ],
+      "effects": [{"type": "stat_boost", "target": "study_efficiency", "value": 50}],
       "triggerPhases": ["HighSchool", "College"],
       "unlockCondition": "random_chance",
-      "iconPath": "Talents/photographic_memory",
+      "iconPath": "Talents/photographic",
       "maxLevel": 3
     },
     {
@@ -45,18 +30,10 @@
       "description": "考试时不易紧张，发挥稳定",
       "rarity": "Common",
       "type": "Passive",
-      "effects": [
-        {
-          "type": "stat_boost",
-          "target": "exam_stability",
-          "value": 30,
-          "description": "考试稳定性+30%",
-          "isPercentage": true
-        }
-      ],
+      "effects": [{"type": "stat_boost", "target": "exam_stability", "value": 30}],
       "triggerPhases": ["HighSchool", "Gaokao", "College"],
       "unlockCondition": "story_event",
-      "iconPath": "Talents/emotional_control",
+      "iconPath": "Talents/calm",
       "maxLevel": 5
     },
     {
@@ -65,17 +42,10 @@
       "description": "每天比别人多出2小时学习时间",
       "rarity": "Epic",
       "type": "Passive",
-      "effects": [
-        {
-          "type": "stat_boost",
-          "target": "daily_study_time",
-          "value": 120,
-          "description": "每日学习时间+120分钟"
-        }
-      ],
+      "effects": [{"type": "stat_boost", "target": "daily_study_time", "value": 120}],
       "triggerPhases": ["HighSchool", "College"],
       "unlockCondition": "special_choice",
-      "iconPath": "Talents/time_manipulation",
+      "iconPath": "Talents/time",
       "maxLevel": 1
     },
     {
@@ -84,17 +54,10 @@
       "description": "人脉广泛，获得更多隐藏事件",
       "rarity": "Rare",
       "type": "Passive",
-      "effects": [
-        {
-          "type": "unlock_feature",
-          "target": "hidden_events",
-          "value": 5,
-          "description": "解锁5个隐藏事件"
-        }
-      ],
+      "effects": [{"type": "unlock_feature", "target": "hidden_events", "value": 5}],
       "triggerPhases": ["HighSchool", "University", "Career"],
       "unlockCondition": "relationship_max",
-      "iconPath": "Talents/social_butterfly",
+      "iconPath": "Talents/social",
       "maxLevel": 1
     },
     {
@@ -103,17 +66,10 @@
       "description": "运势爆棚，关键时刻运气+40%",
       "rarity": "Epic",
       "type": "Passive",
-      "effects": [
-        {
-          "type": "stat_boost",
-          "target": "luck",
-          "value": 40,
-          "description": "幸运值+40%"
-        }
-      ],
+      "effects": [{"type": "stat_boost", "target": "luck", "value": 40}],
       "triggerPhases": ["Gaokao", "Zhiyuan", "Career"],
       "unlockCondition": "random_chance",
-      "iconPath": "Talents/lucky_star",
+      "iconPath": "Talents/lucky",
       "maxLevel": 3
     },
     {
@@ -122,17 +78,10 @@
       "description": "快速掌握新知识，理解力+30%",
       "rarity": "Common",
       "type": "Passive",
-      "effects": [
-        {
-          "type": "stat_boost",
-          "target": "comprehension",
-          "value": 30,
-          "description": "理解力+30%"
-        }
-      ],
+      "effects": [{"type": "stat_boost", "target": "comprehension", "value": 30}],
       "triggerPhases": ["HighSchool", "College"],
       "unlockCondition": "auto_unlock_early",
-      "iconPath": "Talents/quick_learner",
+      "iconPath": "Talents/study",
       "maxLevel": 5
     },
     {
@@ -141,17 +90,10 @@
       "description": "体育满分，强身健体",
       "rarity": "Common",
       "type": "Passive",
-      "effects": [
-        {
-          "type": "stat_boost",
-          "target": "physical_score",
-          "value": 100,
-          "description": "体育成绩必定满分"
-        }
-      ],
+      "effects": [{"type": "stat_boost", "target": "physical_score", "value": 100}],
       "triggerPhases": ["HighSchool"],
       "unlockCondition": "auto_unlock_early",
-      "iconPath": "Talents/physical_genius",
+      "iconPath": "Talents/sport",
       "maxLevel": 1
     },
     {
@@ -160,17 +102,10 @@
       "description": "灵感迸发，创造力+35%",
       "rarity": "Rare",
       "type": "Passive",
-      "effects": [
-        {
-          "type": "stat_boost",
-          "target": "creativity",
-          "value": 35,
-          "description": "创造力+35%"
-        }
-      ],
+      "effects": [{"type": "stat_boost", "target": "creativity", "value": 35}],
       "triggerPhases": ["University", "Career"],
       "unlockCondition": "random_chance",
-      "iconPath": "Talents/creative_genius",
+      "iconPath": "Talents/creative",
       "maxLevel": 1
     },
     {
@@ -179,17 +114,10 @@
       "description": "意志坚定，压力承受+50%",
       "rarity": "Epic",
       "type": "Passive",
-      "effects": [
-        {
-          "type": "stat_boost",
-          "target": "stress_resistance",
-          "value": 50,
-          "description": "抗压能力+50%"
-        }
-      ],
+      "effects": [{"type": "stat_boost", "target": "stress_resistance", "value": 50}],
       "triggerPhases": ["Gaokao", "University", "Career"],
       "unlockCondition": "story_event",
-      "iconPath": "Talents/iron_will",
+      "iconPath": "Talents/will",
       "maxLevel": 3
     },
     {
@@ -198,23 +126,10 @@
       "description": "家人的支持与鼓励",
       "rarity": "Rare",
       "type": "Passive",
-      "effects": [
-        {
-          "type": "stat_boost",
-          "target": "emotion",
-          "value": 20,
-          "description": "情商+20"
-        },
-        {
-          "type": "stat_boost",
-          "target": "willpower",
-          "value": 15,
-          "description": "意志力+15"
-        }
-      ],
+      "effects": [{"type": "stat_boost", "target": "emotion", "value": 20}],
       "triggerPhases": ["All"],
       "unlockCondition": "family_event",
-      "iconPath": "Talents/family_blessing",
+      "iconPath": "Talents/family",
       "maxLevel": 1
     },
     {
@@ -223,17 +138,10 @@
       "description": "关键时刻可以重来一次",
       "rarity": "Legendary",
       "type": "Active",
-      "effects": [
-        {
-          "type": "special_ability",
-          "target": "retry_exam",
-          "value": 1,
-          "description": "高考可重考一次"
-        }
-      ],
+      "effects": [{"type": "special_ability", "target": "retry_exam", "value": 1}],
       "triggerPhases": ["Gaokao"],
       "unlockCondition": "special_story",
-      "iconPath": "Talents/second_chance",
+      "iconPath": "Talents/retry",
       "maxLevel": 1
     }
   ]

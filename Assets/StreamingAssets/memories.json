@@ -1,0 +1,34 @@
+[
+  {
+    "id": "D1",
+    "name": "模糊预感",
+    "icon": "🌀",
+    "rarity": "common",
+    "hintLevel": 1,
+    "description": "遇到上次选过的选项时，浮现'上次好像选了这个...'"
+  },
+  {
+    "id": "D2",
+    "name": "隐约记得",
+    "icon": "🔮",
+    "rarity": "rare",
+    "hintLevel": 2,
+    "description": "既视感提示更具体：'上次选了这个，好像结果不太好...'"
+  },
+  {
+    "id": "D3",
+    "name": "前世回响",
+    "icon": "👁️",
+    "rarity": "epic",
+    "hintLevel": 3,
+    "description": "既视感提示包含结果方向：'上次选了这个，后来...'"
+  },
+  {
+    "id": "D4",
+    "name": "直觉闪现",
+    "icon": "⚡",
+    "rarity": "epic",
+    "hintLevel": 4,
+    "description": "既视感事件中，最佳选项微微发光"
+  }
+]

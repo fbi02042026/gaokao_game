@@ -8,13 +8,7 @@
       "province": "Beijing",
       "ranking": 1,
       "reputation": 100,
-      "tuition": 5000,
-      "minScore2024": 680,
-      "minScore2023": 675,
-      "minScore2022": 670,
-      "employmentRate": 0.98,
-      "campusLifeScore": 95,
-      "locationScore": 90
+      "minScore2024": 680
     },
     {
       "id": "peking",
@@ -24,13 +18,7 @@
       "province": "Beijing",
       "ranking": 2,
       "reputation": 100,
-      "tuition": 5000,
-      "minScore2024": 678,
-      "minScore2023": 673,
-      "minScore2022": 668,
-      "employmentRate": 0.97,
-      "campusLifeScore": 95,
-      "locationScore": 90
+      "minScore2024": 678
     },
     {
       "id": "fudan",
@@ -40,13 +28,7 @@
       "province": "Shanghai",
       "ranking": 3,
       "reputation": 95,
-      "tuition": 5000,
-      "minScore2024": 665,
-      "minScore2023": 660,
-      "minScore2022": 655,
-      "employmentRate": 0.96,
-      "campusLifeScore": 92,
-      "locationScore": 95
+      "minScore2024": 665
     },
     {
       "id": "sjtu",
@@ -56,13 +38,7 @@
       "province": "Shanghai",
       "ranking": 4,
       "reputation": 95,
-      "tuition": 5000,
-      "minScore2024": 663,
-      "minScore2023": 658,
-      "minScore2022": 653,
-      "employmentRate": 0.97,
-      "campusLifeScore": 90,
-      "locationScore": 95
+      "minScore2024": 663
     },
     {
       "id": "zju",
@@ -72,13 +48,7 @@
       "province": "Zhejiang",
       "ranking": 5,
       "reputation": 93,
-      "tuition": 5000,
-      "minScore2024": 655,
-      "minScore2023": 650,
-      "minScore2022": 645,
-      "employmentRate": 0.95,
-      "campusLifeScore": 88,
-      "locationScore": 85
+      "minScore2024": 655
     }
   ],
   "majors": [
@@ -88,9 +58,7 @@
       "category": "engineering",
       "difficulty": 80,
       "popularity": 95,
-      "careerProspects": 98,
-      "avgSalary": 25000,
-      "topSalary": 80000
+      "careerProspects": 98
     },
     {
       "id": "medicine",
@@ -98,9 +66,7 @@
       "category": "medicine",
       "difficulty": 90,
       "popularity": 85,
-      "careerProspects": 95,
-      "avgSalary": 20000,
-      "topSalary": 50000
+      "careerProspects": 95
     },
     {
       "id": "law",
@@ -108,9 +74,7 @@
       "category": "law",
       "difficulty": 70,
       "popularity": 75,
-      "careerProspects": 80,
-      "avgSalary": 15000,
-      "topSalary": 40000
+      "careerProspects": 80
     },
     {
       "id": "finance",
@@ -118,9 +82,7 @@
       "category": "economics",
       "difficulty": 75,
       "popularity": 90,
-      "careerProspects": 88,
-      "avgSalary": 22000,
-      "topSalary": 60000
+      "careerProspects": 88
     },
     {
       "id": "ai",
@@ -128,9 +90,7 @@
       "category": "engineering",
       "difficulty": 95,
       "popularity": 98,
-      "careerProspects": 99,
-      "avgSalary": 30000,
-      "topSalary": 100000
+      "careerProspects": 99
     }
   ]
 }

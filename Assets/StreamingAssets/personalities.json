@@ -1,0 +1,66 @@
+[
+  {
+    "id": "rational",
+    "name": "理性探索者",
+    "icon": "🔬",
+    "tagline": "用数据说话，用选择定义人生",
+    "description": "你倾向于分析利弊，用理性做决策",
+    "weights": { "intellect": 3, "mental": 1 }
+  },
+  {
+    "id": "creator",
+    "name": "自由创作者",
+    "icon": "🎨",
+    "tagline": "不走寻常路，活出自己的颜色",
+    "description": "你追求自由和创意，不愿被条条框框束缚",
+    "weights": { "mental": 2, "social": 2 }
+  },
+  {
+    "id": "pragmatist",
+    "name": "实用主义者",
+    "icon": "💼",
+    "tagline": "理想很美，但我选靠谱",
+    "description": "你务实稳重，优先考虑就业和稳定",
+    "weights": { "intellect": 1, "health": 2 }
+  },
+  {
+    "id": "fighter",
+    "name": "逆袭斗士",
+    "icon": "🔥",
+    "tagline": "人生没有定局，我来翻盘",
+    "description": "你不服输，总想挑战更高的目标",
+    "weights": { "mental": 3, "health": 1 }
+  },
+  {
+    "id": "zen",
+    "name": "佛系随缘",
+    "icon": "🌊",
+    "tagline": "该来的总会来，急什么",
+    "description": "你心态超好，不焦虑不内卷",
+    "weights": { "health": 3, "mental": 1 }
+  },
+  {
+    "id": "emotional",
+    "name": "情感驱动",
+    "icon": "❤️",
+    "tagline": "人心比分数重要",
+    "description": "你重视人和情感，选择时更多考虑身边人的感受",
+    "weights": { "social": 3, "mental": 1 }
+  },
+  {
+    "id": "steady",
+    "name": "稳扎稳打",
+    "icon": "🏔️",
+    "tagline": "不求最高，但求最稳",
+    "description": "你谨慎求稳，绝不冒险，保底永远要有",
+    "weights": { "health": 2, "intellect": 2 }
+  },
+  {
+    "id": "idealist",
+    "name": "理想主义者",
+    "icon": "🌟",
+    "tagline": "为热爱而活，不将就",
+    "description": "你追随内心，即使专业冷门也要选自己喜欢的",
+    "weights": { "mental": 2, "social": 1, "intellect": 1 }
+  }
+]

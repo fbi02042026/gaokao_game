@@ -1,282 +1,168 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using GaokaoLife.Models;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace GaokaoLife.Engine
+public class TalentEngine : MonoBehaviour
 {
-    public class TalentEngine : MonoBehaviour
+    public static TalentEngine Instance { get; private set; }
+
+    private List<Talent> allTalents;
+    private Talent currentTalent;
+
+    void Awake()
     {
-        public static TalentEngine Instance { get; private set; }
+        if (Instance == null) { Instance = this; DontDestroyOnLoad(gameObject); }
+        else { Destroy(gameObject); }
+    }
 
-        private TalentData talentData;
-        private Dictionary<string, Talent> activeTalents;
+    public void LoadTalents(List<Talent> talents)
+    {
+        allTalents = talents ?? new List<Talent>();
+        Debug.Log($"[TalentEngine] 加载 {allTalents.Count} 个天赋");
+    }
 
-        public event Action<Talent> OnTalentUnlocked;
-        public event Action<Talent, int> OnTalentLevelUp;
-        public event Action<float, string> OnTalentEffectApplied;
+    public void SetCurrentTalent(Talent talent)
+    {
+        currentTalent = talent;
+        Debug.Log($"[TalentEngine] 选中天赋: {talent?.name}");
+    }
 
-        void Awake()
+    public Talent GetCurrentTalent()
+    {
+        return currentTalent;
+    }
+
+    public List<Talent> DrawTalents()
+    {
+        if (allTalents == null || allTalents.Count == 0)
         {
-            if (Instance == null)
-            {
-                Instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            activeTalents = new Dictionary<string, Talent>();
-            Debug.Log("[TalentEngine] 天赋引擎初始化完成");
+            Debug.LogWarning("[TalentEngine] 天赋池为空");
+            return new List<Talent>();
         }
 
-        public void LoadTalents(TalentData data)
-        {
-            talentData = data;
-            Debug.Log($"[TalentEngine] 加载了 {data.talents.Count} 个天赋配置");
-        }
+        var pool = allTalents.Where(t => t.rarity != "legendary").ToList();
+        var result = new List<Talent>();
 
-        public void InitializePlayerTalents(PlayerState player)
+        for (int i = 0; i < 3 && pool.Count > 0; i++)
         {
-            foreach (var talentId in player.unlockedTalentIds)
+            var weighted = pool.Select(t => new { Talent = t, Weight = GetRarityWeight(t.rarity) }).ToList();
+            int totalWeight = weighted.Sum(w => w.Weight);
+            int rand = Random.Range(0, totalWeight);
+            int cumulative = 0;
+            foreach (var w in weighted)
             {
-                var talent = talentData?.GetTalent(talentId);
-                if (talent != null)
+                cumulative += w.Weight;
+                if (rand < cumulative)
                 {
-                    activeTalents[talentId] = talent;
+                    result.Add(w.Talent);
+                    pool.Remove(w.Talent);
+                    break;
                 }
             }
-            
-            Debug.Log($"[TalentEngine] 玩家拥有 {activeTalents.Count} 个天赋");
         }
 
-        public bool UnlockTalent(string talentId, PlayerState player)
+        Debug.Log($"[TalentEngine] 抽卡结果: {string.Join(", ", result.Select(t => t.name))}");
+        return result;
+    }
+
+    private int GetRarityWeight(string rarity)
+    {
+        return rarity switch
         {
-            if (activeTalents.ContainsKey(talentId))
-            {
-                Debug.LogWarning($"[TalentEngine] 天赋已解锁: {talentId}");
-                return false;
-            }
+            "common" => 60,
+            "rare" => 30,
+            "epic" => 10,
+            _ => 10
+        };
+    }
 
-            var talent = talentData?.GetTalent(talentId);
-            if (talent == null)
-            {
-                Debug.LogWarning($"[TalentEngine] 找不到天赋配置: {talentId}");
-                return false;
-            }
-
-            if (talent.maxLevel == 1)
-            {
-                talent.Unlock();
-            }
-
-            activeTalents[talentId] = talent;
-            player.UnlockTalent(talentId);
-            
-            OnTalentUnlocked?.Invoke(talent);
-            
-            Debug.Log($"[TalentEngine] 解锁天赋: {talent.name} ({talent.rarity})");
-            return true;
-        }
-
-        public bool LevelUpTalent(string talentId, PlayerState player)
+    public static string RarityColor(string rarity)
+    {
+        return rarity switch
         {
-            if (!activeTalents.ContainsKey(talentId))
-            {
-                Debug.LogWarning($"[TalentEngine] 天赋未解锁: {talentId}");
-                return false;
-            }
+            "common" => "#9E9E9E",
+            "rare" => "#6B9DF7",
+            "epic" => "#DDA0DD",
+            "legendary" => "#FFD93D",
+            _ => "#9E9E9E"
+        };
+    }
 
-            var talent = activeTalents[talentId];
-            if (talent.currentLevel >= talent.maxLevel)
-            {
-                Debug.LogWarning($"[TalentEngine] 天赋已达最大等级: {talentId}");
-                return false;
-            }
+    public string GetTalentEffect(string talentId, string stage)
+    {
+        var talent = allTalents.Find(t => t.id == talentId);
+        if (talent?.effects == null) return "";
 
-            talent.LevelUp();
-            OnTalentLevelUp?.Invoke(talent, talent.currentLevel);
-            
-            return true;
-        }
-
-        public float CalculateStatBonus(string statName, PlayerState player)
+        return stage switch
         {
-            float totalBonus = 0f;
+            "highschool" => talent.effects.highschool,
+            "gaokao" => talent.effects.gaokao,
+            "career" => talent.effects.career,
+            _ => ""
+        };
+    }
 
-            foreach (var kvp in activeTalents)
-            {
-                var talent = kvp.Value;
-                if (!talent.IsAvailableInPhase(player.currentPhase))
-                {
-                    continue;
-                }
+    public int GetMajorMatchModifier(string talentId, string majorCategory)
+    {
+        var talent = allTalents.Find(t => t.id == talentId);
+        if (talent?.effects?.major == null) return 0;
 
-                foreach (var effect in talent.effects)
-                {
-                    if (effect.type == "stat_boost" && effect.target == statName)
-                    {
-                        float bonus = effect.GetModifiedValue() * talent.currentLevel;
-                        totalBonus += bonus;
-                        
-                        OnTalentEffectApplied?.Invoke(bonus, talent.name);
-                    }
-                }
-            }
+        if (talent.effects.major.boost != null && talent.effects.major.boost.Contains(majorCategory))
+            return 20;
+        if (talent.effects.major.warn != null && talent.effects.major.warn.Contains(majorCategory))
+            return -25;
 
-            return totalBonus;
-        }
+        return 0;
+    }
 
-        public int CalculateStudyEfficiency(PlayerState player)
+    public int ApplyGaokaoModifiers(string talentId, int baseScore)
+    {
+        var talent = allTalents.Find(t => t.id == talentId);
+        if (talent?.statModifiers?.gaokao == null) return baseScore;
+
+        var mod = talent.statModifiers.gaokao;
+
+        int score = baseScore + mod.baseBonus;
+        score += Random.Range(-mod.volatility, mod.volatility + 1);
+
+        if (Random.value < mod.critChance)
         {
-            int baseEfficiency = 100;
-            
-            float talentBonus = CalculateStatBonus("study_efficiency", player);
-            float intelligenceBonus = player.intelligence * 0.5f;
-            
-            return (int)(baseEfficiency + talentBonus + intelligenceBonus);
+            score += mod.critBonus;
+            Debug.Log($"[TalentEngine] {talent.name} 爆分! +{mod.critBonus}");
         }
 
-        public float CalculateExamStability(PlayerState player)
-        {
-            float baseStability = 0.5f;
-            
-            float talentBonus = CalculateStatBonus("exam_stability", player);
-            float emotionFactor = player.emotion * 0.005f;
-            float willpowerFactor = player.willpower * 0.003f;
-            
-            return Mathf.Clamp(baseStability + talentBonus + emotionFactor + willpowerFactor, 0f, 1f);
-        }
+        return Mathf.Clamp(score, 200, 750);
+    }
 
-        public float CalculateLuckBonus(PlayerState player)
-        {
-            float baseLuck = player.luck / 100f;
-            float talentBonus = CalculateStatBonus("luck", player) / 100f;
-            
-            return Mathf.Clamp(baseLuck + talentBonus, 0f, 1f);
-        }
+    public void ApplyHighschoolModifiers(string talentId, PlayerState state)
+    {
+        var talent = allTalents.Find(t => t.id == talentId);
+        if (talent?.statModifiers?.highschool == null) return;
 
-        public int CalculateDailyStudyTime(PlayerState player)
-        {
-            int baseTime = 8;
-            float talentBonus = CalculateStatBonus("daily_study_time", player);
-            
-            return (int)(baseTime + talentBonus / 60f);
-        }
+        var bonus = talent.statModifiers.highschool;
+        var changes = new Dictionary<string, int>();
+        if (bonus.intellect != 0) changes["intellect"] = bonus.intellect;
+        if (bonus.mental != 0) changes["mental"] = bonus.mental;
+        if (bonus.social != 0) changes["social"] = bonus.social;
+        if (bonus.health != 0) changes["health"] = bonus.health;
+        state.ApplyChanges(changes);
 
-        public bool HasSpecialAbility(string abilityName, PlayerState player)
-        {
-            foreach (var kvp in activeTalents)
-            {
-                var talent = kvp.Value;
-                if (!talent.IsAvailableInPhase(player.currentPhase))
-                {
-                    continue;
-                }
+        Debug.Log($"[TalentEngine] {talent.name} 高中属性修正: intellect={bonus.intellect} mental={bonus.mental} social={bonus.social} health={bonus.health}");
+    }
 
-                foreach (var effect in talent.effects)
-                {
-                    if (effect.type == "special_ability" && effect.target == abilityName)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
+    public string GetCareerStyle(string talentId)
+    {
+        var talent = allTalents.Find(t => t.id == talentId);
+        return talent?.effects?.career ?? "";
+    }
 
-        public List<Talent> GetActiveTalents()
-        {
-            return new List<Talent>(activeTalents.Values);
-        }
+    public Talent GetTalentById(string id)
+    {
+        return allTalents?.Find(t => t.id == id);
+    }
 
-        public Talent GetTalent(string talentId)
-        {
-            return talentData?.GetTalent(talentId);
-        }
-
-        public List<Talent> GetAvailableTalentsForUnlock(PlayerState player)
-        {
-            var available = new List<Talent>();
-            
-            if (talentData == null) return available;
-
-            foreach (var talent in talentData.talents)
-            {
-                if (activeTalents.ContainsKey(talent.id))
-                {
-                    continue;
-                }
-
-                if (!talent.IsAvailableInPhase(player.currentPhase))
-                {
-                    continue;
-                }
-
-                if (CheckUnlockCondition(talent.unlockCondition, player))
-                {
-                    available.Add(talent);
-                }
-            }
-
-            return available;
-        }
-
-        private bool CheckUnlockCondition(string condition, PlayerState player)
-        {
-            if (string.IsNullOrEmpty(condition)) return true;
-
-            switch (condition)
-            {
-                case "auto_unlock_early":
-                    return player.studyDays < 100;
-                case "random_chance":
-                    return UnityEngine.Random.value < 0.1f;
-                case "complete_one_playthrough":
-                    return player.playthroughCount > 0;
-                case "story_event":
-                    return player.triggeredEventIds.Count >= 5;
-                case "high_stats":
-                    return player.GetAverageStats() >= 70;
-                case "low_stats":
-                    return player.GetAverageStats() <= 40;
-                default:
-                    return true;
-            }
-        }
-
-        public Dictionary<string, float> GetAllActiveEffects(PlayerState player)
-        {
-            var effects = new Dictionary<string, float>();
-            
-            foreach (var kvp in activeTalents)
-            {
-                var talent = kvp.Value;
-                if (!talent.IsAvailableInPhase(player.currentPhase))
-                {
-                    continue;
-                }
-
-                foreach (var effect in talent.effects)
-                {
-                    if (!effects.ContainsKey(effect.target))
-                    {
-                        effects[effect.target] = 0f;
-                    }
-                    effects[effect.target] += effect.GetModifiedValue() * talent.currentLevel;
-                }
-            }
-
-            return effects;
-        }
-
-        public void Reset()
-        {
-            activeTalents.Clear();
-            Debug.Log("[TalentEngine] 天赋引擎已重置");
-        }
+    public List<Talent> GetAllTalents()
+    {
+        return allTalents ?? new List<Talent>();
     }
 }

@@ -1,0 +1,148 @@
+[
+  {
+    "id": "law_01",
+    "title": "模拟法庭",
+    "desc": "第一次穿上法袍坐在审判席上，紧张又兴奋。",
+    "type": "study",
+    "phase": "college",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "据理力争！",
+        "effects": {
+          "int": 4,
+          "social": 3
+        },
+        "items": [
+          "课本"
+        ]
+      },
+      {
+        "text": "先听对方论述再反击",
+        "effects": {
+          "int": 3
+        },
+        "items": [
+          "笔记"
+        ]
+      },
+      {
+        "text": "太紧张了...",
+        "effects": {
+          "mental": -2,
+          "int": 1
+        },
+        "items": []
+      }
+    ]
+  },
+  {
+    "id": "law_02",
+    "title": "法律援助",
+    "desc": "法律援助中心招募志愿者，帮助弱势群体维权。",
+    "type": "career",
+    "phase": "college",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "报名！用法律帮助人",
+        "effects": {
+          "social": 4,
+          "mental": 3
+        },
+        "items": []
+      },
+      {
+        "text": "先准备法考更重要",
+        "effects": {
+          "int": 3
+        },
+        "items": [
+          "习题"
+        ]
+      },
+      {
+        "text": "两者兼顾",
+        "effects": {
+          "int": 2,
+          "social": 2,
+          "mental": -1
+        },
+        "items": []
+      }
+    ]
+  },
+  {
+    "id": "law_03",
+    "title": "法考倒计时",
+    "desc": "国家统一法律职业资格考试，通过率仅15%...",
+    "type": "study",
+    "phase": "college",
+    "interaction": "choice",
+    "critical": true,
+    "options": [
+      {
+        "text": "全力备考，每天10小时",
+        "effects": {
+          "int": 5,
+          "health": -2,
+          "mental": -1
+        },
+        "items": [
+          "实战训练",
+          "重点提炼"
+        ]
+      },
+      {
+        "text": "制定合理复习计划",
+        "effects": {
+          "int": 4
+        },
+        "items": [
+          "知识体系"
+        ]
+      },
+      {
+        "text": "边实习边备考",
+        "effects": {
+          "int": 2,
+          "social": 2
+        },
+        "items": []
+      }
+    ]
+  },
+  {
+    "id": "law_04",
+    "title": "红圈所面试",
+    "desc": "顶级律所实习机会，竞争激烈。",
+    "type": "career",
+    "phase": "college",
+    "interaction": "choice",
+    "critical": true,
+    "options": [
+      {
+        "text": "精心准备，展示专业能力",
+        "effects": {
+          "int": 3,
+          "social": 3
+        },
+        "items": []
+      },
+      {
+        "text": "突出学术成果",
+        "effects": {
+          "int": 4
+        },
+        "items": []
+      },
+      {
+        "text": "佛系面试，随缘",
+        "effects": {
+          "mental": 2
+        },
+        "items": []
+      }
+    ]
+  }
+]

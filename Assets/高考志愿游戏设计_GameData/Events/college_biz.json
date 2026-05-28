@@ -1,0 +1,147 @@
+[
+  {
+    "id": "biz_01",
+    "title": "商赛初体验",
+    "desc": "全国大学生商业挑战赛，组队参加。",
+    "type": "study",
+    "phase": "college",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "当队长，统筹全局",
+        "effects": {
+          "social": 4,
+          "int": 2
+        },
+        "items": []
+      },
+      {
+        "text": "负责数据分析",
+        "effects": {
+          "int": 4
+        },
+        "items": [
+          "笔记"
+        ]
+      },
+      {
+        "text": "负责方案展示",
+        "effects": {
+          "social": 3,
+          "mental": 2
+        },
+        "items": []
+      }
+    ]
+  },
+  {
+    "id": "biz_02",
+    "title": "股市模拟",
+    "desc": "投资课模拟炒股，初始资金10万虚拟币。",
+    "type": "study",
+    "phase": "college",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "大胆投资科技股",
+        "effects": {
+          "int": 2
+        },
+        "items": [
+          "锦鲤"
+        ]
+      },
+      {
+        "text": "稳健配置，分散风险",
+        "effects": {
+          "int": 3
+        },
+        "items": [
+          "知识体系"
+        ]
+      },
+      {
+        "text": "跟风买热门股",
+        "effects": {
+          "int": 1,
+          "mental": -1
+        },
+        "items": []
+      }
+    ]
+  },
+  {
+    "id": "biz_03",
+    "title": "实习选择",
+    "desc": "四大、银行、互联网公司都给了实习offer。",
+    "type": "career",
+    "phase": "college",
+    "interaction": "choice",
+    "critical": true,
+    "options": [
+      {
+        "text": "去四大镀金",
+        "effects": {
+          "int": 3,
+          "social": 3
+        },
+        "items": []
+      },
+      {
+        "text": "去银行稳定",
+        "effects": {
+          "mental": 3
+        },
+        "items": []
+      },
+      {
+        "text": "去互联网闯一闯",
+        "effects": {
+          "int": 4,
+          "health": -1
+        },
+        "items": [
+          "咖啡"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "biz_04",
+    "title": "CPA备考",
+    "desc": "注册会计师考试，5门科目，需要在5年内通过。",
+    "type": "study",
+    "phase": "college",
+    "interaction": "choice",
+    "critical": true,
+    "options": [
+      {
+        "text": "先考2门，稳扎稳打",
+        "effects": {
+          "int": 4
+        },
+        "items": [
+          "知识体系"
+        ]
+      },
+      {
+        "text": "一年冲4门！",
+        "effects": {
+          "int": 5,
+          "health": -3,
+          "mental": -2
+        },
+        "items": [
+          "破釜沉舟"
+        ]
+      },
+      {
+        "text": "先工作再考",
+        "effects": {
+          "social": 2
+        },
+        "items": []
+      }
+    ]
+  }
+]

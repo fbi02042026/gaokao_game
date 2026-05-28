@@ -1,8 +1,4 @@
-using UnityEngine;
-
-namespace GaokaoLife.Models
-{
-    public enum GamePhase
+public enum GamePhase
     {
         Home,
         Province,
@@ -21,7 +17,7 @@ namespace GaokaoLife.Models
         Female
     }
 
-    public enum Province
+    public enum ProvinceEnum
     {
         Beijing,
         Shanghai,
@@ -46,4 +42,3 @@ namespace GaokaoLife.Models
         Rebel,
         LateBloomer
     }
-}

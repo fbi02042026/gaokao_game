@@ -1,8 +1,37 @@
 {
-  "GameTitle": "高考人生模拟器",
+  "GameTitle": "中国式高考人生",
   "Version": "1.0.0",
-  "Engine": "Tuanjie Engine",
-  "TargetPlatforms": ["WeChatMiniGame", "DouyinMiniGame", "TapTap", "iOS", "Android"],
+  "Engine": "Tuanjie Engine 2022.3.61t11",
+  "CompanyName": "苹果核工坊",
+  "BundleIdentifier": "com.pingguohe.gaokaolife",
+  "TargetPlatforms": [
+    {
+      "name": "WeChatMiniGame",
+      "appId": "测试号（后续替换正式AppID）",
+      "priority": 1,
+      "notes": "首包≤4MB，使用AutoStreaming按需下载"
+    },
+    {
+      "name": "DouyinMiniGame",
+      "appId": "待申请",
+      "priority": 2
+    },
+    {
+      "name": "TapTap",
+      "appId": "待申请",
+      "priority": 3
+    },
+    {
+      "name": "iOS",
+      "appId": "待申请",
+      "priority": 4
+    },
+    {
+      "name": "Android",
+      "appId": "待申请",
+      "priority": 5
+    }
+  ],
   "AspectRatio": "9:16",
   "Gameplay": {
     "Core": "天赋养成 + 时间推进",
@@ -10,9 +39,28 @@
     "CycleTime": "2-3天真实时间一轮",
     "TotalPlaytime": "30分钟可完成当天流程"
   },
+  "BuildSettings": {
+    "managedStrippingLevel": "High",
+    "graphicsAPIs": {
+      "WeChatMiniGame": ["OpenGLES3"],
+      "DouyinMiniGame": ["OpenGLES3"]
+    },
+    "textureCompression": {
+      "iOS": "ASTC",
+      "Android": "ETC2",
+      "WeChatMiniGame": "ASTC"
+    },
+    "autoStreaming": true,
+    "firstPackageLimit": "4MB",
+    "codeOptimization": "IL2CPP + High Stripping",
+    "designResolution": "750x1334",
+    "scaleMode": "Scale With Screen Size"
+  },
   "Features": {
     "TalentSystem": "贯穿全流程，影响各阶段表现",
-    "NewGamePlus": "二周目获得'前世记忆'天赋",
-    "SaveSystem": "本地JSON存档"
+    "NewGamePlus": "多周目'前世记忆'天赋传承",
+    "SaveSystem": "本地JSON存档",
+    "ShareSystem": "人格卡/结局卡/冷知识卡 三合一分享",
+    "AdSystem": "激励视频广告"
   }
 }

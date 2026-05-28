@@ -1,0 +1,292 @@
+[
+  {
+    "id": "life_01",
+    "title": "第一份工作",
+    "desc": "毕业了，你收到了几份offer，需要做出选择。",
+    "type": "career",
+    "phase": "life",
+    "interaction": "choice",
+    "critical": true,
+    "options": [
+      {
+        "text": "大厂高薪，加班多",
+        "effects": {
+          "int": 3,
+          "health": -2
+        },
+        "salary_bonus": 5000,
+        "items": [
+          "咖啡"
+        ]
+      },
+      {
+        "text": "小公司，成长空间大",
+        "effects": {
+          "social": 3,
+          "int": 2
+        },
+        "salary_bonus": 2000,
+        "items": []
+      },
+      {
+        "text": "体制内，稳定安逸",
+        "effects": {
+          "mental": 4
+        },
+        "salary_bonus": 1000,
+        "items": []
+      }
+    ]
+  },
+  {
+    "id": "life_02",
+    "title": "职场危机",
+    "desc": "工作3年了，你感觉遇到了瓶颈...",
+    "type": "career",
+    "phase": "life",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "跳槽寻求新机会",
+        "effects": {
+          "int": 3,
+          "social": 2
+        },
+        "items": []
+      },
+      {
+        "text": "考研充电",
+        "effects": {
+          "int": 4,
+          "mental": -1
+        },
+        "items": [
+          "课本"
+        ]
+      },
+      {
+        "text": "在当前岗位深耕",
+        "effects": {
+          "int": 2,
+          "mental": 2
+        },
+        "items": [
+          "温故知新"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "life_03",
+    "title": "买房还是租房",
+    "desc": "攒了几年钱，要在这个城市扎根吗？",
+    "type": "life",
+    "phase": "life",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "咬咬牙买房！",
+        "effects": {
+          "mental": -2,
+          "health": -1
+        },
+        "salary_bonus": -3000,
+        "items": []
+      },
+      {
+        "text": "继续租房，投资自己",
+        "effects": {
+          "int": 2
+        },
+        "items": [
+          "知识体系"
+        ]
+      },
+      {
+        "text": "回老家发展",
+        "effects": {
+          "mental": 4,
+          "social": 2
+        },
+        "salary_bonus": -2000,
+        "items": []
+      }
+    ]
+  },
+  {
+    "id": "life_04",
+    "title": "该不该转行",
+    "desc": "行业不景气，要不要换个赛道？",
+    "type": "career",
+    "phase": "life",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "果断转行！",
+        "effects": {
+          "int": 2,
+          "mental": -2
+        },
+        "items": [
+          "刷新"
+        ]
+      },
+      {
+        "text": "在本行业创新",
+        "effects": {
+          "int": 3
+        },
+        "items": [
+          "顿悟"
+        ]
+      },
+      {
+        "text": "副业试水",
+        "effects": {
+          "social": 2,
+          "int": 1
+        },
+        "items": []
+      }
+    ]
+  },
+  {
+    "id": "life_05",
+    "title": "遇见那个人",
+    "desc": "在一个意外的场合，你遇到了一个让你心动的人。",
+    "type": "emotion",
+    "phase": "life",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "主动出击！",
+        "effects": {
+          "social": 4,
+          "mental": 3
+        },
+        "items": []
+      },
+      {
+        "text": "默默关注",
+        "effects": {
+          "mental": 1
+        },
+        "items": []
+      },
+      {
+        "text": "专心事业",
+        "effects": {
+          "int": 3
+        },
+        "items": []
+      }
+    ]
+  },
+  {
+    "id": "life_06",
+    "title": "身体亮红灯",
+    "desc": "体检报告出来了，有几项指标不太正常...",
+    "type": "life",
+    "phase": "life",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "立刻调整作息，加强锻炼",
+        "effects": {
+          "health": 4,
+          "int": -1
+        },
+        "items": [
+          "调理"
+        ]
+      },
+      {
+        "text": "忙完这阵再说",
+        "effects": {
+          "health": -2
+        },
+        "items": []
+      },
+      {
+        "text": "去看医生，认真对待",
+        "effects": {
+          "health": 2
+        },
+        "items": [
+          "药丸"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "life_07",
+    "title": "创业的机会",
+    "desc": "一个朋友找你合伙创业，机会不错但有风险。",
+    "type": "career",
+    "phase": "life",
+    "interaction": "choice",
+    "critical": true,
+    "options": [
+      {
+        "text": "辞职创业！搏一把",
+        "effects": {
+          "int": 2,
+          "social": 3,
+          "mental": -2
+        },
+        "items": [
+          "破釜沉舟"
+        ]
+      },
+      {
+        "text": "兼职参与，稳字当头",
+        "effects": {
+          "int": 1,
+          "social": 2
+        },
+        "items": []
+      },
+      {
+        "text": "婉拒，现阶段不适合",
+        "effects": {
+          "mental": 2
+        },
+        "items": []
+      }
+    ]
+  },
+  {
+    "id": "life_08",
+    "title": "十年同学聚会",
+    "desc": "毕业十年聚会，看到了同学们的各色人生...",
+    "type": "emotion",
+    "phase": "life",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "坦然面对，我走的路不后悔",
+        "effects": {
+          "mental": 4
+        },
+        "items": []
+      },
+      {
+        "text": "被别人的成就刺激到了",
+        "effects": {
+          "int": 3,
+          "mental": -2
+        },
+        "items": [
+          "专注之力"
+        ]
+      },
+      {
+        "text": "珍惜老友，重拾联系",
+        "effects": {
+          "social": 4
+        },
+        "items": []
+      }
+    ]
+  }
+]

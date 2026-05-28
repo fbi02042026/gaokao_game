@@ -1,0 +1,731 @@
+[
+  {
+    "id": "hs_01",
+    "title": "月考来袭",
+    "desc": "期中考试即将来临，同学们都在紧张备考。",
+    "type": "study",
+    "phase": "highschool",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "埋头苦读",
+        "effects": {
+          "int": 5,
+          "mental": -3
+        },
+        "items": [
+          "课本",
+          "笔记"
+        ]
+      },
+      {
+        "text": "找同学组队复习",
+        "effects": {
+          "int": 3,
+          "social": 3
+        },
+        "items": [
+          "笔记"
+        ]
+      },
+      {
+        "text": "随缘吧",
+        "effects": {
+          "int": -2,
+          "mental": 2
+        },
+        "items": []
+      }
+    ]
+  },
+  {
+    "id": "hs_02",
+    "title": "收到一封情书",
+    "desc": "课桌里出现了一封粉色的信，你的心跳加速了...",
+    "type": "emotion",
+    "phase": "highschool",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "偷偷收下，心砰砰跳",
+        "effects": {
+          "mental": 3,
+          "social": 2
+        },
+        "items": []
+      },
+      {
+        "text": "委婉拒绝，专注学业",
+        "effects": {
+          "int": 3,
+          "mental": -2
+        },
+        "items": []
+      },
+      {
+        "text": "假装没看见",
+        "effects": {
+          "mental": -1
+        },
+        "items": []
+      }
+    ]
+  },
+  {
+    "id": "hs_03",
+    "title": "运动会报名",
+    "desc": "班级需要人参加接力赛，体育委员看向你。",
+    "type": "life",
+    "phase": "highschool",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "报名参加！冲刺！",
+        "effects": {
+          "health": 5,
+          "social": 3
+        },
+        "items": []
+      },
+      {
+        "text": "当啦啦队给同学加油",
+        "effects": {
+          "social": 4,
+          "mental": 2
+        },
+        "items": []
+      },
+      {
+        "text": "默默坐在看台",
+        "effects": {
+          "mental": -1
+        },
+        "items": []
+      }
+    ]
+  },
+  {
+    "id": "hs_04",
+    "title": "家长会通知",
+    "desc": "老师发来消息：这周五开家长会，会公布排名。",
+    "type": "family",
+    "phase": "highschool",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "主动给爸妈看成绩单",
+        "effects": {
+          "mental": 3,
+          "int": 1
+        },
+        "items": []
+      },
+      {
+        "text": "提前努力冲刺一下",
+        "effects": {
+          "int": 4,
+          "mental": -2
+        },
+        "items": [
+          "习题"
+        ]
+      },
+      {
+        "text": "假装没收到通知",
+        "effects": {
+          "mental": -3,
+          "social": -1
+        },
+        "items": []
+      }
+    ]
+  },
+  {
+    "id": "hs_05",
+    "title": "文理分科",
+    "desc": "到了选择的时候：文科还是理科？这个选择将影响你未来的专业方向。",
+    "type": "zhiyuan",
+    "phase": "highschool",
+    "interaction": "choice",
+    "critical": true,
+    "options": [
+      {
+        "text": "选择理科",
+        "effects": {
+          "int": 5
+        },
+        "flag": "science",
+        "items": [
+          "课本"
+        ]
+      },
+      {
+        "text": "选择文科",
+        "effects": {
+          "mental": 3,
+          "social": 2
+        },
+        "flag": "arts",
+        "items": [
+          "笔记"
+        ]
+      },
+      {
+        "text": "纠结中...",
+        "effects": {
+          "mental": -2
+        },
+        "flag": "undecided",
+        "items": []
+      }
+    ]
+  },
+  {
+    "id": "hs_06",
+    "title": "深夜失眠",
+    "desc": "翻来覆去睡不着，脑子里全是考试和未来的事。",
+    "type": "life",
+    "phase": "highschool",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "数羊，努力入睡",
+        "effects": {
+          "mental": 2,
+          "health": 1
+        },
+        "items": []
+      },
+      {
+        "text": "起来刷题",
+        "effects": {
+          "int": 3,
+          "health": -2,
+          "mental": -1
+        },
+        "items": [
+          "习题"
+        ]
+      },
+      {
+        "text": "听音乐放松",
+        "effects": {
+          "mental": 3
+        },
+        "items": []
+      }
+    ]
+  },
+  {
+    "id": "hs_07",
+    "title": "同学聚会邀请",
+    "desc": "周末同学们约好去唱KTV，但你还有复习计划。",
+    "type": "emotion",
+    "phase": "highschool",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "去玩！学了一天了该放松",
+        "effects": {
+          "social": 4,
+          "mental": 2,
+          "int": -1
+        },
+        "items": []
+      },
+      {
+        "text": "婉拒，坚持复习",
+        "effects": {
+          "int": 4,
+          "social": -2
+        },
+        "items": [
+          "习题"
+        ]
+      },
+      {
+        "text": "先学2小时再去",
+        "effects": {
+          "int": 2,
+          "social": 2
+        },
+        "items": []
+      }
+    ]
+  },
+  {
+    "id": "hs_08",
+    "title": "考试作弊的诱惑",
+    "desc": "隔壁同学悄悄递来答案，监考老师正好在窗边...",
+    "type": "study",
+    "phase": "highschool",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "坚决不看！自己答",
+        "effects": {
+          "int": 2,
+          "mental": 4
+        },
+        "items": []
+      },
+      {
+        "text": "偷瞄一眼...",
+        "effects": {
+          "int": 3,
+          "mental": -3
+        },
+        "items": [],
+        "risk": "caught"
+      },
+      {
+        "text": "假装没注意到",
+        "effects": {
+          "mental": 1
+        },
+        "items": []
+      }
+    ]
+  },
+  {
+    "id": "hs_09",
+    "title": "被选为课代表",
+    "desc": "老师提名你当数学课代表，需要花时间收作业和答疑。",
+    "type": "study",
+    "phase": "highschool",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "接受！锻炼自己",
+        "effects": {
+          "int": 3,
+          "social": 3,
+          "mental": -1
+        },
+        "items": []
+      },
+      {
+        "text": "婉拒，专注自己的学习",
+        "effects": {
+          "int": 2
+        },
+        "items": [
+          "课本"
+        ]
+      },
+      {
+        "text": "和好朋友一起当",
+        "effects": {
+          "int": 2,
+          "social": 4
+        },
+        "items": []
+      }
+    ]
+  },
+  {
+    "id": "hs_10",
+    "title": "高三动员大会",
+    "desc": "校长慷慨激昂：距离高考还有100天！",
+    "type": "study",
+    "phase": "highschool",
+    "interaction": "choice",
+    "critical": true,
+    "options": [
+      {
+        "text": "热血沸腾！我要冲！",
+        "effects": {
+          "int": 3,
+          "mental": 3
+        },
+        "items": [
+          "破釜沉舟"
+        ]
+      },
+      {
+        "text": "冷静分析，制定计划",
+        "effects": {
+          "int": 4
+        },
+        "items": [
+          "知识体系"
+        ]
+      },
+      {
+        "text": "压力好大...深呼吸",
+        "effects": {
+          "mental": -2
+        },
+        "items": [
+          "药丸"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hs_11",
+    "title": "模拟考试出分",
+    "desc": "模拟考成绩出来了，你的排名...",
+    "type": "study",
+    "phase": "highschool",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "分析错题，查漏补缺",
+        "effects": {
+          "int": 5
+        },
+        "items": [
+          "习题",
+          "重点提炼"
+        ]
+      },
+      {
+        "text": "安慰自己只是模拟",
+        "effects": {
+          "mental": 2
+        },
+        "items": []
+      },
+      {
+        "text": "找老师答疑",
+        "effects": {
+          "int": 4,
+          "social": 1
+        },
+        "items": [
+          "课本"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hs_12",
+    "title": "和好朋友吵架了",
+    "desc": "因为一点小事和最好的朋友闹了矛盾...",
+    "type": "emotion",
+    "phase": "highschool",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "主动道歉和好",
+        "effects": {
+          "social": 4,
+          "mental": 3
+        },
+        "items": []
+      },
+      {
+        "text": "等对方先来",
+        "effects": {
+          "mental": -2,
+          "social": -1
+        },
+        "items": []
+      },
+      {
+        "text": "写张小纸条",
+        "effects": {
+          "social": 3,
+          "mental": 2
+        },
+        "items": [
+          "卡片"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hs_13",
+    "title": "考前焦虑",
+    "desc": "高考越来越近，你感觉什么都记不住...",
+    "type": "family",
+    "phase": "highschool",
+    "interaction": "choice",
+    "critical": true,
+    "options": [
+      {
+        "text": "深呼吸，按计划复习",
+        "effects": {
+          "int": 2,
+          "mental": 2
+        },
+        "items": [
+          "专注之力"
+        ]
+      },
+      {
+        "text": "找爸妈聊聊",
+        "effects": {
+          "mental": 4,
+          "social": 1
+        },
+        "items": []
+      },
+      {
+        "text": "疯狂刷题压住焦虑",
+        "effects": {
+          "int": 4,
+          "health": -2,
+          "mental": -1
+        },
+        "items": [
+          "习题",
+          "咖啡"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hs_14",
+    "title": "发现新的学习方法",
+    "desc": "网上流传一种记忆法，据说很有效。",
+    "type": "study",
+    "phase": "highschool",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "试一试！",
+        "effects": {
+          "int": 4
+        },
+        "items": [
+          "知识体系"
+        ]
+      },
+      {
+        "text": "还是用老方法稳",
+        "effects": {
+          "int": 1,
+          "mental": 1
+        },
+        "items": []
+      },
+      {
+        "text": "结合两种方法",
+        "effects": {
+          "int": 3
+        },
+        "items": [
+          "融会贯通"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hs_15",
+    "title": "家里出状况",
+    "desc": "爸爸突然加班增多，家里气氛有些紧张。",
+    "type": "family",
+    "phase": "highschool",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "帮妈妈做家务，减轻负担",
+        "effects": {
+          "mental": 3,
+          "social": 2
+        },
+        "items": []
+      },
+      {
+        "text": "更努力学习，不让家人担心",
+        "effects": {
+          "int": 3,
+          "mental": -1
+        },
+        "items": []
+      },
+      {
+        "text": "找朋友倾诉",
+        "effects": {
+          "social": 2,
+          "mental": 2
+        },
+        "items": []
+      }
+    ]
+  },
+  {
+    "id": "hs_16",
+    "title": "最后一次模考",
+    "desc": "高考前最后一次模拟考，这是检验自己的最后机会。",
+    "type": "study",
+    "phase": "highschool",
+    "interaction": "choice",
+    "critical": true,
+    "options": [
+      {
+        "text": "全力以赴！",
+        "effects": {
+          "int": 5,
+          "mental": -2
+        },
+        "items": [
+          "实战训练"
+        ]
+      },
+      {
+        "text": "放平心态，当练手",
+        "effects": {
+          "int": 2,
+          "mental": 3
+        },
+        "items": []
+      },
+      {
+        "text": "重点攻克薄弱科目",
+        "effects": {
+          "int": 4
+        },
+        "items": [
+          "重点提炼"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hs_17",
+    "title": "班级篮球赛",
+    "desc": "隔壁班下了战书，约了一场篮球赛。",
+    "type": "life",
+    "phase": "highschool",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "上场！为班争光",
+        "effects": {
+          "health": 4,
+          "social": 4
+        },
+        "items": []
+      },
+      {
+        "text": "当后勤送水",
+        "effects": {
+          "social": 3
+        },
+        "items": [
+          "咖啡"
+        ]
+      },
+      {
+        "text": "在教室自习",
+        "effects": {
+          "int": 3
+        },
+        "items": [
+          "习题"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hs_18",
+    "title": "志愿者活动",
+    "desc": "周末有社区志愿者活动，和学业冲突了。",
+    "type": "life",
+    "phase": "highschool",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "去参加！帮助别人",
+        "effects": {
+          "social": 4,
+          "mental": 2
+        },
+        "items": []
+      },
+      {
+        "text": "不去，要复习",
+        "effects": {
+          "int": 2
+        },
+        "items": [
+          "笔记"
+        ]
+      },
+      {
+        "text": "参加半天",
+        "effects": {
+          "social": 2,
+          "int": 1
+        },
+        "items": []
+      }
+    ]
+  },
+  {
+    "id": "hs_19",
+    "title": "食堂新品！",
+    "desc": "学校食堂推出了新款炸鸡腿，但排队的人超多。",
+    "type": "life",
+    "phase": "highschool",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "排队等！鸡腿值得",
+        "effects": {
+          "health": 2,
+          "mental": 2
+        },
+        "items": [
+          "零食"
+        ]
+      },
+      {
+        "text": "吃健康餐",
+        "effects": {
+          "health": 3
+        },
+        "items": []
+      },
+      {
+        "text": "啃面包凑合",
+        "effects": {
+          "health": -1,
+          "int": 1
+        },
+        "items": []
+      }
+    ]
+  },
+  {
+    "id": "hs_20",
+    "title": "高考前夜",
+    "desc": "明天就是高考了，这一夜你怎么度过？",
+    "type": "study",
+    "phase": "highschool",
+    "interaction": "choice",
+    "critical": true,
+    "options": [
+      {
+        "text": "早早上床，保证睡眠",
+        "effects": {
+          "health": 3,
+          "mental": 3
+        },
+        "items": [
+          "满血复活"
+        ]
+      },
+      {
+        "text": "再翻一遍笔记",
+        "effects": {
+          "int": 3,
+          "health": -2
+        },
+        "items": [
+          "温故知新"
+        ]
+      },
+      {
+        "text": "听音乐放松",
+        "effects": {
+          "mental": 4
+        },
+        "items": []
+      }
+    ]
+  }
+]

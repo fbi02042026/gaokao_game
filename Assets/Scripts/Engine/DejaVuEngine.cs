@@ -1,260 +1,130 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using GaokaoLife.Models;
+using System.Collections.Generic;
 
-namespace GaokaoLife.Engine
+[System.Serializable]
+public class DejaVuLevel
 {
-    public class DejaVuEngine : MonoBehaviour
+    public string id;
+    public string name;
+    public string icon;
+    public int hintLevel;
+    public string description;
+}
+
+[System.Serializable]
+public class PlaythroughMemory
+{
+    public int generation;
+    public string talentId;
+    public List<ChoiceRecord> choiceRecords;
+    public string finalMajor;
+    public string finalCollege;
+    public List<IntPair> finalStatsList;
+    public string endingType;
+}
+
+[System.Serializable]
+public class ChoiceRecord
+{
+    public string eventId;
+    public string choiceId;
+    public string outcomeNarrative;
+    public List<IntPair> statChangesList;
+}
+
+[System.Serializable]
+public class IntPair
+{
+    public string key;
+    public int value;
+}
+
+public class DejaVuResult
+{
+    public string eventId;
+    public string previousChoice;
+    public string hint;
+    public string highlightChoiceId;
+    public bool talentChanged;
+    public string previousTalentName;
+}
+
+public class DejaVuEngine : MonoBehaviour
+{
+    public static DejaVuEngine Instance { get; private set; }
+
+    private List<PlaythroughMemory> memories = new List<PlaythroughMemory>();
+
+    void Awake()
     {
-        public static DejaVuEngine Instance { get; private set; }
+        if (Instance == null) { Instance = this; DontDestroyOnLoad(gameObject); }
+        else { Destroy(gameObject); }
+    }
 
-        private MemoryData memoryData;
-        private List<string> activatedDejaVu;
+    public void LoadMemories(List<PlaythroughMemory> mems)
+    {
+        memories = mems ?? new List<PlaythroughMemory>();
+        Debug.Log($"[DejaVuEngine] 加载 {memories.Count} 条前世记忆");
+    }
 
-        public event Action<Memory, GameEvent> OnDejaVuTriggered;
-        public event Action<string> OnMemoryUnlocked;
-        public event Action<Memory, MemoryChoice> OnMemoryChoiceSelected;
-
-        void Awake()
+    public DejaVuResult CheckDejaVu(string eventId, int maxLevel)
+    {
+        PlaythroughMemory bestMatch = null;
+        for (int i = memories.Count - 1; i >= 0; i--)
         {
-            if (Instance == null)
-            {
-                Instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            activatedDejaVu = new List<string>();
-            Debug.Log("[DejaVuEngine] 既视感引擎初始化完成");
+            var rec = memories[i].choiceRecords?.Find(r => r.eventId == eventId);
+            if (rec != null) { bestMatch = memories[i]; break; }
         }
 
-        public void LoadMemories(MemoryData data)
+        if (bestMatch == null)
         {
-            memoryData = data;
-            Debug.Log($"[DejaVuEngine] 加载了 {data.memories.Count} 个记忆配置");
-        }
-
-        public void InitializePlayerMemories(PlayerState player)
-        {
-            if (!player.hasPastLifeMemory)
-            {
-                Debug.Log("[DejaVuEngine] 玩家没有前世记忆天赋");
-                return;
-            }
-
-            activatedDejaVu.Clear();
-            Debug.Log($"[DejaVuEngine] 玩家拥有前世记忆，解锁 {player.memories.Count} 个记忆");
-        }
-
-        public Memory CheckForDejaVu(GameEvent currentEvent, PlayerState player)
-        {
-            if (!player.hasPastLifeMemory)
-            {
-                return null;
-            }
-
-            if (memoryData == null)
-            {
-                return null;
-            }
-
-            var relatedMemories = memoryData.GetMemoriesByEvent(currentEvent.id);
-            
-            foreach (var memory in relatedMemories)
-            {
-                if (memory.isDejaVuTrigger && !activatedDejaVu.Contains(memory.id))
-                {
-                    if (ShouldShowDejaVu(memory, player))
-                    {
-                        activatedDejaVu.Add(memory.id);
-                        OnDejaVuTriggered?.Invoke(memory, currentEvent);
-                        
-                        Debug.Log($"[DejaVuEngine] 触发既视感: {memory.title}");
-                        return memory;
-                    }
-                }
-            }
-
+            Debug.Log($"[DejaVuEngine] 事件 {eventId} 无前世记忆");
             return null;
         }
 
-        private bool ShouldShowDejaVu(Memory memory, PlayerState player)
+        var choice = bestMatch.choiceRecords.Find(r => r.eventId == eventId);
+        int level = Mathf.Min(maxLevel, 4);
+
+        var result = new DejaVuResult
         {
-            if (player.HasMemory(memory.id))
-            {
-                return false;
-            }
+            eventId = eventId,
+            previousChoice = choice.choiceId,
+            hint = GenerateHint(choice, level),
+            highlightChoiceId = level >= 4 ? choice.choiceId : null,
+            talentChanged = false,
+            previousTalentName = ""
+        };
 
-            if (memory.unlockPhase != player.currentPhase)
-            {
-                return false;
-            }
+        Debug.Log($"[DejaVuEngine] 触发既视感: {eventId} -> {choice.choiceId} (等级{level})");
+        return result;
+    }
 
-            return true;
-        }
-
-        public void ProcessMemoryChoice(Memory memory, int choiceIndex, PlayerState player)
+    private string GenerateHint(ChoiceRecord choice, int level)
+    {
+        return level switch
         {
-            if (choiceIndex < 0 || choiceIndex >= memory.choices.Count)
-            {
-                Debug.LogWarning($"[DejaVuEngine] 无效的回忆选择: {choiceIndex}");
-                return;
-            }
+            1 => $"上次好像选了{choice.choiceId}……",
+            2 => $"上次选了{choice.choiceId}，好像结果{Truncate(choice.outcomeNarrative, 10)}……",
+            3 => $"上次选了{choice.choiceId}，{choice.outcomeNarrative}",
+            4 => "",
+            _ => ""
+        };
+    }
 
-            var choice = memory.choices[choiceIndex];
-            
-            player.happiness = Mathf.Clamp(player.happiness + choice.happinessBonus, 0, 100);
-            
-            if (choice.statBonus != 0)
-            {
-                player.AddStat("emotion", choice.statBonus);
-            }
-            
-            foreach (var talentId in choice.unlockTalents)
-            {
-                player.UnlockTalent(talentId);
-            }
+    private string Truncate(string s, int maxLen)
+    {
+        if (string.IsNullOrEmpty(s)) return "";
+        return s.Length <= maxLen ? s : s.Substring(0, maxLen) + "...";
+    }
 
-            if (!string.IsNullOrEmpty(choice.specialEffect))
-            {
-                ApplySpecialEffect(choice.specialEffect, player);
-            }
+    public void RecordMemory(PlaythroughMemory memory)
+    {
+        memories.Add(memory);
+        Debug.Log($"[DejaVuEngine] 记录第{memory.generation}代记忆, 事件数={memory.choiceRecords?.Count ?? 0}");
+    }
 
-            player.AddMemory(memory.id);
-            
-            OnMemoryChoiceSelected?.Invoke(memory, choice);
-            
-            Debug.Log($"[DejaVuEngine] 处理记忆选择: {choice.text}");
-        }
-
-        private void ApplySpecialEffect(string effectType, PlayerState player)
-        {
-            switch (effectType)
-            {
-                case "boost_luck":
-                    player.AddStat("luck", 20);
-                    break;
-                case "boost_willpower":
-                    player.AddStat("willpower", 20);
-                    break;
-                case "reduce_stress":
-                    player.stressLevel = Mathf.Max(0, player.stressLevel - 20);
-                    break;
-                case "reveal_hidden":
-                    Debug.Log("[DejaVuEngine] 解锁隐藏选项");
-                    break;
-                case "change_fate":
-                    player.AddStat("luck", 30);
-                    player.AddStat("willpower", 10);
-                    break;
-            }
-        }
-
-        public Memory GetMemory(string memoryId)
-        {
-            return memoryData?.GetMemory(memoryId);
-        }
-
-        public List<Memory> GetPlayerMemories(PlayerState player)
-        {
-            var memories = new List<Memory>();
-            
-            if (memoryData == null) return memories;
-
-            foreach (var memoryId in player.memories)
-            {
-                var memory = memoryData.GetMemory(memoryId);
-                if (memory != null)
-                {
-                    memories.Add(memory);
-                }
-            }
-
-            return memories;
-        }
-
-        public List<Memory> GetActivatedDejaVuMemories()
-        {
-            var memories = new List<Memory>();
-            
-            if (memoryData == null) return memories;
-
-            foreach (var memoryId in activatedDejaVu)
-            {
-                var memory = memoryData.GetMemory(memoryId);
-                if (memory != null)
-                {
-                    memories.Add(memory);
-                }
-            }
-
-            return memories;
-        }
-
-        public List<Memory> GetAvailableDejaVuForEvent(GameEvent evt, PlayerState player)
-        {
-            var available = new List<Memory>();
-            
-            if (!player.hasPastLifeMemory || memoryData == null)
-            {
-                return available;
-            }
-
-            var relatedMemories = memoryData.GetMemoriesByEvent(evt.id);
-            
-            foreach (var memory in relatedMemories)
-            {
-                if (memory.isDejaVuTrigger && 
-                    !activatedDejaVu.Contains(memory.id) && 
-                    memory.unlockPhase == player.currentPhase)
-                {
-                    available.Add(memory);
-                }
-            }
-
-            return available;
-        }
-
-        public int GetDejaVuCount(PlayerState player)
-        {
-            return activatedDejaVu.Count;
-        }
-
-        public float GetDejaVuActivationRate()
-        {
-            if (memoryData == null || memoryData.memories.Count == 0)
-            {
-                return 0f;
-            }
-            
-            return (float)activatedDejaVu.Count / memoryData.memories.Count;
-        }
-
-        public void UnlockMemory(string memoryId, PlayerState player)
-        {
-            if (!player.memories.Contains(memoryId))
-            {
-                player.AddMemory(memoryId);
-                OnMemoryUnlocked?.Invoke(memoryId);
-                
-                Debug.Log($"[DejaVuEngine] 解锁记忆: {memoryId}");
-            }
-        }
-
-        public bool IsDejaVuActivated(string memoryId)
-        {
-            return activatedDejaVu.Contains(memoryId);
-        }
-
-        public void Reset()
-        {
-            activatedDejaVu.Clear();
-            Debug.Log("[DejaVuEngine] 既视感引擎已重置");
-        }
+    public int GetMemoryCount()
+    {
+        return memories.Count;
     }
 }

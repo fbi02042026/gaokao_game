@@ -1,0 +1,32 @@
+[
+  {
+    "id": "P01",
+    "name": "浙江",
+    "code": "zj",
+    "gaokaoMode": "3+3"
+  },
+  {
+    "id": "P02",
+    "name": "北京",
+    "code": "bj",
+    "gaokaoMode": "3+3"
+  },
+  {
+    "id": "P03",
+    "name": "河南",
+    "code": "hn",
+    "gaokaoMode": "3+1+2"
+  },
+  {
+    "id": "P04",
+    "name": "广东",
+    "code": "gd",
+    "gaokaoMode": "3+1+2"
+  },
+  {
+    "id": "P05",
+    "name": "四川",
+    "code": "sc",
+    "gaokaoMode": "3+1+2"
+  }
+]

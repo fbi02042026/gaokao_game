@@ -1,0 +1,181 @@
+[
+  {
+    "id": "med_01",
+    "title": "解剖课初体验",
+    "desc": "第一次走进解剖室，福尔马林的味道扑面而来...",
+    "type": "study",
+    "phase": "college",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "深呼吸，认真观察学习",
+        "effects": {
+          "int": 4,
+          "mental": -1
+        },
+        "items": [
+          "课本"
+        ]
+      },
+      {
+        "text": "默默忍耐，为了当医生",
+        "effects": {
+          "int": 2,
+          "mental": 1
+        },
+        "items": []
+      },
+      {
+        "text": "有点撑不住...",
+        "effects": {
+          "mental": -3
+        },
+        "items": [
+          "药丸"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "med_02",
+    "title": "见习第一天",
+    "desc": "穿上白大褂走进病房，第一次面对真实患者。",
+    "type": "career",
+    "phase": "college",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "认真观察，多问老师",
+        "effects": {
+          "int": 4,
+          "social": 2
+        },
+        "items": []
+      },
+      {
+        "text": "紧张但努力保持镇定",
+        "effects": {
+          "int": 2,
+          "mental": 1
+        },
+        "items": []
+      },
+      {
+        "text": "和患者聊聊天",
+        "effects": {
+          "social": 4,
+          "mental": 2
+        },
+        "items": []
+      }
+    ]
+  },
+  {
+    "id": "med_03",
+    "title": "考研还是规培？",
+    "desc": "学医的路越走越长，你需要做选择。",
+    "type": "career",
+    "phase": "college",
+    "interaction": "choice",
+    "critical": true,
+    "options": [
+      {
+        "text": "考研！学历越高越好",
+        "effects": {
+          "int": 5,
+          "mental": -2
+        },
+        "items": [
+          "课本",
+          "笔记"
+        ]
+      },
+      {
+        "text": "先规培积累临床经验",
+        "effects": {
+          "int": 2,
+          "social": 3
+        },
+        "items": []
+      },
+      {
+        "text": "去基层锻炼",
+        "effects": {
+          "social": 4,
+          "mental": 2
+        },
+        "items": []
+      }
+    ]
+  },
+  {
+    "id": "med_04",
+    "title": "夜班急诊",
+    "desc": "第一次值夜班，凌晨3点来了急诊患者。",
+    "type": "career",
+    "phase": "college",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "立刻冲上去！",
+        "effects": {
+          "int": 3,
+          "health": -2
+        },
+        "items": [
+          "咖啡"
+        ]
+      },
+      {
+        "text": "先叫带教老师",
+        "effects": {
+          "int": 2,
+          "social": 1
+        },
+        "items": []
+      },
+      {
+        "text": "强撑着打起精神",
+        "effects": {
+          "int": 2,
+          "health": -1,
+          "mental": -1
+        },
+        "items": []
+      }
+    ]
+  },
+  {
+    "id": "med_05",
+    "title": "医患沟通",
+    "desc": "患者家属情绪激动，质问治疗方案。",
+    "type": "career",
+    "phase": "college",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "耐心解释，用通俗语言",
+        "effects": {
+          "social": 4,
+          "mental": 1
+        },
+        "items": []
+      },
+      {
+        "text": "请带教老师来处理",
+        "effects": {
+          "int": 1,
+          "social": 1
+        },
+        "items": []
+      },
+      {
+        "text": "有点害怕...",
+        "effects": {
+          "mental": -2
+        },
+        "items": []
+      }
+    ]
+  }
+]

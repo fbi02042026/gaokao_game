@@ -1,0 +1,120 @@
+[
+  {
+    "id": "HS_001",
+    "name": "月考来了！",
+    "stage": "highschool",
+    "tags": ["考试"],
+    "triggerCondition": null,
+    "interactionType": "choice",
+    "choiceContent": {
+      "description": "这周月考，你打算怎么准备？",
+      "choices": [
+        {"id": "A", "text": "通宵刷题", "icon": "📚"},
+        {"id": "B", "text": "正常作息，稳扎稳打", "icon": "😌"},
+        {"id": "C", "text": "找同学借笔记突击", "icon": "📝"}
+      ]
+    },
+    "mergeContent": null,
+    "sortContent": null,
+    "sliderContent": null,
+    "timingContent": null,
+    "dialogContent": null,
+    "outcomeList": [
+      {"key": "A", "value": {"statKeys": ["intellect","mental","health"], "statValues": [8,-15,-5], "unlockEvents": null, "narrative": "熬了三个通宵，成绩上去了，但黑眼圈也上去了..."}},
+      {"key": "B", "value": {"statKeys": ["intellect","mental","health"], "statValues": [3,5,2], "unlockEvents": null, "narrative": "按部班复习，成绩中规中矩，精神状态不错。"}},
+      {"key": "C", "value": {"statKeys": ["intellect","mental","social"], "statValues": [5,-8,3], "unlockEvents": null, "narrative": "借到学霸笔记效率不错，但总觉得少了点什么..."}}
+    ]
+  },
+  {
+    "id": "HS_002",
+    "name": "期末复习大作战",
+    "stage": "highschool",
+    "tags": ["考试", "合成"],
+    "triggerCondition": {"minGrade": 2, "minIntellect": 0, "requiredEvent": null},
+    "interactionType": "merge",
+    "mergeContent": {
+      "description": "把复习资料合成更高级的知识！目标：满分试卷",
+      "gridRows": 8,
+      "gridCols": 9,
+      "availableItems": ["课本", "笔记", "习题集"],
+      "mergeRuleKeys": ["课本+课本", "笔记+笔记", "知识体系+重点提炼"],
+      "mergeRuleValues": ["知识体系", "重点提炼", "满分试卷"],
+      "targetItem": "满分试卷",
+      "movesLimit": 20
+    },
+    "choiceContent": null,
+    "sortContent": null,
+    "sliderContent": null,
+    "timingContent": null,
+    "dialogContent": null,
+    "outcomeList": [
+      {"key": "success", "value": {"statKeys": ["intellect"], "statValues": [15], "unlockEvents": null, "narrative": "融会贯通！期末发挥出色！"}},
+      {"key": "partial", "value": {"statKeys": ["intellect"], "statValues": [8], "unlockEvents": null, "narrative": "复习还算有效，比裸考强多了。"}},
+      {"key": "fail", "value": {"statKeys": ["intellect","mental"], "statValues": [2,-10], "unlockEvents": null, "narrative": "资料太多越看越乱..."}}
+    ]
+  },
+  {
+    "id": "HS_003",
+    "name": "模拟志愿填报",
+    "stage": "highschool",
+    "tags": ["志愿", "排序"],
+    "triggerCondition": {"minGrade": 5, "minIntellect": 0, "requiredEvent": null},
+    "interactionType": "sort",
+    "sortContent": {
+      "description": "把以下院校按你的志愿优先级排序",
+      "items": ["浙江大学", "南京大学", "武汉大学", "杭州电子科技大学"],
+      "showProbability": true
+    },
+    "choiceContent": null,
+    "mergeContent": null,
+    "sliderContent": null,
+    "timingContent": null,
+    "dialogContent": null,
+    "outcomeList": [
+      {"key": "optimal", "value": {"statKeys": [], "statValues": [], "unlockEvents": null, "narrative": "志愿排布非常合理，冲稳保垫都有！"}},
+      {"key": "risky", "value": {"statKeys": ["mental"], "statValues": [-10], "unlockEvents": null, "narrative": "全是冲刺院校，风险太大了..."}}
+    ]
+  },
+  {
+    "id": "HS_004",
+    "name": "自习课怎么过",
+    "stage": "highschool",
+    "tags": ["生活"],
+    "triggerCondition": null,
+    "interactionType": "slider",
+    "sliderContent": {
+      "description": "分配今天自习课的时间",
+      "categories": [{"name": "刷题", "icon": "📝"}, {"name": "休息", "icon": "😴"}, {"name": "聊天", "icon": "💬"}],
+      "totalPoints": 10
+    },
+    "choiceContent": null,
+    "mergeContent": null,
+    "sortContent": null,
+    "timingContent": null,
+    "dialogContent": null,
+    "outcomeList": [
+      {"key": "default", "value": {"statKeys": [], "statValues": [], "unlockEvents": null, "narrative": "时间分配决定了你的成长方向。"}}
+    ]
+  },
+  {
+    "id": "HS_005",
+    "name": "学长回来分享",
+    "stage": "highschool",
+    "tags": ["志愿"],
+    "triggerCondition": {"minGrade": 4, "minIntellect": 0, "requiredEvent": null},
+    "interactionType": "dialog",
+    "dialogContent": {
+      "description": "毕业的学长回校分享大学生活",
+      "npcId": "npc_xuezhang",
+      "lines": ["嗨，学弟学妹们好！", "我现在在浙大学计算机，说实话比高中累多了...", "但是！自己选的专业，含泪也要读完。", "选专业一定要想清楚自己真正喜欢什么。"]
+    },
+    "choiceContent": null,
+    "mergeContent": null,
+    "sortContent": null,
+    "sliderContent": null,
+    "timingContent": null,
+    "outcomeList": [
+      {"key": "default", "value": {"statKeys": ["social"], "statValues": [3], "unlockEvents": null, "narrative": "学长的话让你对大学有了更真实的了解。"}}
+    ]
+  }
+]

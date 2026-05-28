@@ -1,0 +1,190 @@
+[
+  {
+    "id": "cs_01",
+    "title": "第一行代码",
+    "desc": "你写出了人生第一个Hello World程序，屏幕上跳出的文字让你兴奋不已。",
+    "type": "study",
+    "phase": "college",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "继续深挖，学更多语言",
+        "effects": {
+          "int": 5
+        },
+        "items": [
+          "课本"
+        ]
+      },
+      {
+        "text": "做个小游戏玩玩",
+        "effects": {
+          "int": 3,
+          "social": 2
+        },
+        "items": [
+          "卡片"
+        ]
+      },
+      {
+        "text": "代码好难...但不想放弃",
+        "effects": {
+          "int": 2,
+          "mental": -1
+        },
+        "items": [
+          "咖啡"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cs_02",
+    "title": "赶DDL的深夜",
+    "desc": "项目明天截止，你的代码还有3个bug...",
+    "type": "study",
+    "phase": "college",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "通宵干掉它！",
+        "effects": {
+          "int": 4,
+          "health": -3
+        },
+        "items": [
+          "顿悟"
+        ]
+      },
+      {
+        "text": "求助同学一起debug",
+        "effects": {
+          "int": 2,
+          "social": 3
+        },
+        "items": []
+      },
+      {
+        "text": "先睡2小时，凌晨起来继续",
+        "effects": {
+          "int": 3,
+          "health": -1
+        },
+        "items": [
+          "夜读"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cs_03",
+    "title": "算法竞赛邀请",
+    "desc": "学校ACM队招募新成员，你有机会参加全国赛。",
+    "type": "study",
+    "phase": "college",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "报名！挑战自我",
+        "effects": {
+          "int": 5,
+          "mental": -1
+        },
+        "items": [
+          "实战训练"
+        ]
+      },
+      {
+        "text": "先打好基础再说",
+        "effects": {
+          "int": 2
+        },
+        "items": [
+          "知识体系"
+        ]
+      },
+      {
+        "text": "找队友一起组队",
+        "effects": {
+          "int": 3,
+          "social": 3
+        },
+        "items": []
+      }
+    ]
+  },
+  {
+    "id": "cs_04",
+    "title": "实习面试",
+    "desc": "互联网大厂的暑期实习面试，算法题+项目经验。",
+    "type": "career",
+    "phase": "college",
+    "interaction": "choice",
+    "critical": true,
+    "options": [
+      {
+        "text": "提前刷题准备",
+        "effects": {
+          "int": 4
+        },
+        "items": [
+          "实战训练"
+        ]
+      },
+      {
+        "text": "把项目经历讲好",
+        "effects": {
+          "social": 3,
+          "int": 2
+        },
+        "items": []
+      },
+      {
+        "text": "紧张到失眠...",
+        "effects": {
+          "int": 1,
+          "mental": -3
+        },
+        "items": [
+          "药丸"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cs_05",
+    "title": "35岁焦虑",
+    "desc": "学长说程序员35岁就没人要了，你有点慌...",
+    "type": "life",
+    "phase": "college",
+    "interaction": "choice",
+    "options": [
+      {
+        "text": "提前规划转型路径",
+        "effects": {
+          "mental": 3,
+          "int": 2
+        },
+        "items": [
+          "知识体系"
+        ]
+      },
+      {
+        "text": "不管了先卷技术",
+        "effects": {
+          "int": 4
+        },
+        "items": [
+          "专注之力"
+        ]
+      },
+      {
+        "text": "考虑考公或转管理",
+        "effects": {
+          "social": 2
+        },
+        "items": []
+      }
+    ]
+  }
+]

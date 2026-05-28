@@ -1,0 +1,498 @@
+[
+  {
+    "id": "bj",
+    "name": "北京",
+    "abbr": "京",
+    "type": "直辖市",
+    "batch_line": {
+      "2024": {
+        "yiben": 523,
+        "erben": 448
+      },
+      "2023": {
+        "yiben": 527,
+        "erben": 455
+      }
+    }
+  },
+  {
+    "id": "tj",
+    "name": "天津",
+    "abbr": "津",
+    "type": "直辖市",
+    "batch_line": {
+      "2024": {
+        "yiben": 533,
+        "erben": 462
+      },
+      "2023": {
+        "yiben": 532,
+        "erben": 463
+      }
+    }
+  },
+  {
+    "id": "sh",
+    "name": "上海",
+    "abbr": "沪",
+    "type": "直辖市",
+    "batch_line": {
+      "2024": {
+        "yiben": 503,
+        "erben": 430
+      },
+      "2023": {
+        "yiben": 504,
+        "erben": 431
+      }
+    }
+  },
+  {
+    "id": "cq",
+    "name": "重庆",
+    "abbr": "渝",
+    "type": "直辖市",
+    "batch_line": {
+      "2024": {
+        "yiben": 492,
+        "erben": 415
+      },
+      "2023": {
+        "yiben": 497,
+        "erben": 421
+      }
+    }
+  },
+  {
+    "id": "he",
+    "name": "河北",
+    "abbr": "冀",
+    "type": "省份",
+    "batch_line": {
+      "2024": {
+        "yiben": 503,
+        "erben": 428
+      },
+      "2023": {
+        "yiben": 497,
+        "erben": 425
+      }
+    }
+  },
+  {
+    "id": "hn",
+    "name": "河南",
+    "abbr": "豫",
+    "type": "省份",
+    "batch_line": {
+      "2024": {
+        "yiben": 514,
+        "erben": 429
+      },
+      "2023": {
+        "yiben": 516,
+        "erben": 433
+      }
+    }
+  },
+  {
+    "id": "yn",
+    "name": "云南",
+    "abbr": "云",
+    "type": "省份",
+    "batch_line": {
+      "2024": {
+        "yiben": 505,
+        "erben": 430
+      },
+      "2023": {
+        "yiben": 510,
+        "erben": 435
+      }
+    }
+  },
+  {
+    "id": "ln",
+    "name": "辽宁",
+    "abbr": "辽",
+    "type": "省份",
+    "batch_line": {
+      "2024": {
+        "yiben": 508,
+        "erben": 433
+      },
+      "2023": {
+        "yiben": 503,
+        "erben": 430
+      }
+    }
+  },
+  {
+    "id": "hlj",
+    "name": "黑龙江",
+    "abbr": "黑",
+    "type": "省份",
+    "batch_line": {
+      "2024": {
+        "yiben": 475,
+        "erben": 398
+      },
+      "2023": {
+        "yiben": 475,
+        "erben": 396
+      }
+    }
+  },
+  {
+    "id": "xh",
+    "name": "湖南",
+    "abbr": "湘",
+    "type": "省份",
+    "batch_line": {
+      "2024": {
+        "yiben": 508,
+        "erben": 432
+      },
+      "2023": {
+        "yiben": 511,
+        "erben": 435
+      }
+    }
+  },
+  {
+    "id": "ah",
+    "name": "安徽",
+    "abbr": "皖",
+    "type": "省份",
+    "batch_line": {
+      "2024": {
+        "yiben": 508,
+        "erben": 432
+      },
+      "2023": {
+        "yiben": 510,
+        "erben": 434
+      }
+    }
+  },
+  {
+    "id": "sd",
+    "name": "山东",
+    "abbr": "鲁",
+    "type": "省份",
+    "batch_line": {
+      "2024": {
+        "yiben": 517,
+        "erben": 443
+      },
+      "2023": {
+        "yiben": 518,
+        "erben": 444
+      }
+    }
+  },
+  {
+    "id": "xj",
+    "name": "新疆",
+    "abbr": "新",
+    "type": "自治区",
+    "batch_line": {
+      "2024": {
+        "yiben": 472,
+        "erben": 395
+      },
+      "2023": {
+        "yiben": 470,
+        "erben": 393
+      }
+    }
+  },
+  {
+    "id": "js",
+    "name": "江苏",
+    "abbr": "苏",
+    "type": "省份",
+    "batch_line": {
+      "2024": {
+        "yiben": 518,
+        "erben": 443
+      },
+      "2023": {
+        "yiben": 520,
+        "erben": 445
+      }
+    }
+  },
+  {
+    "id": "zj",
+    "name": "浙江",
+    "abbr": "浙",
+    "type": "省份",
+    "batch_line": {
+      "2024": {
+        "yiben": 517,
+        "erben": 442
+      },
+      "2023": {
+        "yiben": 519,
+        "erben": 444
+      }
+    }
+  },
+  {
+    "id": "jx",
+    "name": "江西",
+    "abbr": "赣",
+    "type": "省份",
+    "batch_line": {
+      "2024": {
+        "yiben": 507,
+        "erben": 430
+      },
+      "2023": {
+        "yiben": 510,
+        "erben": 433
+      }
+    }
+  },
+  {
+    "id": "hb",
+    "name": "湖北",
+    "abbr": "鄂",
+    "type": "省份",
+    "batch_line": {
+      "2024": {
+        "yiben": 514,
+        "erben": 435
+      },
+      "2023": {
+        "yiben": 517,
+        "erben": 438
+      }
+    }
+  },
+  {
+    "id": "gx",
+    "name": "广西",
+    "abbr": "桂",
+    "type": "自治区",
+    "batch_line": {
+      "2024": {
+        "yiben": 495,
+        "erben": 415
+      },
+      "2023": {
+        "yiben": 498,
+        "erben": 418
+      }
+    }
+  },
+  {
+    "id": "gs",
+    "name": "甘肃",
+    "abbr": "甘",
+    "type": "省份",
+    "batch_line": {
+      "2024": {
+        "yiben": 482,
+        "erben": 405
+      },
+      "2023": {
+        "yiben": 485,
+        "erben": 408
+      }
+    }
+  },
+  {
+    "id": "sx",
+    "name": "山西",
+    "abbr": "晋",
+    "type": "省份",
+    "batch_line": {
+      "2024": {
+        "yiben": 510,
+        "erben": 432
+      },
+      "2023": {
+        "yiben": 512,
+        "erben": 434
+      }
+    }
+  },
+  {
+    "id": "nmg",
+    "name": "内蒙古",
+    "abbr": "蒙",
+    "type": "自治区",
+    "batch_line": {
+      "2024": {
+        "yiben": 471,
+        "erben": 394
+      },
+      "2023": {
+        "yiben": 474,
+        "erben": 397
+      }
+    }
+  },
+  {
+    "id": "sn",
+    "name": "陕西",
+    "abbr": "陕",
+    "type": "省份",
+    "batch_line": {
+      "2024": {
+        "yiben": 498,
+        "erben": 422
+      },
+      "2023": {
+        "yiben": 501,
+        "erben": 425
+      }
+    }
+  },
+  {
+    "id": "jl",
+    "name": "吉林",
+    "abbr": "吉",
+    "type": "省份",
+    "batch_line": {
+      "2024": {
+        "yiben": 477,
+        "erben": 398
+      },
+      "2023": {
+        "yiben": 478,
+        "erben": 399
+      }
+    }
+  },
+  {
+    "id": "fj",
+    "name": "福建",
+    "abbr": "闽",
+    "type": "省份",
+    "batch_line": {
+      "2024": {
+        "yiben": 515,
+        "erben": 438
+      },
+      "2023": {
+        "yiben": 518,
+        "erben": 441
+      }
+    }
+  },
+  {
+    "id": "gz",
+    "name": "贵州",
+    "abbr": "贵",
+    "type": "省份",
+    "batch_line": {
+      "2024": {
+        "yiben": 492,
+        "erben": 413
+      },
+      "2023": {
+        "yiben": 495,
+        "erben": 416
+      }
+    }
+  },
+  {
+    "id": "gd",
+    "name": "广东",
+    "abbr": "粤",
+    "type": "省份",
+    "batch_line": {
+      "2024": {
+        "yiben": 523,
+        "erben": 445
+      },
+      "2023": {
+        "yiben": 525,
+        "erben": 447
+      }
+    }
+  },
+  {
+    "id": "qh",
+    "name": "青海",
+    "abbr": "青",
+    "type": "省份",
+    "batch_line": {
+      "2024": {
+        "yiben": 475,
+        "erben": 398
+      },
+      "2023": {
+        "yiben": 478,
+        "erben": 401
+      }
+    }
+  },
+  {
+    "id": "xz",
+    "name": "西藏",
+    "abbr": "藏",
+    "type": "自治区",
+    "batch_line": {
+      "2024": {
+        "yiben": 462,
+        "erben": 388
+      },
+      "2023": {
+        "yiben": 465,
+        "erben": 391
+      }
+    }
+  },
+  {
+    "id": "sc",
+    "name": "四川",
+    "abbr": "川",
+    "type": "省份",
+    "batch_line": {
+      "2024": {
+        "yiben": 507,
+        "erben": 430
+      },
+      "2023": {
+        "yiben": 510,
+        "erben": 433
+      }
+    }
+  },
+  {
+    "id": "nx",
+    "name": "宁夏",
+    "abbr": "宁",
+    "type": "自治区",
+    "batch_line": {
+      "2024": {
+        "yiben": 480,
+        "erben": 402
+      },
+      "2023": {
+        "yiben": 483,
+        "erben": 405
+      }
+    }
+  },
+  {
+    "id": "han",
+    "name": "海南",
+    "abbr": "琼",
+    "type": "省份",
+    "batch_line": {
+      "2024": {
+        "yiben": 530,
+        "erben": 452
+      },
+      "2023": {
+        "yiben": 532,
+        "erben": 454
+      }
+    }
+  }
+]

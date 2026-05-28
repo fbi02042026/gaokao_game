@@ -5,58 +5,104 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  workflow_dispatch:
+
+env:
+  UNITY_VERSION: 2022.3.61t11
+  UNITY_PATH: "C:/Program Files/Tuanjie/Hub/Editor/2022.3.61t11/Editor/Tuanjie.exe"
 
 jobs:
-  build-wechat:
-    runs-on: ubuntu-latest
-    
+  configure:
+    runs-on: windows-latest
+    outputs:
+      build-version: ${{ steps.version.outputs.value }}
     steps:
     - uses: actions/checkout@v3
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-    
-    - name: Build for WeChat
+    - name: Set build version
+      id: version
       run: |
-        echo "微信小游戏构建配置"
-        echo "需要团结引擎CLI工具"
-    
+        $version = "1.0.$(Get-Date -Format 'yyyyMMdd').${{ github.run_number }}"
+        echo "value=$version" >> $env:GITHUB_OUTPUT
+
+  build-wechat:
+    needs: configure
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Run BuildConfig (配置微信小游戏)
+      run: |
+        & "${{ env.UNITY_PATH }}" `
+          -quit -batchmode `
+          -projectPath "${{ github.workspace }}" `
+          -executeMethod BuildConfig.ConfigureWeChatMiniGame `
+          -logFile build-wechat-config.log
+
+    - name: Build WeChat Mini Game
+      run: |
+        & "${{ env.UNITY_PATH }}" `
+          -quit -batchmode `
+          -projectPath "${{ github.workspace }}" `
+          -buildTarget WeixinMiniGame `
+          -customBuildPath "${{ github.workspace }}/build/wechat" `
+          -executeMethod BuildConfig.BuildWeChat `
+          -logFile build-wechat.log
+
+    - name: Check build size
+      run: |
+        $size = (Get-ChildItem -Path "${{ github.workspace }}/build/wechat" -Recurse -File | Measure-Object -Property Length -Sum).Sum
+        $sizeMB = [math]::Round($size / 1MB, 2)
+        Write-Host "微信小游戏包体大小: $sizeMB MB"
+        if ($sizeMB -gt 4) { Write-Warning "超过4MB首包限制，请检查AutoStreaming配置" }
+
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: wechat-build
+        name: wechat-mini-game
         path: build/wechat/
 
   build-douyin:
-    runs-on: ubuntu-latest
-    
+    needs: configure
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@v3
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-    
-    - name: Build for Douyin
-      run: |
-        echo "抖音小游戏构建配置"
-        echo "需要团结引擎CLI工具"
 
-  build-taptap:
-    runs-on: ubuntu-latest
-    
+    - name: Run BuildConfig (配置抖音小游戏)
+      run: |
+        & "${{ env.UNITY_PATH }}" `
+          -quit -batchmode `
+          -projectPath "${{ github.workspace }}" `
+          -executeMethod BuildConfig.ConfigureDouyinMiniGame `
+          -logFile build-douyin-config.log
+
+    - name: Build Douyin Mini Game
+      run: |
+        & "${{ env.UNITY_PATH }}" `
+          -quit -batchmode `
+          -projectPath "${{ github.workspace }}" `
+          -buildTarget ByteDanceMiniGame `
+          -customBuildPath "${{ github.workspace }}/build/douyin" `
+          -executeMethod BuildConfig.BuildDouyin `
+          -logFile build-douyin.log
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: douyin-mini-game
+        path: build/douyin/
+
+  build-native:
+    needs: configure
+    runs-on: windows-latest
+    if: false
     steps:
     - uses: actions/checkout@v3
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-    
-    - name: Build for TapTap
+
+    - name: Build Android
       run: |
-        echo "TapTap构建配置"
-        echo "需要团结引擎CLI工具"
+        echo "原生App构建（后续配置）"
+        echo "Android: IL2CPP + ARM64"
+
+    - name: Build iOS
+      run: |
+        echo "iOS构建（后续配置，需要macOS Runner）"

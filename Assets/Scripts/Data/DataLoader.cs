@@ -1,218 +1,243 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using GaokaoLife.Models;
-using GaokaoLife.Engine;
-using GaokaoLife.Managers;
+using UnityEngine.Networking;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace GaokaoLife.Data
+public class DataLoader : MonoBehaviour
 {
-    public class DataLoader : MonoBehaviour
+    public static DataLoader Instance { get; private set; }
+
+    private List<College> colleges;
+    private List<Major> majors;
+    private List<Province> provinces;
+    private List<GameEvent> eventPool;
+    private bool isLoaded = false;
+
+    void Awake()
     {
-        public static DataLoader Instance { get; private set; }
+        if (Instance == null) { Instance = this; DontDestroyOnLoad(gameObject); }
+        else { Destroy(gameObject); }
+    }
 
-        private Dictionary<string, TextAsset> loadedAssets;
-        private bool isDataLoaded;
+    public IEnumerator PreloadAll()
+    {
+        yield return StartCoroutine(LoadJson<College>("colleges", result => colleges = new List<College>(result)));
+        yield return StartCoroutine(LoadJson<Major>("majors", result => majors = new List<Major>(result)));
+        yield return StartCoroutine(LoadJson<Province>("provinces", result => provinces = new List<Province>(result)));
+        isLoaded = true;
+        Debug.Log($"[DataLoader] 加载完成: {colleges.Count}所院校, {majors.Count}个专业, {provinces.Count}个省份");
+    }
 
-        public event Action OnDataLoaded;
-        public event Action<float> OnLoadProgress;
-
-        void Awake()
+    private IEnumerator LoadJson<T>(string fileName, System.Action<T[]> callback)
+    {
+        string path = System.IO.Path.Combine(Application.streamingAssetsPath, fileName + ".json");
+        using (UnityWebRequest request = UnityWebRequest.Get(path))
         {
-            if (Instance == null)
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.Success)
             {
-                Instance = this;
-                DontDestroyOnLoad(gameObject);
+                T[] wrapper = JsonHelper.FromJson<T>(request.downloadHandler.text);
+                callback(wrapper);
             }
             else
             {
-                Destroy(gameObject);
-                return;
+                Debug.LogError($"[DataLoader] 加载失败 {fileName}: {request.error}");
+                callback(new T[0]);
             }
-
-            loadedAssets = new Dictionary<string, TextAsset>();
-            isDataLoaded = false;
-
-            Debug.Log("[DataLoader] 数据加载器初始化完成");
-        }
-
-        public void LoadAllData(Action onComplete)
-        {
-            StartCoroutine(LoadAllDataCoroutine(onComplete));
-        }
-
-        private System.Collections.IEnumerator LoadAllDataCoroutine(Action onComplete)
-        {
-            float totalSteps = 10f;
-            float currentStep = 0f;
-
-            OnLoadProgress?.Invoke(currentStep / totalSteps);
-            yield return null;
-
-            currentStep++;
-            var talents = LoadData<TalentData>("talents");
-            if (talents != null && TalentEngine.Instance != null)
-            {
-                TalentEngine.Instance.LoadTalents(talents);
-            }
-            OnLoadProgress?.Invoke(currentStep / totalSteps);
-            yield return null;
-
-            currentStep++;
-            var events = LoadEventsFromFolder("Data/Events");
-            if (EventEngine.Instance != null)
-            {
-                EventEngine.Instance.LoadEvents(events);
-            }
-            OnLoadProgress?.Invoke(currentStep / totalSteps);
-            yield return null;
-
-            currentStep++;
-            var colleges = LoadData<CollegeData>("colleges");
-            if (colleges != null && ScoreEngine.Instance != null)
-            {
-                ScoreEngine.Instance.LoadCollegeData(colleges);
-            }
-            OnLoadProgress?.Invoke(currentStep / totalSteps);
-            yield return null;
-
-            currentStep++;
-            var memories = LoadData<MemoryData>("memories");
-            if (memories != null && DejaVuEngine.Instance != null)
-            {
-                DejaVuEngine.Instance.LoadMemories(memories);
-            }
-            OnLoadProgress?.Invoke(currentStep / totalSteps);
-            yield return null;
-
-            currentStep++;
-            var npcs = LoadData<NPCData>("npcs");
-            OnLoadProgress?.Invoke(currentStep / totalSteps);
-            yield return null;
-
-            currentStep++;
-            var provinces = LoadData<ProvinceData>("provinces");
-            OnLoadProgress?.Invoke(currentStep / totalSteps);
-            yield return null;
-
-            currentStep++;
-            var personalities = LoadData<PersonalityData>("personalities");
-            if (personalities != null && PersonalityEngine.Instance != null)
-            {
-                PersonalityEngine.Instance.LoadPersonalities(personalities);
-            }
-            OnLoadProgress?.Invoke(currentStep / totalSteps);
-            yield return null;
-
-            currentStep++;
-            LoadMajors();
-            OnLoadProgress?.Invoke(currentStep / totalSteps);
-            yield return null;
-
-            currentStep++;
-            isDataLoaded = true;
-            OnLoadProgress?.Invoke(1f);
-            OnDataLoaded?.Invoke();
-
-            Debug.Log("[DataLoader] 所有数据加载完成");
-            onComplete?.Invoke();
-        }
-
-        public T LoadData<T>(string dataName) where T : new()
-        {
-            TextAsset asset = Resources.Load<TextAsset>($"Data/{dataName}");
-            
-            if (asset == null)
-            {
-                Debug.LogWarning($"[DataLoader] 找不到数据文件: {dataName}");
-                return new T();
-            }
-
-            try
-            {
-                T data = JsonUtility.FromJson<T>(asset.text);
-                Debug.Log($"[DataLoader] 加载数据: {dataName}");
-                return data;
-            }
-            catch (Exception e)
-            {
-                Debug.LogError($"[DataLoader] 解析数据失败 {dataName}: {e.Message}");
-                return new T();
-            }
-        }
-
-        private List<GameEvent> LoadEventsFromFolder(string folderPath)
-        {
-            var allEvents = new List<GameEvent>();
-            TextAsset[] eventFiles = Resources.LoadAll<TextAsset>(folderPath);
-
-            foreach (var file in eventFiles)
-            {
-                try
-                {
-                    var events = JsonUtility.FromJson<EventList>(file.text);
-                    if (events != null && events.events != null)
-                    {
-                        allEvents.AddRange(events.events);
-                        Debug.Log($"[DataLoader] 加载事件文件: {file.name}, 事件数: {events.events.Count}");
-                    }
-                }
-                catch (Exception e)
-                {
-                    Debug.LogError($"[DataLoader] 解析事件文件失败 {file.name}: {e.Message}");
-                }
-            }
-
-            return allEvents;
-        }
-
-        private void LoadMajors()
-        {
-            TextAsset asset = Resources.Load<TextAsset>("Data/majors");
-            if (asset != null)
-            {
-                Debug.Log("[DataLoader] 加载专业数据");
-            }
-        }
-
-        public bool IsDataLoaded()
-        {
-            return isDataLoaded;
-        }
-
-        public void ReloadData(string dataName)
-        {
-            Debug.Log($"[DataLoader] 重新加载数据: {dataName}");
-        }
-
-        public void ClearCache()
-        {
-            loadedAssets.Clear();
-            Debug.Log("[DataLoader] 缓存已清除");
         }
     }
 
-    [Serializable]
-    public class EventList
+    public IEnumerator LoadEvents(string stageName, System.Action<List<GameEvent>> callback)
     {
-        public List<GameEvent> events;
+        string path = System.IO.Path.Combine(Application.streamingAssetsPath, "Events", stageName + ".json");
+        using (UnityWebRequest request = UnityWebRequest.Get(path))
+        {
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                GameEvent[] wrapper = JsonHelper.FromJson<GameEvent>(request.downloadHandler.text);
+                eventPool = new List<GameEvent>(wrapper);
+                Debug.Log($"[DataLoader] 加载事件 {stageName}: {eventPool.Count} 个");
+                callback(eventPool);
+            }
+            else
+            {
+                Debug.LogError($"[DataLoader] 加载事件失败 {stageName}: {request.error}");
+                callback(new List<GameEvent>());
+            }
+        }
     }
 
-    public static class DataExtensions
+    public IEnumerator LoadTalents(System.Action<List<Talent>> callback)
     {
-        public static T FromJson<T>(this string json) where T : new()
+        string path = System.IO.Path.Combine(Application.streamingAssetsPath, "talents.json");
+        using (UnityWebRequest request = UnityWebRequest.Get(path))
         {
-            return JsonUtility.FromJson<T>(json);
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                Talent[] wrapper = JsonHelper.FromJson<Talent>(request.downloadHandler.text);
+                var list = new List<Talent>(wrapper);
+                Debug.Log($"[DataLoader] 加载天赋: {list.Count} 个");
+                callback(list);
+            }
+            else
+            {
+                Debug.LogError($"[DataLoader] 加载天赋失败: {request.error}");
+                callback(new List<Talent>());
+            }
+        }
+    }
+
+    public IEnumerator LoadCollegesFromStreamingAssets(System.Action<List<College>> callback)
+    {
+        string path = System.IO.Path.Combine(Application.streamingAssetsPath, "colleges.json");
+        using (UnityWebRequest request = UnityWebRequest.Get(path))
+        {
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                College[] wrapper = JsonHelper.FromJson<College>(request.downloadHandler.text);
+                colleges = new List<College>(wrapper);
+                Debug.Log($"[DataLoader] 加载院校: {colleges.Count} 所");
+                callback(colleges);
+            }
+            else
+            {
+                Debug.LogError($"[DataLoader] 加载院校失败: {request.error}");
+                callback(new List<College>());
+            }
+        }
+    }
+
+    public IEnumerator LoadMajorsFromStreamingAssets(System.Action<List<Major>> callback)
+    {
+        string path = System.IO.Path.Combine(Application.streamingAssetsPath, "majors.json");
+        using (UnityWebRequest request = UnityWebRequest.Get(path))
+        {
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                Major[] wrapper = JsonHelper.FromJson<Major>(request.downloadHandler.text);
+                majors = new List<Major>(wrapper);
+                Debug.Log($"[DataLoader] 加载专业: {majors.Count} 个");
+                callback(majors);
+            }
+            else
+            {
+                Debug.LogError($"[DataLoader] 加载专业失败: {request.error}");
+                callback(new List<Major>());
+            }
+        }
+    }
+
+    public List<College> GetColleges(string provinceName = null, int? score = null)
+    {
+        if (colleges == null) return new List<College>();
+
+        var result = colleges.AsEnumerable();
+
+        if (!string.IsNullOrEmpty(provinceName))
+        {
+            result = result.Where(c => c.province == provinceName);
         }
 
-        public static string ToJson<T>(this T obj)
+        if (score.HasValue)
         {
-            return JsonUtility.ToJson(obj);
+            result = result.Where(c =>
+            {
+                int min = c.GetMinScore(provinceName ?? c.province);
+                return score.Value >= min;
+            });
         }
 
-        public static string ToJsonPretty<T>(this T obj)
+        return result.OrderByDescending(c =>
         {
-            return JsonUtility.ToJson(obj, true);
+            if (!string.IsNullOrEmpty(provinceName))
+                return c.GetMinScore(provinceName);
+            return c.GetMinScore(c.province);
+        }).ToList();
+    }
+
+    public List<Major> GetMajors(string category = null)
+    {
+        if (majors == null) return new List<Major>();
+
+        if (!string.IsNullOrEmpty(category))
+            return majors.Where(m => m.category == category).ToList();
+
+        return majors;
+    }
+
+    public List<Province> GetProvinces()
+    {
+        return provinces ?? new List<Province>();
+    }
+
+    public College GetCollegeById(string id)
+    {
+        return colleges?.FirstOrDefault(c => c.id == id);
+    }
+
+    public Major GetMajorById(string id)
+    {
+        return majors?.FirstOrDefault(m => m.id == id);
+    }
+
+    public List<Major> GetCollegeMajors(string collegeId)
+    {
+        if (collegeId == null || majors == null) return new List<Major>();
+        College college = GetCollegeById(collegeId);
+        if (college == null || college.majors == null) return new List<Major>();
+
+        List<Major> result = new List<Major>();
+        foreach (string majorId in college.majors)
+        {
+            Major m = GetMajorById(majorId);
+            if (m != null) result.Add(m);
         }
+        return result;
+    }
+
+    public bool IsDataLoaded()
+    {
+        return isLoaded;
+    }
+
+    public void LoadAllData(System.Action callback)
+    {
+        StartCoroutine(LoadAllDataRoutine(callback));
+    }
+
+    private IEnumerator LoadAllDataRoutine(System.Action callback)
+    {
+        yield return StartCoroutine(LoadJson<College>("colleges", result => colleges = new List<College>(result)));
+        yield return StartCoroutine(LoadJson<Major>("majors", result => majors = new List<Major>(result)));
+        yield return StartCoroutine(LoadJson<Province>("provinces", result => provinces = new List<Province>(result)));
+        isLoaded = true;
+        Debug.Log($"[DataLoader] LoadAllData 完成: {colleges.Count}所院校, {majors.Count}个专业, {provinces.Count}个省份");
+        callback?.Invoke();
+    }
+}
+
+public static class JsonHelper
+{
+    public static T[] FromJson<T>(string json)
+    {
+        string wrapped = "{\"items\":" + json + "}";
+        Wrapper<T> wrapper = JsonUtility.FromJson<Wrapper<T>>(wrapped);
+        return wrapper.items;
+    }
+
+    [System.Serializable]
+    private class Wrapper<T>
+    {
+        public T[] items;
     }
 }

@@ -1,10 +1,12 @@
-# Unity/Tuanjie Engine
+# Unity/Tuanjie Engine - Generated folders
 [Tt]emp/
 [Ll]ibrary/
 [Uu]ser[Ss]ettings/
 ExportedObj/
 .obj/
 *.booproj
+
+# Visual Studio / Rider project files (generated)
 *.csproj
 *.sln
 *.sln.meta
@@ -12,23 +14,8 @@ ExportedObj/
 *.user
 *.userprefs
 *.unityproj
-*.sln.meta
 Assembly-CSharp.csproj.meta
 Assembly-CSharp-Editor.csproj.meta
-*.asset.meta
-*.meta
-*.png
-*.jpg
-*.tga
-*.wav
-*.mp3
-*.mp4
-*.anim
-*.controller
-*.prefab
-*.unity
-*.physicMaterial
-*.physicMaterial.meta
 
 # IDE
 .vs/
@@ -47,9 +34,10 @@ Assembly-CSharp-Editor.csproj.meta
 ehthumbs.db
 Thumbs.db
 
-# Build
+# Build outputs
 Build/
 Builds/
+build/
 *.apk
 *.aab
 *.exe
@@ -63,3 +51,7 @@ logs/
 
 # Local Configuration
 local.properties
+
+# Unity generated asset metadata (keep .meta for source assets)
+# Only ignore specific generated meta patterns
+**/StreamingAssets/*.meta

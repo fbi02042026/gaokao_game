@@ -1,0 +1,63 @@
+[
+  {
+    "id": "CS_001", "name": "第一个Hello World", "stage": "college", "tags": ["计算机", "入门"],
+    "triggerCondition": null, "interactionType": "choice",
+    "choiceContent": { "description": "大学第一节编程课，你选什么语言？", "choices": [
+      {"id": "A", "text": "Python（简单易学）", "icon": "🐍"},
+      {"id": "B", "text": "C++（硬核扎实）", "icon": "⚙️"},
+      {"id": "C", "text": "Java（就业面广）", "icon": "☕"}
+    ]},
+    "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key":"A","value":{"statKeys":["intellect","creativity"],"statValues":[5,5],"narrative":"Python入门快，但底层原理以后还要补。"}},
+      {"key":"B","value":{"statKeys":["intellect","mental"],"statValues":[8,-5],"narrative":"C++学会了什么都不怕，就是头发掉得快。"}},
+      {"key":"C","value":{"statKeys":["intellect","social"],"statValues":[5,3],"narrative":"Java企业级开发，实习机会多。"}}
+    ]
+  },
+  {
+    "id": "CS_002", "name": "黑客松48小时", "stage": "college", "tags": ["计算机", "竞赛"],
+    "triggerCondition": {"minGrade": 2, "minIntellect": 0, "requiredEvent": null}, "interactionType": "merge",
+    "mergeContent": { "description": "48小时极限开发！合成技术栈完成项目", "gridRows": 6, "gridCols": 8,
+      "availableItems": ["前端", "后端", "数据库"], "mergeRuleKeys": ["前端+后端", "全栈+数据库"],
+      "mergeRuleValues": ["全栈", "完整项目"], "targetItem": "完整项目", "movesLimit": 15 },
+    "choiceContent": null, "sortContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key":"success","value":{"statKeys":["intellect","social"],"statValues":[15,5],"narrative":"项目拿了奖！简历上多了闪亮一笔。"}},
+      {"key":"partial","value":{"statKeys":["intellect"],"statValues":[8],"narrative":"项目跑起来了，虽然bug一堆但学到了很多。"}},
+      {"key":"fail","value":{"statKeys":["mental"],"statValues":[-10],"narrative":"熬了两天两夜，项目崩了...但经验是无价的。"}}
+    ]
+  },
+  {
+    "id": "CS_003", "name": "大厂实习面试", "stage": "college", "tags": ["计算机", "职业"],
+    "triggerCondition": {"minGrade": 3, "minIntellect": 0, "requiredEvent": null}, "interactionType": "sort",
+    "sortContent": { "description": "排出你心中的大厂优先级", "items": ["字节跳动", "腾讯", "阿里", "华为"], "showProbability": true },
+    "choiceContent": null, "mergeContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key":"optimal","value":{"statKeys":["social","intellect"],"statValues":[8,5],"narrative":"排序合理，拿到心仪offer！"}},
+      {"key":"risky","value":{"statKeys":["mental"],"statValues":[-5],"narrative":"面试全挂了...但春招还有机会。"}}
+    ]
+  },
+  {
+    "id": "CS_004", "name": "学长内推", "stage": "college", "tags": ["计算机", "社交"],
+    "triggerCondition": null, "interactionType": "dialog",
+    "dialogContent": { "description": "毕业学长回来招人", "npcId": "npc_xuezhang_cs", "lines": [
+      "学弟学妹好！我在字节做后端开发。","计算机这个行业，技术更新太快了，要学会自驱学习。",
+      "不要只盯着大厂，好的创业公司成长更快。","简历有项目经验的优先，成绩单只是参考。"
+    ]},
+    "choiceContent": null, "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null,
+    "outcomeList": [
+      {"key":"default","value":{"statKeys":["social","intellect"],"statValues":[5,3],"narrative":"学长的话指明了方向。"}}
+    ]
+  },
+  {
+    "id": "CS_005", "name": "毕业设计", "stage": "college", "tags": ["计算机", "毕业"],
+    "triggerCondition": {"minGrade": 5, "minIntellect": 0, "requiredEvent": null}, "interactionType": "slider",
+    "sliderContent": { "description": "毕业季时间分配", "categories": [
+      {"name":"写论文","icon":"📄"},{"name":"刷LeetCode","icon":"💻"},{"name":"社交聚会","icon":"🎉"}
+    ], "totalPoints": 10 },
+    "choiceContent": null, "mergeContent": null, "sortContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key":"default","value":{"statKeys":[],"statValues":[],"narrative":"大学的最后时光，每一分钟都值得珍惜。"}}
+    ]
+  }
+]
