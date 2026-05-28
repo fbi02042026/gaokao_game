@@ -5,60 +5,87 @@
 ## 🎮 游戏特色
 
 ### 核心玩法
-- **天赋系统**: 天赋贯穿高中→高考→选专业→大学→职场全流程
-- **时间推进**: 游戏内2-3天为一周真实时间循环
-- **二周目模式**: 获得"前世记忆"天赋，解锁全新体验
-- **多结局**: 根据你的选择和天赋解锁不同人生结局
+- **天赋系统**: 12种天赋3选1，贯穿高中→高考→选专业→大学→职场全流程
+- **性别选择**: 首次登录选择性别，不同性别不同事件插图
+- **人格系统**: 8种高考人格，根据选择动态演化
+- **二周目模式**: 4级既视感系统，多代传承
+- **多结局**: 根据选择、天赋、成绩解锁不同人生结局
 
 ### 游戏阶段
 1. **高中三年**: 努力学习、发展社交、塑造人格
 2. **高考**: 决定命运的大考
 3. **填报志愿**: 选择学校和专业
-4. **大学四年**: 继续成长和发展
+4. **大学四年**: 计算机/法学/医学/商科方向
 5. **职场人生**: 开启职业生涯
+6. **结局**: 人生总结与传承
 
 ### 美术风格
 - 2D Q版软萌卡通风格
-- 参考：肥鹅健身房、恐龙多多
+- 色板：#FFF8F0 暖白 / #6B9DF7 主蓝 / #FFB5B5 柔粉
 
 ## 🛠️ 技术栈
 
-- **引擎**: 团结引擎（Tuanjie Engine）
-- **编程语言**: TypeScript
-- **目标平台**: 微信小游戏、抖音小游戏、TapTap、原生App
-- **屏幕比例**: 竖版 9:16
+- **引擎**: 团结引擎（Tuanjie Engine）2D URP
+- **编程语言**: C# (全局命名空间)
+- **目标平台**: 微信小游戏、抖音小游戏、TapTap
+- **屏幕比例**: 竖版 9:16 (750×1334)
 
 ## 📦 项目结构
 
 ```
-gaokao/
-├── assets/
-│   ├── data/              # 游戏数据配置
-│   │   ├── game_phases.json    # 游戏阶段配置
-│   │   └── talents.json        # 天赋系统配置
-│   ├── scenes/            # 游戏场景
-│   │   └── MainMenuScene.ts
-│   ├── scripts/           # TypeScript脚本
-│   │   ├── core/          # 核心配置
-│   │   │   └── GameConfig.ts
-│   │   ├── systems/      # 游戏系统
-│   │   │   ├── TalentSystem.ts    # 天赋系统
-│   │   │   ├── TimeSystem.ts      # 时间系统
-│   │   │   └── SaveSystem.ts      # 存档系统
-│   │   ├── ui/           # UI管理
-│   │   │   └── UIManager.ts
-│   │   └── platform/     # 平台SDK
-│   │       └── PlatformSDK.ts
-│   └── resources/        # 资源配置
-├── game_config.json       # 游戏配置文件
-└── README.md
+Assets/
+├── Scripts/                  # C# 脚本
+│   ├── Models/               # 数据模型
+│   │   ├── PlayerState.cs    # 玩家状态(含性别/属性/人格)
+│   │   ├── GameEvent.cs      # 事件模型(含插图映射)
+│   │   ├── Talent.cs         # 天赋模型
+│   │   ├── Personality.cs    # 人格模型
+│   │   ├── College.cs        # 院校数据
+│   │   ├── Major.cs          # 专业数据
+│   │   ├── Province.cs       # 省份分数线
+│   │   └── NPC.cs            # NPC数据
+│   ├── Engine/               # 游戏引擎
+│   │   ├── EventEngine.cs    # 事件驱动引擎
+│   │   ├── TalentEngine.cs   # 天赋引擎
+│   │   ├── ScoreEngine.cs    # 高考计分引擎
+│   │   ├── PersonalityEngine.cs # 人格计算
+│   │   ├── DejaVuEngine.cs   # 既视感系统
+│   │   ├── InheritEngine.cs  # 多代传承
+│   │   └── MergeEngine.cs    # 合成系统
+│   ├── Managers/             # 管理器
+│   │   ├── GameStateManager.cs # 游戏状态管理
+│   │   ├── SaveManager.cs    # 存档(PlayerPrefs)
+│   │   ├── AdManager.cs      # 广告管理
+│   │   └── ShareManager.cs   # 分享管理
+│   ├── Data/                 # 数据层
+│   │   ├── DataLoader.cs     # JSON加载(StreamingAssets)
+│   │   └── ResourceHelper.cs # 资源加载(含性别区分)
+│   ├── UI/                   # 界面
+│   │   ├── HomeUI.cs         # 主界面+性别选择
+│   │   ├── GenderSelectUI.cs # 性别选择面板
+│   │   ├── HighSchoolUI.cs   # 高中阶段
+│   │   ├── GaokaoUI.cs       # 高考出分
+│   │   ├── ZhiyuanUI.cs      # 志愿填报
+│   │   ├── CollegeUI.cs       # 大学阶段
+│   │   ├── LifeUI.cs         # 人生阶段
+│   │   └── ResultUI.cs       # 结局+传承
+│   └── GameManager.cs        # 总控
+├── Tex/                      # 美术资源
+│   ├── 事件高中/             # 高中事件插图(男女)
+│   ├── 事件大学/             # 大学事件插图(男女)
+│   ├── 结局/                 # 结局插画(男女)
+│   ├── bg_*.png              # 场景背景
+│   └── npc_*.png             # NPC角色
+├── Resources/                # Resources.Load资源
+├── StreamingAssets/          # 运行时JSON数据
+├── 策划文档/                 # 策划设计文档
+└── 高考志愿游戏设计_GameData/ # 游戏原始数据
 ```
 
 ## 🚀 开发指南
 
 ### 环境要求
 - 团结引擎 3.x 或更高版本
-- Node.js 18+
 - Git
 
 ### 安装步骤
@@ -73,90 +100,56 @@ cd gaokao_game
    - 选择"打开项目"
    - 选择项目根目录
 
-3. 配置平台SDK
-   - 微信: 在 `PlatformSDK.ts` 中配置 `wx_your_app_id`
-   - 抖音: 在 `PlatformSDK.ts` 中配置 `tt_your_app_id`
-   - TapTap: 在 `PlatformSDK.ts` 中配置 `tap_your_app_id`
-
 ### 运行游戏
-1. 在团结引擎中打开 `MainMenuScene` 场景
-2. 点击运行按钮（或按 Ctrl+P）
+1. 打开 `Home` 场景
+2. 点击运行按钮
 
-### 构建发布
-1. 选择目标平台（微信/抖音/TapTap/iOS/Android）
-2. 配置构建选项
-3. 点击构建
+## 🔧 平台构建
 
-## 🎯 天赋列表
-
-| 天赋名称 | 稀有度 | 效果 |
-|---------|--------|------|
-| 前世记忆 | 传说 | 二周目专属，记得所有选择 |
-| 过目不忘 | 稀有 | 学习效率+50% |
-| 情绪管理 | 普通 | 考试稳定性+30% |
-| 时间操控 | 史诗 | 每日学习时间+2小时 |
-| 社交达人 | 稀有 | 解锁隐藏社交事件 |
-| 幸运星 | 史诗 | 关键时刻成功率+40% |
-| 速学者 | 普通 | 理解力+30% |
-| 运动天才 | 普通 | 体育必定满分 |
+使用菜单栏的 `BuildConfig` 工具：
+- **Build/WeChat Mini Game** - 构建微信小游戏
+- **Build/Douyin Mini Game** - 构建抖音小游戏 (WebGL)
+- **Build/TapTap** - 构建TapTap Android包
 
 ## 📊 数据存储
 
-### 本地存储
-- 存档位置: `localStorage.game_save.json`
-- 设置存储: `localStorage.game_settings`
+- 存档: `PlayerPrefs` 本地存储
+- 数据: `StreamingAssets` 加载JSON
+- 云存档: 通过平台SDK实现
 
-### 云存档
-通过平台SDK实现云端同步：
-- 微信: `wx.getFriendCloudStorage()`
-- 抖音: `tt.getFriendCloudStorage()`
-- TapTap: TapTap SDK云存档API
+## 🎯 天赋列表 (12种)
 
-## 🔧 平台特性
-
-### 微信小游戏
-- 分享功能
-- 好友排行榜
-- 云存档
-- 广告（Banner、激励视频、插屏）
-
-### 抖音小游戏
-- 分享功能
-- 好友排行榜
-- 云存档
-- 广告
-
-### TapTap
-- 分享功能
-- 排行榜
-- 云存档
-- 支付
+| 天赋 | 稀有度 | 效果 |
+|------|--------|------|
+| 过目不忘 | SSR | 学习效率提升50% |
+| 逻辑思维 | SSR | 理科成绩+20% |
+| 情绪管理 | SR | 考试稳定性+30% |
+| 社交达人 | SR | 解锁隐藏社交事件 |
+| 运动天才 | R | 体育必定满分 |
+| 幸运星 | SSR | 关键时刻成功率+40% |
+| 速学者 | R | 理解力+30% |
+| 时间操控 | SR | 每日学习时间+2h |
+| 艺术天赋 | SR | 创造力+20 |
+| 领导力 | SSR | 社交收益+50% |
+| 坚韧不拔 | SR | 逆境属性损失减半 |
+| 全面发展 | R | 所有属性均衡增长 |
 
 ## 📝 开发日志
 
-### v1.0.0 (开发中)
-- ✅ 核心游戏架构
-- ✅ 天赋系统
-- ✅ 时间推进系统
-- ✅ 存档系统
-- ✅ UI框架
-- ✅ 平台SDK集成
-- ⏳ 主菜单场景
-- ⏳ 游戏核心循环
-- ⏳ 各阶段剧情
-
-## 🤝 贡献指南
-
-欢迎提交Issue和Pull Request！
+### V1.0 (正式版)
+- ✅ 性别选择系统
+- ✅ 男女不同事件插图
+- ✅ 12种天赋3选1
+- ✅ 高中/大学/人生全阶段
+- ✅ 高考计分出分
+- ✅ 志愿填报44所院校
+- ✅ 8种高考人格
+- ✅ 二周目既视感传承
+- ✅ 资源目录整理备份
 
 ## 📄 许可证
 
 本项目仅供学习交流使用。
-
-## 📞 联系方式
-
-- GitHub: https://github.com/fbi02042026/gaokao_game
-- 问题反馈: 请提交GitHub Issue
 
 ---
 
