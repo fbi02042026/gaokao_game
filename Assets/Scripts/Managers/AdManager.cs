@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 public class AdManager : MonoBehaviour
 {
@@ -26,30 +25,39 @@ public class AdManager : MonoBehaviour
         else { Destroy(gameObject); }
     }
 
-    public async Task<bool> ShowRewardedVideo(string type)
+    public void ShowRewardedVideo(string type, System.Action<bool> callback)
     {
         if (!CanShowAd(type))
         {
             Debug.Log($"[AdManager] 广告冷却中: {type}");
-            return false;
+            callback?.Invoke(false);
+            return;
         }
 
-#if UNITY_WECHAT_GAME
-        Debug.Log($"[AdManager] 微信广告展示: {type}（暂用模拟）");
-#elif UNITY_BYTE_DANCE_MINI_GAME
-        Debug.Log($"[AdManager] 抖音广告展示: {type}（暂用模拟）");
-#else
-        Debug.Log($"[AdManager] 模拟广告成功: {type}");
-#endif
-
-        lastShowTime[type] = Time.time;
-        return true;
+        if (PlatformManager.Instance != null)
+        {
+            PlatformManager.Instance.ShowRewardedAd(type, (success) =>
+            {
+                if (success)
+                {
+                    lastShowTime[type] = Time.time;
+                    Debug.Log($"[AdManager] 广告观看完成: {type}");
+                }
+                callback?.Invoke(success);
+            });
+        }
+        else
+        {
+            Debug.Log($"[AdManager] 模拟广告成功: {type}");
+            lastShowTime[type] = Time.time;
+            callback?.Invoke(true);
+        }
     }
 
     public bool CanShowAd(string type)
     {
         if (!lastShowTime.ContainsKey(type)) return true;
-        float cd = cooldownConfig.GetValueOrDefault(type, 0f);
+        float cd = cooldownConfig.ContainsKey(type) ? cooldownConfig[type] : 0f;
         if (cd < 0) return false;
         if (cd == 0) return true;
         return (Time.time - lastShowTime[type]) >= cd;

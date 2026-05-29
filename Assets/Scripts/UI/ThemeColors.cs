@@ -25,6 +25,11 @@ public static class ThemeColors
     public static Color StatSocial => new Color(1f, 0.85f, 0.24f);
     public static Color StatHealth => new Color(0.66f, 0.90f, 0.81f);
 
+    public static Color StatVitality => new Color(1f, 0.60f, 0.30f);
+    public static Color StatStress => new Color(0.80f, 0.40f, 0.50f);
+    public static Color StatFriends => new Color(0.30f, 0.75f, 1f);
+    public static Color StatMoney => new Color(0.30f, 0.80f, 0.40f);
+
     public static Color GetStatColor(string statKey)
     {
         return statKey switch
@@ -33,6 +38,10 @@ public static class ThemeColors
             "mental" => StatMental,
             "social" => StatSocial,
             "health" => StatHealth,
+            "vitality" => StatVitality,
+            "stress" => StatStress,
+            "friends" => StatFriends,
+            "money" => StatMoney,
             _ => TextPrimary
         };
     }

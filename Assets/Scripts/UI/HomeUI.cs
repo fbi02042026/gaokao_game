@@ -116,7 +116,7 @@ public class HomeUI : MonoBehaviour
             player.province = selectedProvince;
 
         Debug.Log("[HomeUI] 开始新游戏");
-        UnityEngine.SceneManagement.SceneManager.LoadScene("HighSchool");
+        GameManager.Instance.ChangePhase(GamePhase.HighSchool);
     }
 
     void OnContinueGame()

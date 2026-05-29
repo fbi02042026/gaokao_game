@@ -59,6 +59,13 @@ public class PlayerState
                 case "mental": mental = Mathf.Clamp(mental + kv.Value, 0, 100); break;
                 case "social": social = Mathf.Clamp(social + kv.Value, 0, 100); break;
                 case "health": health = Mathf.Clamp(health + kv.Value, 0, 100); break;
+                case "intelligence": intelligence = Mathf.Clamp(intelligence + kv.Value, 0, 100); intellect = intelligence; break;
+                case "physical": physical = Mathf.Clamp(physical + kv.Value, 0, 100); health = physical; break;
+                case "emotion": emotion = Mathf.Clamp(emotion + kv.Value, 0, 100); mental = emotion; break;
+                case "creativity": creativity = Mathf.Clamp(creativity + kv.Value, 0, 100); break;
+                case "luck": luck = Mathf.Clamp(luck + kv.Value, 0, 100); break;
+                case "willpower": willpower = Mathf.Clamp(willpower + kv.Value, 0, 100); break;
+                case "happiness": happiness = Mathf.Clamp(happiness + kv.Value, 0, 100); satisfaction = Mathf.Clamp(satisfaction + kv.Value / 10, 1, 5); break;
             }
         }
     }

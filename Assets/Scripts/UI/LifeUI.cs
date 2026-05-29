@@ -22,6 +22,12 @@ public class LifeUI : MonoBehaviour
     [SerializeField] private Text socialValueText;
     [SerializeField] private Text healthValueText;
 
+    [Header("属性标签(代码生成)")]
+    [SerializeField] private Text intellectLabelText;
+    [SerializeField] private Text mentalLabelText;
+    [SerializeField] private Text socialLabelText;
+    [SerializeField] private Text healthLabelText;
+
     [Header("事件")]
     [SerializeField] private GameObject eventCardPanel;
     [SerializeField] private Image eventIllustration;
@@ -66,9 +72,16 @@ public class LifeUI : MonoBehaviour
         toResultBtn?.onClick.AddListener(GoToResult);
 
         InitializeCareer();
+        InitializeAttributeLabels();
         BuildLifeEvents();
         RefreshTopBar();
         ShowCurrentEvent();
+
+        if (LifeEngine.Instance != null)
+        {
+            LifeEngine.Instance.StartLifeSimulation(playerState);
+            Debug.Log("[LifeUI] LifeEngine 已同步启动");
+        }
     }
 
     void InitializeCareer()
@@ -95,6 +108,19 @@ public class LifeUI : MonoBehaviour
 
         playerState.familyStatus = "单身";
         playerState.satisfaction = 3;
+    }
+
+    void InitializeAttributeLabels()
+    {
+        SetLabelText(intellectLabelText, "元气");
+        SetLabelText(mentalLabelText, "压力");
+        SetLabelText(socialLabelText, "朋友");
+        SetLabelText(healthLabelText, "金钱");
+    }
+
+    void SetLabelText(Text label, string text)
+    {
+        if (label != null) label.text = text;
     }
 
     void BuildLifeEvents()
@@ -351,7 +377,7 @@ public class LifeUI : MonoBehaviour
     {
         GameStateManager.Instance?.SetStage("result");
         GameStateManager.Instance?.QuickSave();
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Result");
+        GameManager.Instance.ChangePhase(GamePhase.Result);
     }
 
     void LoadLifeIllustration()

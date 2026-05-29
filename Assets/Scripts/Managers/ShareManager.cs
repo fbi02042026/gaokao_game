@@ -79,14 +79,22 @@ public class ShareManager : MonoBehaviour
 
     public void Share(string type)
     {
-#if UNITY_WECHAT_GAME
-        Debug.Log($"[ShareManager] 微信分享: {type}");
-#elif UNITY_BYTE_DANCE_MINI_GAME
-        Debug.Log($"[ShareManager] 抖音分享: {type}");
-#else
-        GUIUtility.systemCopyBuffer = GetShareText(type);
-        Debug.Log($"[ShareManager] 复制分享文案: {type}");
+        string title = GetShareTitle(type);
+
+        if (PlatformManager.Instance != null)
+        {
+            PlatformManager.Instance.Share(title, "", (success) =>
+            {
+                Debug.Log($"[ShareManager] 分享{(success ? "成功" : "失败")}: {type}");
+            });
+        }
+        else
+        {
+#if UNITY_EDITOR
+            GUIUtility.systemCopyBuffer = GetShareText(type);
 #endif
+            Debug.Log($"[ShareManager] 模拟分享: {type}");
+        }
     }
 
     private string GetShareTitle(string type)

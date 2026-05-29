@@ -245,7 +245,7 @@ public class ZhiyuanUI : MonoBehaviour
         GameStateManager.Instance?.SetStage("college");
         GameStateManager.Instance?.QuickSave();
 
-        UnityEngine.SceneManagement.SceneManager.LoadScene("College");
+        GameManager.Instance.ChangePhase(GamePhase.College);
     }
 }
 

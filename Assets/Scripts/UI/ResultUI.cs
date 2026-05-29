@@ -225,7 +225,7 @@ public class ResultUI : MonoBehaviour
     void OnPlayAgain()
     {
         Debug.Log("[ResultUI] 再来一局");
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Home");
+        GameManager.Instance.ChangePhase(GamePhase.Home);
     }
 
     void OnStartNewGeneration()
@@ -279,7 +279,7 @@ public class ResultUI : MonoBehaviour
             GameStateManager.Instance?.QuickSave();
         }
 
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Home");
+        GameManager.Instance.ChangePhase(GamePhase.Home);
     }
 
     string GetEndingType()

@@ -109,7 +109,7 @@ public class TalentSelectUI : MonoBehaviour
         GameStateManager.Instance?.QuickSave();
     }
 
-    async void OnRefresh()
+    void OnRefresh()
     {
         if (adManager == null)
         {
@@ -117,12 +117,14 @@ public class TalentSelectUI : MonoBehaviour
             return;
         }
 
-        bool success = await adManager.ShowRewardedVideo("talent_refresh");
-        if (success)
+        adManager.ShowRewardedVideo("talent_refresh", (success) =>
         {
-            RefreshCards();
-            Debug.Log("[TalentSelectUI] 广告成功后刷新天赋");
-        }
+            if (success)
+            {
+                RefreshCards();
+                Debug.Log("[TalentSelectUI] 广告成功后刷新天赋");
+            }
+        });
     }
 
     void RefreshMemoryTag()

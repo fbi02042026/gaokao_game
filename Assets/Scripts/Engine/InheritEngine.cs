@@ -101,6 +101,23 @@ public class InheritEngine : MonoBehaviour
     public void SaveCurrentMemory(PlaythroughMemory memory)
     {
         Debug.Log($"[InheritEngine] 保存第{memory.generation}代记忆到存档");
+
+        if (DejaVuEngine.Instance != null)
+        {
+            DejaVuEngine.Instance.RecordMemory(memory);
+        }
+
+        if (SaveManager.Instance != null)
+        {
+            var currentSave = SaveManager.Instance.Load();
+            if (currentSave != null)
+            {
+                if (currentSave.pastMemories == null)
+                    currentSave.pastMemories = new System.Collections.Generic.List<PlaythroughMemory>();
+                currentSave.pastMemories.Add(memory);
+                SaveManager.Instance.Save(currentSave);
+            }
+        }
     }
 
     public void SelfTest()

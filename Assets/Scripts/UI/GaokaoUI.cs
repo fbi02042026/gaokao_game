@@ -81,32 +81,34 @@ public class GaokaoUI : MonoBehaviour
         if (comprehensiveScoreText != null) comprehensiveScoreText.text = subjects.comprehensive.ToString();
     }
 
-    async void OnModifyScore()
+    public void OnModifyScore()
     {
         var adManager = AdManager.Instance;
         if (adManager == null) return;
 
-        bool success = await adManager.ShowRewardedVideo("modify_score");
-        if (success && finalScore < 750)
+        adManager.ShowRewardedVideo("modify_score", (success) =>
         {
-            finalScore += 5;
-            if (finalScore > 750) finalScore = 750;
-
-            subjects = scoreEngine.SplitSubjects(finalScore);
-
-            if (totalScoreText != null) totalScoreText.text = finalScore.ToString();
-            DisplaySubjects();
-
-            if (modifyScoreBtn != null)
+            if (success && finalScore < 750)
             {
-                modifyScoreBtn.interactable = false;
-                var colors = modifyScoreBtn.colors;
-                colors.disabledColor = ThemeColors.Disabled;
-                modifyScoreBtn.colors = colors;
-            }
+                finalScore += 5;
+                if (finalScore > 750) finalScore = 750;
 
-            Debug.Log($"[GaokaoUI] 广告加分+5, 最终={finalScore}");
-        }
+                subjects = scoreEngine.SplitSubjects(finalScore);
+
+                if (totalScoreText != null) totalScoreText.text = finalScore.ToString();
+                DisplaySubjects();
+
+                if (modifyScoreBtn != null)
+                {
+                    modifyScoreBtn.interactable = false;
+                    var colors = modifyScoreBtn.colors;
+                    colors.disabledColor = ThemeColors.Disabled;
+                    modifyScoreBtn.colors = colors;
+                }
+
+                Debug.Log($"[GaokaoUI] 广告加分+5, 最终={finalScore}");
+            }
+        });
     }
 
     void OnStartZhiyuan()
@@ -118,6 +120,6 @@ public class GaokaoUI : MonoBehaviour
         GameStateManager.Instance?.SetStage("zhiyuan");
         GameStateManager.Instance?.QuickSave();
 
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Zhiyuan");
+        GameManager.Instance.ChangePhase(GamePhase.Zhiyuan);
     }
 }

@@ -19,6 +19,12 @@ public class CollegeUI : MonoBehaviour
     [SerializeField] private Text socialText;
     [SerializeField] private Text healthText;
 
+    [Header("属性标签(代码生成)")]
+    [SerializeField] private Text intellectLabelText;
+    [SerializeField] private Text mentalLabelText;
+    [SerializeField] private Text socialLabelText;
+    [SerializeField] private Text healthLabelText;
+
     [Header("事件")]
     [SerializeField] private GameObject eventCardPanel;
     [SerializeField] private Image eventIllustration;
@@ -60,6 +66,7 @@ public class CollegeUI : MonoBehaviour
         if (collegeNameText != null) collegeNameText.text = college?.name ?? $"院校: {currentCollegeId}";
         if (majorText != null) majorText.text = major?.name ?? $"专业: {currentMajorId}";
 
+        InitializeAttributeLabels();
         RefreshTopBar();
 
         if (graduationPanel != null) graduationPanel.SetActive(false);
@@ -102,6 +109,19 @@ public class CollegeUI : MonoBehaviour
         if (healthBar != null) { healthBar.value = playerState.health / 100f; if (healthText != null) healthText.text = playerState.health.ToString(); }
     }
 
+    void InitializeAttributeLabels()
+    {
+        SetLabelText(intellectLabelText, "元气");
+        SetLabelText(mentalLabelText, "压力");
+        SetLabelText(socialLabelText, "朋友");
+        SetLabelText(healthLabelText, "金钱");
+    }
+
+    void SetLabelText(Text label, string text)
+    {
+        if (label != null) label.text = text;
+    }
+
     void ShowNextEvent()
     {
         currentEvent = eventEngine?.GetNextEvent();
@@ -110,14 +130,37 @@ public class CollegeUI : MonoBehaviour
         {
             Debug.Log("[CollegeUI] 没有更多事件");
 
-            if (playerState.grade >= 4 || playerState.completedEvents.Count >= 4)
+            if (playerState.grade >= 4 || playerState.completedEvents.Count >= 8)
             {
                 ShowGraduationPanel();
             }
             else
             {
                 playerState.grade++;
-                RefreshTopBar();
+                Debug.Log($"[CollegeUI] 大{playerState.grade}，重新加载事件池");
+                string stageFile = playerState.admittedMajorId switch
+                {
+                    var m when m.StartsWith("cs") => "college_cs",
+                    var m when m.StartsWith("law") => "college_law",
+                    var m when m.StartsWith("med") => "college_med",
+                    var m when m.StartsWith("biz") => "college_biz",
+                    _ => "college_cs"
+                };
+                StartCoroutine(eventEngine.LoadEventsFromStreamingAssets(stageFile));
+                currentEvent = eventEngine?.GetNextEvent();
+                if (currentEvent == null)
+                {
+                    Debug.LogWarning("[CollegeUI] 事件池耗尽，进入毕业");
+                    ShowGraduationPanel();
+                    return;
+                }
+
+                if (eventCardPanel != null) eventCardPanel.SetActive(true);
+                if (eventNameText != null) eventNameText.text = currentEvent.name;
+                if (interactionTypeIcon != null) interactionTypeIcon.text = currentEvent.interactionType;
+                LoadEventIllustration();
+                ClearInteractionArea();
+                BuildInteractionArea();
             }
             return;
         }
@@ -217,7 +260,7 @@ public class CollegeUI : MonoBehaviour
 
         GameStateManager.Instance?.SetStage("life");
         GameStateManager.Instance?.QuickSave();
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Life");
+        GameManager.Instance.ChangePhase(GamePhase.Life);
     }
 
     void LoadEventIllustration()

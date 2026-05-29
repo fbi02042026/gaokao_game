@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -26,8 +25,8 @@ public class GameStateManager : MonoBehaviour
 
         currentSave = new GameSaveData
         {
-            saveId = System.Guid.NewGuid().ToString(),
-            createdAt = System.DateTimeOffset.UtcNow.ToUnixTimeSeconds(),
+            saveId = MiniGameUtility.GenerateId(),
+            createdAt = MiniGameUtility.GetTimestampSeconds(),
             currentStage = "highschool",
             playerState = playerState
         };
@@ -45,15 +44,17 @@ public class GameStateManager : MonoBehaviour
         if (save.pastMemories != null && DejaVuEngine.Instance != null)
             DejaVuEngine.Instance.LoadMemories(save.pastMemories);
 
-        string scene = save.currentStage switch
+        GamePhase phase = save.currentStage switch
         {
-            "highschool" => "HighSchool",
-            "college" => "College",
-            "life" => "Life",
-            "result" => "Result",
-            _ => "Home"
+            "highschool" => GamePhase.HighSchool,
+            "college" => GamePhase.College,
+            "life" => GamePhase.Life,
+            "result" => GamePhase.Result,
+            _ => GamePhase.Home
         };
-        SceneManager.LoadScene(scene);
+
+        if (GameManager.Instance != null)
+            GameManager.Instance.ChangePhase(phase);
     }
 
     public PlayerState GetPlayerState()

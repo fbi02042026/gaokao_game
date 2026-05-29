@@ -16,7 +16,7 @@ public class GameSaveData
 public class SaveManager : MonoBehaviour
 {
     public static SaveManager Instance { get; private set; }
-    private const string SAVE_KEY = "gaokao_life_save";
+    private const string SAVE_KEY = "gk_save";
 
     void Awake()
     {
@@ -28,7 +28,7 @@ public class SaveManager : MonoBehaviour
 
     public void Save(GameSaveData data)
     {
-        data.updatedAt = System.DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        data.updatedAt = MiniGameUtility.GetTimestampSeconds();
         currentData = data;
         string json = JsonUtility.ToJson(data);
         PlayerPrefs.SetString(SAVE_KEY, json);
@@ -44,7 +44,10 @@ public class SaveManager : MonoBehaviour
         return currentData;
     }
 
-    public bool HasSaveData() { return PlayerPrefs.HasKey(SAVE_KEY); }
+    public bool HasSaveData()
+    {
+        return PlayerPrefs.HasKey(SAVE_KEY);
+    }
 
     public bool HasSave() { return HasSaveData(); }
 
@@ -52,8 +55,8 @@ public class SaveManager : MonoBehaviour
     {
         currentData = new GameSaveData
         {
-            saveId = System.Guid.NewGuid().ToString(),
-            createdAt = System.DateTimeOffset.UtcNow.ToUnixTimeSeconds(),
+            saveId = MiniGameUtility.GenerateId(),
+            createdAt = MiniGameUtility.GetTimestampSeconds(),
             currentStage = "home",
             playerState = new PlayerState()
         };
@@ -63,8 +66,8 @@ public class SaveManager : MonoBehaviour
 
     public void SetCurrentPlayer(PlayerState state)
     {
-        if (currentData == null) currentData = new GameSaveData();
-        currentData.playerState = state;
+        if (currentData == null) CreateNewGame();
+        if (currentData != null) currentData.playerState = state;
     }
 
     public bool LoadGame() { return Load() != null; }

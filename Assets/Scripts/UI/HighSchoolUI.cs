@@ -130,9 +130,7 @@ public class HighSchoolUI : MonoBehaviour
         SetSlider(intellectBar, intellectText, playerState.intellect);
         SetSlider(mentalBar, mentalText, playerState.mental);
         SetSlider(socialBar, socialText, playerState.social);
-        SetSlider(healthBar, healthBar != null ? healthBar.GetComponentInChildren<Text>() : null, playerState.health);
-        if (healthBar != null) { healthBar.value = playerState.health / 100f; }
-        if (healthText != null) healthText.text = playerState.health.ToString();
+        SetSlider(healthBar, healthText, playerState.health);
     }
 
     void SetSlider(Slider slider, Text text, int value)

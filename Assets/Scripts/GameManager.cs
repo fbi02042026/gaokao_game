@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,19 +10,6 @@ public class GameManager : MonoBehaviour
     private GamePhase currentPhase;
     private bool isGameRunning;
     private bool isPaused;
-
-    private List<string> gameSceneNames = new List<string>
-    {
-        "Home",
-        "Province",
-        "HighSchool",
-        "Event",
-        "Gaokao",
-        "Zhiyuan",
-        "College",
-        "Life",
-        "Result"
-    };
 
     public event Action<PlayerState> OnPlayerStateChanged;
     public event Action<GamePhase> OnPhaseChanged;
@@ -53,16 +39,16 @@ public class GameManager : MonoBehaviour
 
     private void Initialize()
     {
-        currentPhase = GamePhase.Home;
+        currentPhase = GamePhase.Login;
         isGameRunning = false;
         isPaused = false;
-
         Debug.Log("[GameManager] 游戏管理器初始化完成");
     }
 
     void Start()
     {
         CheckForSavedGame();
+        ChangePhase(GamePhase.Login);
     }
 
     private void CheckForSavedGame()
@@ -100,15 +86,12 @@ public class GameManager : MonoBehaviour
         isGameRunning = true;
         currentPhase = GamePhase.Home;
 
-        LoadGameData();
-
         OnPlayerStateChanged?.Invoke(currentPlayer);
         OnPhaseChanged?.Invoke(currentPhase);
         OnGameStarted?.Invoke();
 
         Debug.Log("[GameManager] 开始新游戏");
-
-        LoadScene("Home");
+        ChangePhase(GamePhase.Home);
     }
 
     public void ContinueGame()
@@ -118,13 +101,11 @@ public class GameManager : MonoBehaviour
             currentPlayer = SaveManager.Instance.GetCurrentPlayer();
             isGameRunning = true;
 
-            LoadGameData();
-
             OnPlayerStateChanged?.Invoke(currentPlayer);
             OnPhaseChanged?.Invoke(currentPlayer.currentPhase);
 
             Debug.Log("[GameManager] 继续游戏");
-            LoadScene(currentPlayer.currentPhase.ToString());
+            ChangePhase(currentPlayer.currentPhase);
         }
         else
         {
@@ -132,42 +113,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void LoadGameData()
-    {
-        if (DataLoader.Instance != null)
-        {
-            DataLoader.Instance.LoadAllData(() =>
-            {
-                Debug.Log("[GameManager] 游戏数据加载完成");
-            });
-        }
-    }
-
     public void ChangePhase(GamePhase newPhase)
     {
-        if (currentPhase == newPhase) return;
+        if (currentPhase == newPhase && isGameRunning == false)
+        {
+            currentPhase = newPhase;
+        }
 
         currentPhase = newPhase;
-        currentPlayer.currentPhase = newPhase;
+        if (currentPlayer != null)
+            currentPlayer.currentPhase = newPhase;
 
         OnPhaseChanged?.Invoke(newPhase);
-
         Debug.Log($"[GameManager] 阶段切换: {newPhase}");
 
-        LoadScene(newPhase.ToString());
-    }
-
-    public void LoadScene(string sceneName)
-    {
-        if (gameSceneNames.Contains(sceneName))
-        {
-            SceneManager.LoadScene(sceneName);
-            Debug.Log($"[GameManager] 加载场景: {sceneName}");
-        }
-        else
-        {
-            Debug.LogWarning($"[GameManager] 场景不存在: {sceneName}");
-        }
+        if (UIManager.Instance != null)
+            UIManager.Instance.ShowPanel(newPhase);
     }
 
     public void SaveGame(int slotIndex = 0)
@@ -178,7 +139,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        currentPlayer.lastPlayTime = DateTime.Now;
+        currentPlayer.lastPlayTime = System.DateTime.UtcNow;
 
         if (SaveManager.Instance != null)
         {
@@ -207,17 +168,21 @@ public class GameManager : MonoBehaviour
         SaveGame();
 
         OnGameEnded?.Invoke();
-
         Debug.Log("[GameManager] 游戏结束");
     }
 
     public void QuitGame()
     {
+        if (PlatformManager.Instance != null)
+            PlatformManager.Instance.QuitGame();
+        else
+        {
 #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false;
 #else
-        Application.Quit();
+            Application.Quit();
 #endif
+        }
     }
 
     public void UpdatePlayerState(Action<PlayerState> updateAction)
@@ -265,7 +230,7 @@ public class GameManager : MonoBehaviour
         currentPlayer.hasPastLifeMemory = true;
 
         isGameRunning = true;
-        ChangePhase(GamePhase.HighSchool);
+        ChangePhase(GamePhase.TalentSelect);
 
         Debug.Log("[GameManager] 开始二周目");
     }

@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的高考志愿模拟器软件 V1.0 - 软著申请材料</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Microsoft YaHei", "SimHei", sans-serif; line-height: 1.8; color: #333; background: #fff; }
+        .container { max-width: 210mm; margin: 0 auto; padding: 15mm; background: white; }
+        .header { text-align: center; padding-bottom: 15px; border-bottom: 2px solid #6B9DF7; margin-bottom: 20px; }
+        .header h1 { font-size: 18px; color: #1a1a1a; }
+        .header p { font-size: 12px; color: #666; margin-top: 5px; }
+        h2 { font-size: 16px; color: #6B9DF7; margin: 20px 0 10px; padding-left: 10px; border-left: 4px solid #6B9DF7; }
+        h3 { font-size: 14px; color: #333; margin: 15px 0 8px; }
+        h4 { font-size: 13px; color: #444; margin: 12px 0 6px; }
+        p { font-size: 12px; text-indent: 2em; margin-bottom: 8px; }
+        ul, ol { padding-left: 2em; margin-bottom: 10px; }
+        li { font-size: 12px; margin-bottom: 5px; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 11px; }
+        th, td { border: 1px solid #ddd; padding: 6px 8px; text-align: left; }
+        th { background: #f8f9fa; font-weight: bold; }
+        .code-block { background: #f5f5f5; border: 1px solid #ddd; padding: 12px; margin: 10px 0; border-radius: 4px; overflow-x: auto; font-family: "Consolas", "Monaco", monospace; font-size: 11px; line-height: 1.5; }
+        .code-block pre { white-space: pre-wrap; word-break: break-all; }
+        .flowchart { background: #fafafa; border: 1px dashed #ccc; padding: 15px; margin: 10px 0; font-family: monospace; font-size: 11px; white-space: pre-wrap; line-height: 1.6; }
+        .architecture { font-family: monospace; font-size: 11px; white-space: pre-wrap; line-height: 1.5; background: #fafafa; padding: 10px; margin: 10px 0; }
+        .footer { text-align: center; padding-top: 15px; border-top: 1px solid #ddd; margin-top: 20px; font-size: 11px; color: #888; }
+        .page-break { page-break-after: always; }
+        .toc { margin: 15px 0; padding: 10px; background: #f8f9fa; border-radius: 4px; }
+        .toc a { text-decoration: none; color: #6B9DF7; }
+        .toc li { margin-bottom: 3px; }
+        .highlight { background: #fff3cd; padding: 2px 4px; border-radius: 2px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 封面 -->
+        <div class="header" style="margin-bottom: 40px;">
+            <h1>我的高考志愿模拟器软件 V1.0</h1>
+            <p>计算机软件著作权登记申请材料</p>
+            <p style="margin-top: 10px;">版本号：V1.0 | 开发单位：苹果核工坊 | 开发日期：2026年5月</p>
+        </div>
+
+        <!-- 目录 -->
+        <h2>目录</h2>
+        <div class="toc">
+            <ol>
+                <li><a href="#part1">第一部分：软件说明书</a></li>
+                <li><a href="#part2">第二部分：技术设计说明书</a></li>
+                <li><a href="#part3">第三部分：源代码</a></li>
+                <li><a href="#appendix">附录：代码统计</a></li>
+            </ol>
+        </div>
+
+        <!-- 第一部分：软件说明书 -->
+        <div id="part1" class="page-break"></div>
+        <h2>第一部分：软件说明书</h2>
+
+        <h3>1. 软件基本情况</h3>
+        <h4>1.1 软件名称</h4>
+        <p>我的高考志愿模拟器软件 V1.0</p>
+
+        <h4>1.2 软件版本</h4>
+        <p>V1.0</p>
+
+        <h4>1.3 运行环境</h4>
+        <ul>
+            <li>操作系统：Android、iOS、Windows、macOS</li>
+            <li>运行平台：微信小游戏、抖音小游戏、TapTap</li>
+            <li>引擎版本：团结引擎（Tuanjie Engine）2D URP</li>
+        </ul>
+
+        <h4>1.4 主要功能概述</h4>
+        <p>"我的高考志愿模拟器软件 V1.0"是一款基于团结引擎开发的人生模拟养成类小游戏。玩家从高三入学开始，经历高中三年学习生活、天赋选择、高考出分、志愿填报、大学生活、职场发展，最终抵达人生结局。游戏融合了天赋系统、性别区分、人格演化、多结局、多周目传承等多种玩法机制。</p>
+
+        <h3>2. 软件功能详细说明</h3>
+        <h4>2.1 性别选择系统</h4>
+        <p>玩家首次进入游戏时，需选择角色性别（男性/女性）。性别选择后，游戏内所有事件插图将根据性别加载对应图片：男性角色显示男性事件插图，女性角色显示女性事件插图。性别信息存储于玩家存档中（PlayerState.gender），伴随整个游戏流程。</p>
+
+        <h4>2.2 天赋系统</h4>
+        <p>游戏内置12种天赋，玩家在高三入学时通过三选一方式获得天赋。天赋值贯穿游戏全流程，影响各阶段属性计算。</p>
+        <table>
+            <tr><th>天赋ID</th><th>名称</th><th>稀有度</th><th>效果描述</th></tr>
+            <tr><td>T01</td><td>过目不忘</td><td>SSR</td><td>学习效率提升50%</td></tr>
+            <tr><td>T02</td><td>逻辑思维</td><td>SSR</td><td>理科成绩+20%</td></tr>
+            <tr><td>T03</td><td>情绪管理</td><td>SR</td><td>考试稳定性+30%</td></tr>
+            <tr><td>T04</td><td>社交达人</td><td>SR</td><td>解锁隐藏社交事件</td></tr>
+            <tr><td>T05</td><td>运动天才</td><td>R</td><td>体育必定满分</td></tr>
+            <tr><td>T06</td><td>幸运星</td><td>SSR</td><td>关键时刻成功率+40%</td></tr>
+            <tr><td>T07</td><td>速学者</td><td>R</td><td>理解力+30%</td></tr>
+            <tr><td>T08</td><td>时间操控</td><td>SR</td><td>每日学习时间+2h</td></tr>
+            <tr><td>T09</td><td>艺术天赋</td><td>SR</td><td>创造力+20</td></tr>
+            <tr><td>T10</td><td>领导力</td><td>SSR</td><td>社交收益+50%</td></tr>
+            <tr><td>T11</td><td>坚韧不拔</td><td>SR</td><td>逆境属性损失减半</td></tr>
+            <tr><td>T12</td><td>全面发展</td><td>R</td><td>所有属性均衡增长</td></tr>
+        </table>
+
+        <h4>2.3 高中三年阶段</h4>
+        <p>玩家进入高三后，通过选择事件选项来塑造角色属性。游戏包含20+个高中事件，覆盖学习类（月考、期末复习、模拟考试）、情感类（收到情书、与同学吵架）、校园类（运动会、班级篮球赛、志愿者活动）、家庭类（家长会、家里出状况）、关键抉择类（文理分科、考前焦虑）等类型。</p>
+
+        <h4>2.4 高考出分阶段</h4>
+        <p>高三结束进入高考阶段。系统根据玩家三年积累的属性值（智力、心态）、天赋加成和省份因素，计算最终高考成绩。成绩计算引擎综合智力基础分、心态波动分、天赋加成、省份难度系数等因素。最终成绩显示采用动画效果，从0分滚动到最终分数。</p>
+
+        <h4>2.5 志愿填报阶段</h4>
+        <p>高考出分后进入志愿填报阶段。系统提供全国44所高校数据，涵盖985工程高校、211工程高校、双一流高校、普通本科院校。志愿填报采用三层梯度策略：冲一冲（高于考生成绩5-15分的院校）、稳一稳（等于或略低于考生成绩的院校）、保一保（低于考生成绩10分以上的院校）。</p>
+
+        <h4>2.6 大学四年阶段</h4>
+        <p>进入大学后，根据考生录取的专业方向，加载对应的事件集：计算机方向（college_cs.json）、法学方向（college_law.json）、医学方向（college_med.json）、商科方向（college_biz.json）。大学四年期间，玩家需要做出毕业方向选择：考研深造、直接就业、出国留学、创业。</p>
+
+        <h4>2.7 人生阶段</h4>
+        <p>毕业方向选择后进入人生阶段。根据毕业选择，人生事件集将有所不同。玩家将在22-30岁期间经历多个关键人生事件，每个事件提供3个选项，影响月收入变化、职业发展、家庭状态、满意度评分。</p>
+
+        <h4>2.8 结局与多周目传承</h4>
+        <p>游戏设置多种结局类型：完美结局（月入≥30k且满意度≥4）、良好结局（月入≥15k且满意度≥3）、苦涩结局（满意度≤2）、普通结局（其他情况）。多周目传承机制允许玩家将当前人生的属性加成（按10-15%比例）遗传给下一代，并解锁既视感能力。</p>
+
+        <h4>2.9 人格系统</h4>
+        <p>游戏内置8种高考人格类型，根据玩家在高中阶段的选择动态计算：学术型、创意型、社交型、运动型、均衡型、完美型、反叛型、后劲型。人格计算基于Intellect/Mental/Social/Health四个维度进行综合评分。</p>
+
+        <h3>3. 数据存储结构</h3>
+        <h4>3.1 玩家存档结构（GameSaveData）</h4>
+        <div class="code-block">
+<pre>public class GameSaveData
+{
+    public string saveId;          // 存档唯一标识
+    public long createdAt;          // 创建时间戳
+    public long updatedAt;          // 更新时间戳
+    public string currentStage;     // 当前阶段
+    public PlayerState playerState; // 玩家状态
+    public InheritData inheritData; // 传承数据
+    public List<PlaythroughMemory> pastMemories; // 前世记忆
+}</pre>
+        </div>
+
+        <h4>3.2 玩家状态结构（PlayerState）</h4>
+        <div class="code-block">
+<pre>public class PlayerState
+{
+    public Gender gender;           // 性别
+    public int intellect;           // 智力
+    public int mental;             // 心态
+    public int social;              // 社交
+    public int health;              // 健康
+    public int gaokaoScore;        // 高考成绩
+    public string province;         // 省份
+    public int monthlyIncome;      // 月收入
+    public int satisfaction;         // 满意度
+    public GamePhase currentPhase;  // 当前阶段
+}</pre>
+        </div>
+
+        <h3>4. 运行流程图</h3>
+        <div class="flowchart">
+启动游戏
+    ↓
+首次登录检测
+    ├─ 有存档 → 显示继续游戏
+    └─ 无存档 → 显示性别选择界面
+                    ↓
+              选择性别
+                    ↓
+              显示主菜单
+                    ↓
+        ┌─────────┴─────────┐
+        ↓                   ↓
+    开始新游戏           继续游戏
+        ↓                   ↓
+    选择省份            读取存档
+        ↓                   ↓
+    天赋三选一              ↓
+        ↓                   ↓
+    高中三年事件 ◄─────────┘
+        ↓
+    高考出分
+        ↓
+    志愿填报
+        ↓
+    结局展示 + 传承
+        ↓
+    继续游戏 / 新周目
+        </div>
+
+        <!-- 第二部分：技术设计说明书 -->
+        <div id="part2" class="page-break"></div>
+        <h2>第二部分：技术设计说明书</h2>
+
+        <h3>一、系统架构概述</h3>
+        <h4>1.1 整体架构</h4>
+        <div class="architecture">
+┌─────────────────────────────────────────────┐
+│              UI Layer (界面层)               │
+│  HomeUI / GenderSelectUI / HighSchoolUI     │
+│  CollegeUI / LifeUI / ResultUI              │
+├─────────────────────────────────────────────┤
+│           Manager Layer (管理器层)           │
+│  GameManager / GameStateManager / SaveManager│
+│  AdManager / ShareManager                   │
+├─────────────────────────────────────────────┤
+│            Engine Layer (引擎层)             │
+│  EventEngine / TalentEngine / ScoreEngine   │
+│  PersonalityEngine / DejaVuEngine            │
+├─────────────────────────────────────────────┤
+│             Data Layer (数据层)             │
+│  DataLoader / ResourceHelper                │
+├─────────────────────────────────────────────┤
+│            Model Layer (模型层)              │
+│  PlayerState / GameEvent / Talent           │
+└─────────────────────────────────────────────┘
+        </div>
+
+        <h4>1.2 核心设计模式</h4>
+        <ul>
+            <li><strong>单例模式(Singleton)</strong>：所有Manager和Engine类使用Instance单例模式，确保全局唯一</li>
+            <li><strong>观察者模式(Observer)</strong>：GameManager通过event实现状态变更通知</li>
+            <li><strong>工厂模式</strong>：DataLoader作为数据工厂统一创建各类游戏数据对象</li>
+            <li><strong>策略模式</strong>：事件系统支持多种交互策略（choice/merge/sort/slider/timing/dialog）</li>
+        </ul>
+
+        <h3>二、核心模块设计</h3>
+        <h4>2.1 游戏管理器（GameManager）</h4>
+        <p>游戏总控制器，负责游戏生命周期管理。主要职责包括：管理游戏全局状态（isGameRunning, isPaused）、协调各Engine和Manager之间的通信、处理场景切换逻辑、管理玩家数据读写。核心方法包括：StartNewGame()、ContinueGame()、ChangePhase()、SaveGame()、CalculateGaokaoScore()、StartNewGamePlus()。</p>
+
+        <h4>2.2 事件引擎（EventEngine）</h4>
+        <p>驱动游戏进程的核心引擎，负责事件的获取、选择和结算。核心流程：获取事件 → 检查触发条件 → 检查既视感 → 展示事件 → 玩家交互选择 → 调用ResolveEvent计算结果 → 更新属性 → 记录事件完成 → 获取下一事件 → 循环。</p>
+
+        <h4>2.3 天赋引擎（TalentEngine）</h4>
+        <p>管理12种天赋的抽卡、选择和效果计算。核心方法包括：DrawTalents()、SelectTalent()、GetCurrentTalent()、ApplyTalentEffect()、GetTalentBonus()。</p>
+
+        <h4>2.4 成绩计算引擎（ScoreEngine）</h4>
+        <p>根据玩家属性和天赋计算高考成绩。计算公式：最终成绩 = 智力基础分 × 0.7 + 心态影响分 × 0.2 + 天赋加成 + 省份难度调整。</p>
+
+        <h4>2.5 人格引擎（PersonalityEngine）</h4>
+        <p>根据玩家属性计算高考人格类型。人格判定规则：取Intellect/Mental/Social/Health四个维度的最高值，若存在多个维度相等，取优先级最高的维度对应人格。</p>
+
+        <h3>三、数据模型设计</h3>
+        <h4>3.1 枚举类型（Enums）</h4>
+        <div class="code-block">
+<pre>public enum GamePhase {
+    Home, Province, HighSchool, Event,
+    Gaokao, Zhiyuan, College, Life, Result
+}
+
+public enum Gender { Male, Female }
+
+public enum PersonalityType {
+    Academic, Creative, Social, Athletic,
+    Balanced, Perfectionist, Rebel, LateBloomer
+}</pre>
+        </div>
+
+        <h4>3.2 数据类对应关系</h4>
+        <table>
+            <tr><th>类名</th><th>JSON数据</th><th>用途</th></tr>
+            <tr><td>College</td><td>colleges.json</td><td>高校基本信息</td></tr>
+            <tr><td>Major</td><td>majors.json</td><td>专业信息</td></tr>
+            <tr><td>Province</td><td>provinces.json</td><td>省份及分数线</td></tr>
+            <tr><td>GameEvent</td><td>Events/*.json</td><td>各阶段事件</td></tr>
+            <tr><td>Talent</td><td>talents.json</td><td>天赋数据</td></tr>
+            <tr><td>Personality</td><td>personalities.json</td><td>人格类型定义</td></tr>
+        </table>
+
+        <h3>四、存档系统设计</h3>
+        <h4>4.1 存档策略</h4>
+        <p>采用PlayerPrefs作为本地存储媒介：存档键为<code>gaokao_life_save</code>，数据格式为JSON字符串，关键节点自动调用QuickSave。</p>
+
+        <h4>4.2 存档时机</h4>
+        <ul>
+            <li>事件完成后自动保存</li>
+            <li>阶段切换时保存</li>
+            <li>应用退到后台时保存</li>
+            <li>手动点击保存按钮时保存</li>
+        </ul>
+
+        <!-- 第三部分：源代码 -->
+        <div id="part3" class="page-break"></div>
+        <h2>第三部分：源代码</h2>
+
+        <h3>一、Models - 数据模型</h3>
+        <h4>1.1 PlayerState.cs - 玩家状态</h4>
+        <div class="code-block">
+<pre>[System.Serializable]
+public class PlayerState
+{
+    public Gender gender = Gender.Male;
+    public int intellect = 50;
+    public int mental = 50;
+    public int social = 50;
+    public int health = 50;
+    public int grade = 1;
+    public int gaokaoScore = 0;
+    public string province = "浙江";
+    public string admittedCollegeId = "";
+    public string admittedMajorId = "";
+    public string graduationChoice = "";
+    public string careerPath = "";
+    public int monthlyIncome = 0;
+    public int satisfaction = 3;
+    public GamePhase currentPhase = GamePhase.Home;
+    public List<string> completedEvents = new List<string>();
+    public List<string> ownedItemIds = new List<string>();
+    public int intelligence = 50;
+    public int creativity = 50;
+    public int luck = 50;
+    public int willpower = 50;
+    public PersonalityType personality;
+    public bool hasPastLifeMemory = false;
+}</pre>
+        </div>
+
+        <h4>1.2 GameEvent.cs - 事件模型</h4>
+        <div class="code-block">
+<pre>[System.Serializable]
+public class GameEvent
+{
+    public string id;
+    public string name;
+    public string stage;
+    public string[] tags;
+    public string illustrationId;
+    public TriggerCondition triggerCondition;
+    public string interactionType;
+    public ChoiceContent choiceContent;
+    public MergeContent mergeContent;
+    public SortContent sortContent;
+    public SerializableOutcome[] outcomeList;
+
+    public Dictionary<string, EventOutcome> GetOutcomeDict()
+    {
+        if (outcomeList == null) return new Dictionary<string, EventOutcome>();
+        var dict = new Dictionary<string, EventOutcome>();
+        foreach (var o in outcomeList) dict[o.key] = o.value;
+        return dict;
+    }
+}</pre>
+        </div>
+
+        <h4>1.3 Talent.cs - 天赋模型</h4>
+        <div class="code-block">
+<pre>[System.Serializable]
+public class Talent
+{
+    public string id;
+    public string name;
+    public string description;
+    public string rarity;
+    public string icon;
+    public TalentEffect[] effects;
+    public float probability;
+}
+
+[System.Serializable]
+public class TalentEffect
+{
+    public string type;
+    public string statKey;
+    public int value;
+    public string description;
+}</pre>
+        </div>
+
+        <h3>二、Engine - 游戏引擎</h3>
+        <h4>2.1 EventEngine.cs - 事件引擎</h4>
+        <div class="code-block">
+<pre>public class EventEngine : MonoBehaviour
+{
+    private List<GameEvent> allEvents = new List<GameEvent>();
+    private List<string> completedEventIds = new List<string>();
+    private PlayerState playerState;
+    private System.Random rng;
+
+    public void SetPlayerState(PlayerState state)
+    {
+        playerState = state;
+        if (state != null)
+        {
+            completedEventIds = new List<string>(state.completedEvents);
+            rng = new System.Random();
+        }
+    }
+
+    public GameEvent GetNextEvent()
+    {
+        if (allEvents.Count == 0) return null;
+
+        var candidate = allEvents
+            .Where(e => !completedEventIds.Contains(e.id))
+            .Where(e => MeetsCondition(e))
+            .ToList();
+
+        if (candidate.Count == 0) return null;
+
+        return candidate[rng.Next(candidate.Count)];
+    }
+
+    public EventOutcome ResolveEvent(string eventId, string choiceId)
+    {
+        var evt = allEvents.FirstOrDefault(e => e.id == eventId);
+        if (evt == null) return null;
+
+        completedEventIds.Add(eventId);
+        playerState.completedEvents.Add(eventId);
+        playerState.RecordChoice(eventId, choiceId);
+
+        var outcomes = evt.GetOutcomeDict();
+        if (outcomes.TryGetValue(choiceId, out var outcome))
+        {
+            ApplyOutcome(outcome);
+            return outcome;
+        }
+        return null;
+    }
+}</pre>
+        </div>
+
+        <h4>2.2 TalentEngine.cs - 天赋引擎</h4>
+        <div class="code-block">
+<pre>public class TalentEngine : MonoBehaviour
+{
+    public static TalentEngine Instance { get; private set; }
+    private List<Talent> allTalents = new List<Talent>();
+    private Talent currentTalent;
+
+    void Awake()
+    {
+        if (Instance == null) { Instance = this; DontDestroyOnLoad(gameObject); }
+        else { Destroy(gameObject); }
+    }
+
+    public List<Talent> DrawTalents(int count = 3)
+    {
+        if (allTalents.Count == 0) return new List<Talent>();
+        var candidates = allTalents
+            .OrderBy(t => -t.probability)
+            .Take(count * 3)
+            .ToList();
+        return candidates.OrderBy(_ => new System.Random().Next()).Take(count).ToList();
+    }
+
+    public void SelectTalent(string talentId)
+    {
+        currentTalent = allTalents.FirstOrDefault(t => t.id == talentId);
+    }
+
+    public Talent GetCurrentTalent() => currentTalent;
+
+    public float GetTalentBonus(string statName)
+    {
+        if (currentTalent?.effects == null) return 1f;
+        foreach (var effect in currentTalent.effects)
+        {
+            if (effect.type == "stat_multiply" && effect.statKey == statName)
+                return 1f + effect.value / 100f;
+        }
+        return 1f;
+    }
+}</pre>
+        </div>
+
+        <h3>三、Managers - 管理器</h3>
+        <h4>3.1 SaveManager.cs - 存档管理器</h4>
+        <div class="code-block">
+<pre>public class SaveManager : MonoBehaviour
+{
+    public static SaveManager Instance { get; private set; }
+    private const string SAVE_KEY = "gaokao_life_save";
+
+    void Awake()
+    {
+        if (Instance == null) { Instance = this; DontDestroyOnLoad(gameObject); }
+        else { Destroy(gameObject); }
+    }
+
+    private GameSaveData currentData;
+
+    public void Save(GameSaveData data)
+    {
+        data.updatedAt = System.DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        currentData = data;
+        string json = JsonUtility.ToJson(data);
+        PlayerPrefs.SetString(SAVE_KEY, json);
+        PlayerPrefs.Save();
+    }
+
+    public GameSaveData Load()
+    {
+        string json = PlayerPrefs.GetString(SAVE_KEY, "");
+        if (string.IsNullOrEmpty(json)) return null;
+        currentData = JsonUtility.FromJson<GameSaveData>(json);
+        return currentData;
+    }
+
+    public bool HasSaveData() { return PlayerPrefs.HasKey(SAVE_KEY); }
+
+    public PlayerState GetCurrentPlayer() => currentData?.playerState;
+
+    public void SetCurrentPlayer(PlayerState state)
+    {
+        if (currentData == null) currentData = new GameSaveData();
+        currentData.playerState = state;
+    }
+}</pre>
+        </div>
+
+        <h3>四、Data - 数据层</h3>
+        <h4>4.1 DataLoader.cs - 数据加载器</h4>
+        <div class="code-block">
+<pre>public class DataLoader : MonoBehaviour
+{
+    public static DataLoader Instance { get; private set; }
+    private List<College> colleges = new List<College>();
+    private List<Major> majors = new List<Major>();
+    private List<Province> provinces = new List<Province>();
+
+    void Awake()
+    {
+        if (Instance == null) { Instance = this; DontDestroyOnLoad(gameObject); }
+        else { Destroy(gameObject); }
+    }
+
+    public void LoadAllData(System.Action callback)
+    {
+        StartCoroutine(LoadAllDataRoutine(callback));
+    }
+
+    private IEnumerator LoadAllDataRoutine(System.Action callback)
+    {
+        yield return StartCoroutine(LoadJson<College>("colleges", list => colleges = list));
+        yield return StartCoroutine(LoadJson<Major>("majors", list => majors = list));
+        yield return StartCoroutine(LoadJson<Province>("provinces", list => provinces = list));
+        TalentEngine.Instance?.LoadTalents(talents);
+        PersonalityEngine.Instance?.LoadPersonalities(personalities);
+        callback?.Invoke();
+    }
+
+    public College GetCollegeById(string id) => colleges.FirstOrDefault(c => c.id == id);
+    public Major GetMajorById(string id) => majors.FirstOrDefault(m => m.id == id);
+}</pre>
+        </div>
+
+        <h4>4.2 ResourceHelper.cs - 资源加载助手</h4>
+        <div class="code-block">
+<pre>public static class ResourceHelper
+{
+    private static readonly Color DefaultPlaceholderColor = new Color(0.8f, 0.8f, 0.8f);
+
+    public static Sprite LoadSprite(string path, int fallbackW = 128, 
+                                   int fallbackH = 128, Color? fallbackColor = null)
+    {
+        Sprite sprite = Resources.Load<Sprite>(path);
+        if (sprite != null) return sprite;
+
+        var tex = Placeholder.Generate(fallbackW, fallbackH, 
+            fallbackColor ?? DefaultPlaceholderColor, path);
+        sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), 
+            new Vector2(0.5f, 0.5f));
+        return sprite;
+    }
+
+    public static Sprite LoadEventIllustration(string illustrationId, Gender gender, string stage)
+    {
+        string prefix = gender == Gender.Male ? "男illu" : "女illu";
+        string stageFolder = stage switch
+        {
+            "highschool" => "事件高中",
+            "college" => "事件大学",
+            _ => "事件高中"
+        };
+        string path = $"Tex/{stageFolder}/{prefix}_{illustrationId}";
+        return LoadSprite(path, 680, 380, new Color(0.9f, 0.9f, 0.95f));
+    }
+}</pre>
+        </div>
+
+        <h3>五、UI - 界面层</h3>
+        <h4>5.1 HomeUI.cs - 主界面</h4>
+        <div class="code-block">
+<pre>public class HomeUI : MonoBehaviour
+{
+    [SerializeField] private Button startBtn;
+    [SerializeField] private Button continueBtn;
+    [SerializeField] private GenderSelectUI genderSelectUI;
+    [SerializeField] private GameObject mainMenuPanel;
+
+    private bool genderSelected = false;
+
+    void Start()
+    {
+        bool hasSave = SaveManager.Instance != null && SaveManager.Instance.HasSave();
+        continueBtn?.gameObject.SetActive(hasSave);
+
+        if (!hasSave) ShowGenderSelection();
+        else { genderSelected = true; mainMenuPanel?.SetActive(true); }
+
+        startBtn?.onClick.AddListener(OnStartGame);
+        continueBtn?.onClick.AddListener(OnContinueGame);
+    }
+
+    void OnStartGame()
+    {
+        if (!genderSelected) return;
+        GameStateManager.Instance?.NewGame();
+        SceneManager.LoadScene("HighSchool");
+    }
+
+    void OnContinueGame()
+    {
+        GameStateManager.Instance?.QuickLoad();
+    }
+}</pre>
+        </div>
+
+        <h3>六、GameManager - 总控制器</h3>
+        <div class="code-block">
+<pre>public class GameManager : MonoBehaviour
+{
+    public static GameManager Instance { get; private set; }
+
+    private PlayerState currentPlayer;
+    private GamePhase currentPhase;
+    private bool isGameRunning;
+
+    void Awake()
+    {
+        if (Instance == null) { Instance = this; DontDestroyOnLoad(gameObject); }
+        else { Destroy(gameObject); }
+    }
+
+    public void StartNewGame()
+    {
+        Gender savedGender = Gender.Male;
+        if (SaveManager.Instance != null)
+        {
+            var existing = SaveManager.Instance.GetCurrentPlayer();
+            if (existing != null) savedGender = existing.gender;
+        }
+
+        SaveManager.Instance?.CreateNewGame();
+        currentPlayer = SaveManager.Instance?.GetCurrentPlayer() ?? new PlayerState();
+        currentPlayer.gender = savedGender;
+        isGameRunning = true;
+
+        LoadGameData();
+        LoadScene("Home");
+    }
+
+    public void ChangePhase(GamePhase newPhase)
+    {
+        currentPhase = newPhase;
+        currentPlayer.currentPhase = newPhase;
+        LoadScene(newPhase.ToString());
+    }
+
+    public int CalculateGaokaoScore()
+    {
+        if (ScoreEngine.Instance != null)
+        {
+            string talentId = TalentEngine.Instance?.GetCurrentTalent()?.id ?? "";
+            return ScoreEngine.Instance.CalculateScore(currentPlayer, talentId);
+        }
+        return 400;
+    }
+}</pre>
+        </div>
+
+        <!-- 附录 -->
+        <div id="appendix" class="page-break"></div>
+        <h2>附录：代码统计</h2>
+        <table>
+            <tr><th>模块</th><th>文件数</th><th>行数</th></tr>
+            <tr><td>Models</td><td>8</td><td>~1600</td></tr>
+            <tr><td>Engine</td><td>8</td><td>~1700</td></tr>
+            <tr><td>Managers</td><td>5</td><td>~650</td></tr>
+            <tr><td>Data</td><td>2</td><td>~500</td></tr>
+            <tr><td>UI</td><td>11</td><td>~1800</td></tr>
+            <tr><td><strong>总计</strong></td><td><strong>39</strong></td><td><strong>~6250</strong></td></tr>
+        </table>
+        <p>注：包含注释和空行的总行数约6250行，核心代码行数（Scripts目录）约4986行，Editor工具代码约486行。</p>
+
+        <!-- 页脚 -->
+        <div class="footer">
+            <p>软件全称：我的高考志愿模拟器软件 V1.0 | 版本号：V1.0</p>
+            <p>开发单位：苹果核工坊 | 开发日期：2026年5月</p>
+        </div>
+    </div>
+</body>
+</html>
