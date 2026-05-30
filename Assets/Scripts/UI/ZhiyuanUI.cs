@@ -32,6 +32,10 @@ public class ZhiyuanUI : MonoBehaviour
     [Header("提交")]
     [SerializeField] private Button confirmBtn;
 
+    [Header("学长学姐评价")]
+    [SerializeField] private GameObject seniorEvalPanelPrefab;
+    [SerializeField] private GameObject seniorEvalPanelInstance;
+
     private List<CollegeEntry> collegeEntries = new List<CollegeEntry>();
     private List<string> selectedCollegeIds = new List<string>();
     private int maxZhiyuan = 6;
@@ -117,6 +121,25 @@ public class ZhiyuanUI : MonoBehaviour
                     talentTag.text = "⚠️ 天赋冲突";
                 else
                     talentTag.text = "";
+            }
+        }
+
+        var seniorBtn = cardGo.transform.Find("SeniorBtn")?.GetComponent<Button>();
+        if (seniorBtn != null)
+        {
+            string majorId = (college.majors != null && college.majors.Length > 0) ? college.majors[0] : "";
+            bool hasEvals = SeniorEvalEngine.Instance?.HasEvalsForMajor(majorId) ?? false;
+            seniorBtn.gameObject.SetActive(hasEvals);
+            if (hasEvals)
+            {
+                var seniorLabel = seniorBtn.GetComponentInChildren<Text>();
+                if (seniorLabel != null)
+                {
+                    bool hasLocked = SeniorEvalEngine.Instance?.HasMoreBehindLock(majorId) ?? false;
+                    seniorLabel.text = hasLocked ? "🎬学长说" : "👨‍🎓学长说";
+                }
+                string capturedMajorId = majorId;
+                seniorBtn.onClick.AddListener(() => OpenSeniorEval(capturedMajorId));
             }
         }
 
@@ -246,6 +269,26 @@ public class ZhiyuanUI : MonoBehaviour
         GameStateManager.Instance?.QuickSave();
 
         GameManager.Instance.ChangePhase(GamePhase.College);
+    }
+
+    void OpenSeniorEval(string majorId)
+    {
+        Debug.Log($"[ZhiyuanUI] 打开学长学姐评价: {majorId}");
+
+        if (seniorEvalPanelPrefab == null)
+        {
+            Debug.LogWarning("[ZhiyuanUI] seniorEvalPanelPrefab 未赋值");
+            return;
+        }
+
+        if (seniorEvalPanelInstance != null)
+            Destroy(seniorEvalPanelInstance);
+
+        seniorEvalPanelInstance = Instantiate(seniorEvalPanelPrefab, transform.parent ?? transform);
+
+        var panel = seniorEvalPanelInstance.GetComponent<SeniorEvalPanel>();
+        if (panel != null)
+            panel.Show(majorId);
     }
 }
 

@@ -31,6 +31,7 @@ public class GameBootstrapper : MonoBehaviour
     private void CreateRequiredSystems()
     {
         CreateSystem<TalentEngine>("TalentEngine");
+        CreateSystem<SeniorEvalEngine>("SeniorEvalEngine");
         CreateSystem<GameManager>("GameManager");
         CreateSystem<SaveManager>("SaveManager");
         CreateSystem<DataLoader>("DataLoader");

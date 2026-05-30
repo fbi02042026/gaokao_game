@@ -1,0 +1,332 @@
+[
+  {
+    "evalId": "EVL_001_01",
+    "majorId": "计算机科学与技术",
+    "reviewer": {
+      "identity": "某985计算机系学长",
+      "collegeType": "985",
+      "yearsAfterGraduation": "5年",
+      "currentStatus": "某大厂高级工程师",
+      "npcType": "学霸型学长"
+    },
+    "content": "别被'程序员高薪'忽悠了，加班是真的多。我们班30人，5年后还在写代码的大概15个，转产品的5个，考公的3个，其他都转行了。建议：如果你喜欢写代码、能接受加班，这行值得入。如果你想work-life balance，慎重考虑。",
+    "tags": ["高薪", "加班多", "35岁危机"],
+    "adLocked": false,
+    "priority": 1
+  },
+  {
+    "evalId": "EVL_001_02",
+    "majorId": "计算机科学与技术",
+    "reviewer": {
+      "identity": "某211软件工程学姐",
+      "collegeType": "211",
+      "yearsAfterGraduation": "3年",
+      "currentStatus": "某创业公司产品经理",
+      "npcType": "学姐型学姐"
+    },
+    "content": "软工比计科更偏实践，课设特别多。大三开始要考虑实习，不然毕业找工作很被动。薪资确实不错，但35岁危机是真实存在的，建议早做准备。",
+    "tags": ["实践性强", "需实习", "提前规划"],
+    "adLocked": true,
+    "priority": 2
+  },
+  {
+    "evalId": "EVL_001_03",
+    "majorId": "计算机科学与技术",
+    "reviewer": {
+      "identity": "某普通一本计算机学长",
+      "collegeType": "一本",
+      "yearsAfterGraduation": "2年",
+      "currentStatus": "中小公司开发工程师",
+      "npcType": "奋斗型学长"
+    },
+    "content": "普通院校计算机没那么卷，但也别指望一毕业就拿高薪。我毕业进了家50人规模的公司，月薪8K，慢慢涨上来的。建议在学校多刷算法题，大厂面试用得上。",
+    "tags": ["普通院校", "起步薪资", "建议刷题"],
+    "adLocked": true,
+    "priority": 3
+  },
+  {
+    "evalId": "EVL_002_01",
+    "majorId": "人工智能",
+    "reviewer": {
+      "identity": "某顶尖985 AI学长",
+      "collegeType": "985",
+      "yearsAfterGraduation": "4年",
+      "currentStatus": "某AI公司算法研究员",
+      "npcType": "学霸型学长"
+    },
+    "content": "AI现在很火，但门槛也高。普通院校的AI专业大概率是学Python调库，真正核心的算法岗基本只要985硕博。建议想清楚再入，不要被'人工智能'这个名头忽悠。",
+    "tags": ["高门槛", "名校优先", "算法岗"],
+    "adLocked": false,
+    "priority": 1
+  },
+  {
+    "evalId": "EVL_003_01",
+    "majorId": "软件工程",
+    "reviewer": {
+      "identity": "某211软件工程学长",
+      "collegeType": "211",
+      "yearsAfterGraduation": "6年",
+      "currentStatus": "某大厂技术经理",
+      "npcType": "奋斗型学长"
+    },
+    "content": "软工是计算机里最面向就业的方向，课程直接对接企业需求。但注意，软工的知识更新很快，你现在学的东西5年后可能就过时了。保持学习能力比学会某门技术更重要。",
+    "tags": ["就业导向", "知识迭代", "持续学习"],
+    "adLocked": false,
+    "priority": 1
+  },
+  {
+    "evalId": "EVL_004_01",
+    "majorId": "电子信息工程",
+    "reviewer": {
+      "identity": "某211电子学长",
+      "collegeType": "211",
+      "yearsAfterGraduation": "5年",
+      "currentStatus": "某芯片公司工程师",
+      "npcType": "学姐型学姐"
+    },
+    "content": "硬件不凉但也没那么热。芯片方向现在政策利好，但芯片设计基本只要硕士起步，薪资也没互联网高。好处是越老越吃香，不像程序员有年龄焦虑。",
+    "tags": ["芯片方向", "硕士起步", "越老越吃香"],
+    "adLocked": false,
+    "priority": 1
+  },
+  {
+    "evalId": "EVL_005_01",
+    "majorId": "通信工程",
+    "reviewer": {
+      "identity": "某985通信学姐",
+      "collegeType": "985",
+      "yearsAfterGraduation": "3年",
+      "currentStatus": "某运营商网络工程师",
+      "npcType": "佛系型学姐"
+    },
+    "content": "通信这些年有点尴尬，运营商待遇一般，华为加班多。想进大厂基本要读研，本科就业不太乐观。可以考虑往5G/6G方向发展，但需要持续关注行业动态。",
+    "tags": ["运营商", "需读研", "5G方向"],
+    "adLocked": true,
+    "priority": 2
+  },
+  {
+    "evalId": "EVL_006_01",
+    "majorId": "临床医学",
+    "reviewer": {
+      "identity": "某医学院临床学长",
+      "collegeType": "医科院校",
+      "yearsAfterGraduation": "4年",
+      "currentStatus": "某三甲医院住院医师",
+      "npcType": "奋斗型学长"
+    },
+    "content": "学医周期太长了，5年本科+3年规培是起步，想进好医院基本要博士。别只看医生收入高，前期待遇真的很低，要能熬。但熬出头之后，职业稳定性和社会地位都很好。",
+    "tags": ["周期长", "前期苦", "后期稳"],
+    "adLocked": false,
+    "priority": 1
+  },
+  {
+    "evalId": "EVL_007_01",
+    "majorId": "口腔医学",
+    "reviewer": {
+      "identity": "某口腔医学院学姐",
+      "collegeType": "医科院校",
+      "yearsAfterGraduation": "3年",
+      "currentStatus": "某口腔诊所医生",
+      "npcType": "学姐型学姐"
+    },
+    "content": "口腔是医学里相对轻松的，硕士出来就能有不错的收入。加班比临床少，医患关系也没那么紧张。自己开诊所的话收入上限很高。强烈推荐！",
+    "tags": ["相对轻松", "收入好", "可自主创业"],
+    "adLocked": false,
+    "priority": 1
+  },
+  {
+    "evalId": "EVL_008_01",
+    "majorId": "法 学",
+    "reviewer": {
+      "identity": "某政法大学学长",
+      "collegeType": "政法类",
+      "yearsAfterGraduation": "5年",
+      "currentStatus": "某律所执业律师",
+      "npcType": "学霸型学长"
+    },
+    "content": "法学的出路要么过法考当律师/法务，要么考公进体制。过不了法考就等于白学。建议大一就开始准备法考，别等到大三。每个法学生都会面临这个坎。",
+    "tags": ["法考关键", "体制内", "律师路线"],
+    "adLocked": false,
+    "priority": 1
+  },
+  {
+    "evalId": "EVL_009_01",
+    "majorId": "知识产权",
+    "reviewer": {
+      "identity": "某211知产学姐",
+      "collegeType": "211",
+      "yearsAfterGraduation": "2年",
+      "currentStatus": "某专利代理公司",
+      "npcType": "学姐型学姐"
+    },
+    "content": "知产是法学里的小众方向，但前景不错。现在国家对知识产权越来越重视，专利代理、商标代理等需求在增长。竞争没那么激烈，是个蓝海赛道。",
+    "tags": ["小众蓝海", "政策利好", "竞争小"],
+    "adLocked": true,
+    "priority": 2
+  },
+  {
+    "evalId": "EVL_010_01",
+    "majorId": "金融学",
+    "reviewer": {
+      "identity": "某财经院校学长",
+      "collegeType": "财经类",
+      "yearsAfterGraduation": "6年",
+      "currentStatus": "某券商分析师",
+      "npcType": "学霸型学长"
+    },
+    "content": "金融行业两极分化严重。顶级名校+资源背景进投行IBD，年薪百万起步；普通院校进银行柜台，月薪五千。学历学校是敲门砖，没这块砖连门都进不去。",
+    "tags": ["两极分化", "名校优先", "资源重要"],
+    "adLocked": false,
+    "priority": 1
+  },
+  {
+    "evalId": "EVL_011_01",
+    "majorId": "会计学",
+    "reviewer": {
+      "identity": "某985会计学姐",
+      "collegeType": "985",
+      "yearsAfterGraduation": "4年",
+      "currentStatus": "某四大会计师事务所",
+      "npcType": "学姐型学姐"
+    },
+    "content": "会计是万金油专业，哪个公司都需要。但低端会计太卷，薪资天花板低。要往上走，要么考CPA进四大，要么转财务分析/审计方向。CPA是会计人的分水岭。",
+    "tags": ["万金油", "CPA关键", "四大路线"],
+    "adLocked": false,
+    "priority": 1
+  },
+  {
+    "evalId": "EVL_012_01",
+    "majorId": "工商管理",
+    "reviewer": {
+      "identity": "某211工商学长",
+      "collegeType": "211",
+      "yearsAfterGraduation": "3年",
+      "currentStatus": "某互联网公司运营",
+      "npcType": "转行型学长"
+    },
+    "content": "这个专业学得杂但不精，本科就业优势不大。我毕业后做了运营，跟专业基本没关系。适合考研或者有家族企业要继承的。纯就业的话，不如学财务或人力专业。",
+    "tags": ["杂而不精", "需深造", "就业劣势"],
+    "adLocked": true,
+    "priority": 2
+  },
+  {
+    "evalId": "EVL_013_01",
+    "majorId": "机械工程",
+    "reviewer": {
+      "identity": "某985机械学长",
+      "collegeType": "985",
+      "yearsAfterGraduation": "7年",
+      "currentStatus": "某新能源车企工程师",
+      "npcType": "奋斗型学长"
+    },
+    "content": "机械这些年回暖了，新能源汽车、智能制造带动了需求。薪资比不上计算机，但稳定，不裁员。适合求稳的人。而且机械越老越值钱，不像互联网那么吃青春饭。",
+    "tags": ["回暖中", "稳定", "越老越值钱"],
+    "adLocked": false,
+    "priority": 1
+  },
+  {
+    "evalId": "EVL_014_01",
+    "majorId": "材料科学",
+    "reviewer": {
+      "identity": "某211材料学姐",
+      "collegeType": "211",
+      "yearsAfterGraduation": "3年",
+      "currentStatus": "某半导体企业研发",
+      "npcType": "学姐型学姐"
+    },
+    "content": "材料是大家说的'天坑'之一，本科就业确实很难。但研究生出来还行，新能源、半导体企业都在招材料背景的人。关键是必须读研，不读研真的很难。",
+    "tags": ["天坑专业", "必须读研", "新能源方向"],
+    "adLocked": true,
+    "priority": 2
+  },
+  {
+    "evalId": "EVL_015_01",
+    "majorId": "生物科学",
+    "reviewer": {
+      "identity": "某师范生物学长",
+      "collegeType": "师范类",
+      "yearsAfterGraduation": "4年",
+      "currentStatus": "某中学教师",
+      "npcType": "佛系型学姐"
+    },
+    "content": "生物本科基本等于没专业，必须读研。毕业后要么进实验室，要么当老师。好处是考研竞争相对没那么激烈。我选了当老师，稳定且假期多，挺满意的。",
+    "tags": ["必须读研", "实验室或教师", "考研友好"],
+    "adLocked": true,
+    "priority": 2
+  },
+  {
+    "evalId": "EVL_016_01",
+    "majorId": "新闻传播",
+    "reviewer": {
+      "identity": "某传媒学姐",
+      "collegeType": "传媒类",
+      "yearsAfterGraduation": "3年",
+      "currentStatus": "某新媒体公司内容主管",
+      "npcType": "学姐型学姐"
+    },
+    "content": "传统媒体衰落，新媒体崛起。这个专业要会写、会拍、会运营，复合型人才更吃香。单靠学校教的，找工作太难了。建议在校期间多实习积累作品。",
+    "tags": ["新媒体方向", "复合能力", "多实习"],
+    "adLocked": false,
+    "priority": 1
+  },
+  {
+    "evalId": "EVL_017_01",
+    "majorId": "教育学",
+    "reviewer": {
+      "identity": "某211教育学长",
+      "collegeType": "211",
+      "yearsAfterGraduation": "5年",
+      "currentStatus": "某教育机构教研",
+      "npcType": "转行型学长"
+    },
+    "content": "教育学偏理论，当老师的话还是学科类专业更对口。我毕业后在教育机构做教研，薪资还行但稳定性差。如果你铁了心当老师，建议直接报师范类专业，别走弯路了。",
+    "tags": ["偏理论", "师范更对口", "稳定性"],
+    "adLocked": true,
+    "priority": 2
+  },
+  {
+    "evalId": "EVL_018_01",
+    "majorId": "建筑学",
+    "reviewer": {
+      "identity": "某老八校建筑学长",
+      "collegeType": "985",
+      "yearsAfterGraduation": "6年",
+      "currentStatus": "某设计院建筑师",
+      "npcType": "学霸型学长"
+    },
+    "content": "建筑学是学制最长的本科专业之一，五年。熬夜画图是日常，比996还累。但这行有成就感，看自己设计的楼盖起来那种感觉无法替代。不过近年房地产下行，建筑设计院行情不好，择业要慎重。",
+    "tags": ["学制五年", "熬夜画图", "房地产下行"],
+    "adLocked": false,
+    "priority": 1
+  },
+  {
+    "evalId": "EVL_019_01",
+    "majorId": "心理学",
+    "reviewer": {
+      "identity": "某211心理学姐",
+      "collegeType": "211",
+      "yearsAfterGraduation": "3年",
+      "currentStatus": "某心理咨询机构咨询师",
+      "npcType": "佛系型学姐"
+    },
+    "content": "心理学本科出来能做的事不多，大多数同学都考研了。要当心理咨询师还得考心理咨询师证，过程漫长。但这行越老越吃香，而且帮助别人的满足感是其他职业比不了的。",
+    "tags": ["需深造", "越老越吃香", "满足感高"],
+    "adLocked": true,
+    "priority": 2
+  },
+  {
+    "evalId": "EVL_020_01",
+    "majorId": "数学与应用数学",
+    "reviewer": {
+      "identity": "某985数学学长",
+      "collegeType": "985",
+      "yearsAfterGraduation": "4年",
+      "currentStatus": "某金融科技公司数据分析师",
+      "npcType": "转行型学长"
+    },
+    "content": "数学是基础学科，出路很广但哪个都不直接对口。可以转金融做量化、转计算机做算法、当老师、考公都可以。关键是要想清楚自己的方向，纯学数学不往应用走就业会比较尴尬。",
+    "tags": ["基础学科", "多方向可选", "需明确方向"],
+    "adLocked": false,
+    "priority": 1
+  }
+]
