@@ -2,6 +2,9 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
+[System.Serializable]
+public class TalentListWrapper { public List<Talent> talents; }
+
 public class TalentEngine : MonoBehaviour
 {
     public static TalentEngine Instance { get; private set; }
@@ -12,7 +15,25 @@ public class TalentEngine : MonoBehaviour
     void Awake()
     {
         if (Instance == null) { Instance = this; DontDestroyOnLoad(gameObject); }
-        else { Destroy(gameObject); }
+        else { Destroy(gameObject); return; }
+
+        LoadFromResources();
+    }
+
+    void LoadFromResources()
+    {
+        var jsonAsset = Resources.Load<TextAsset>("Data/talents");
+        if (jsonAsset != null)
+        {
+            var wrapper = JsonUtility.FromJson<TalentListWrapper>("{\"talents\":" + jsonAsset.text + "}");
+            allTalents = wrapper?.talents ?? new List<Talent>();
+            Debug.Log($"[TalentEngine] 从 Resources 加载 {allTalents.Count} 个天赋");
+        }
+        else
+        {
+            Debug.LogWarning("[TalentEngine] Data/talents.json 未找到，天赋数据为空");
+            allTalents = new List<Talent>();
+        }
     }
 
     public void LoadTalents(List<Talent> talents)

@@ -1,0 +1,230 @@
+[
+  {
+    "id": "T01",
+    "name": "考前突击",
+    "icon": "T01",
+    "rarity": "common",
+    "effects": {
+      "highschool": "高中事件选择更激进，成绩波动大",
+      "gaokao": "高考基础分+5，但波动极大±50",
+      "major": {
+        "boost": ["计算机", "法学"],
+        "warn": ["医学", "建筑学"]
+      },
+      "career": "适合高风险高回报职业"
+    },
+    "statModifiers": {
+      "highschool": { "intellect": 0, "mental": 0, "social": 0, "health": 0 },
+      "gaokao": { "baseBonus": 5, "volatility": 50, "critChance": 0.0, "critBonus": 0 }
+    }
+  },
+  {
+    "id": "T02",
+    "name": "天赋异禀",
+    "icon": "T02",
+    "rarity": "legendary",
+    "effects": {
+      "highschool": "智力+20，学习效率翻倍",
+      "gaokao": "高考基础分+15，所有理科+10%匹配度",
+      "major": {
+        "boost": ["所有理工科"],
+        "warn": []
+      },
+      "career": "顶级院校和科研机构首选"
+    },
+    "statModifiers": {
+      "highschool": { "intellect": 20, "mental": 0, "social": 0, "health": 0 },
+      "gaokao": { "baseBonus": 15, "volatility": 10, "critChance": 0.0, "critBonus": 0 }
+    }
+  },
+  {
+    "id": "T03",
+    "name": "心态稳定",
+    "icon": "T03",
+    "rarity": "epic",
+    "effects": {
+      "highschool": "心理+20，压力事件减半",
+      "gaokao": "高考波动±10，适合医学/法学/金融",
+      "major": {
+        "boost": ["医学", "法学", "金融"],
+        "warn": []
+      },
+      "career": "适合压力大的高端职业"
+    },
+    "statModifiers": {
+      "highschool": { "intellect": 0, "mental": 20, "social": 0, "health": 0 },
+      "gaokao": { "baseBonus": 0, "volatility": 10, "critChance": 0.0, "critBonus": 0 }
+    }
+  },
+  {
+    "id": "T04",
+    "name": "超常发挥",
+    "icon": "T04",
+    "rarity": "rare",
+    "effects": {
+      "highschool": "随机事件触发暴击概率翻倍",
+      "gaokao": "10%概率暴击+30分，5%概率失控-20分",
+      "major": {
+        "boost": [],
+        "warn": []
+      },
+      "career": "成也高考，败也高考"
+    },
+    "statModifiers": {
+      "highschool": { "intellect": 0, "mental": 0, "social": 0, "health": 0 },
+      "gaokao": { "baseBonus": 0, "volatility": 20, "critChance": 0.1, "critBonus": 30 }
+    }
+  },
+  {
+    "id": "T05",
+    "name": "人见人爱",
+    "icon": "T05",
+    "rarity": "epic",
+    "effects": {
+      "highschool": "社交+10，NPC初始好感+10",
+      "gaokao": "人际关系网扩展专业选择范围",
+      "major": {
+        "boost": ["市场营销", "人力资源", "传媒", "教育"],
+        "warn": []
+      },
+      "career": "适合社交密集的管理岗"
+    },
+    "statModifiers": {
+      "highschool": { "intellect": 0, "mental": 0, "social": 10, "health": 0 },
+      "gaokao": { "baseBonus": 0, "volatility": 15, "critChance": 0.0, "critBonus": 0 }
+    }
+  },
+  {
+    "id": "T06",
+    "name": "社团之王",
+    "icon": "T06",
+    "rarity": "rare",
+    "effects": {
+      "highschool": "社交+25，解锁精英社团",
+      "gaokao": "组织能力加分，推荐管理类",
+      "major": {
+        "boost": ["工商管理", "新闻学", "政治学"],
+        "warn": []
+      },
+      "career": "适合管理岗位和公务员"
+    },
+    "statModifiers": {
+      "highschool": { "intellect": 0, "mental": 0, "social": 25, "health": 0 },
+      "gaokao": { "baseBonus": 5, "volatility": 20, "critChance": 0.0, "critBonus": 0 }
+    }
+  },
+  {
+    "id": "T07",
+    "name": "锦鲤附体",
+    "icon": "T07",
+    "rarity": "legendary",
+    "effects": {
+      "highschool": "事件结果偏向正面，幸运翻倍",
+      "gaokao": "每科5%概率额外+10分",
+      "major": {
+        "boost": [],
+        "warn": []
+      },
+      "career": "运气也是一种实力"
+    },
+    "statModifiers": {
+      "highschool": { "intellect": 5, "mental": 5, "social": 5, "health": 5 },
+      "gaokao": { "baseBonus": 0, "volatility": 10, "critChance": 0.15, "critBonus": 20 }
+    }
+  },
+  {
+    "id": "T08",
+    "name": "考神降临",
+    "icon": "T08",
+    "rarity": "epic",
+    "effects": {
+      "highschool": "单科成绩逐步登顶，该科满分",
+      "gaokao": "最高分科目相关专业+20%录取率",
+      "major": {
+        "boost": ["强项科目对应专业"],
+        "warn": []
+      },
+      "career": "偏科天才路"
+    },
+    "statModifiers": {
+      "highschool": { "intellect": 10, "mental": 5, "social": -5, "health": 0 },
+      "gaokao": { "baseBonus": 10, "volatility": 5, "critChance": 0.0, "critBonus": 0 }
+    }
+  },
+  {
+    "id": "T09",
+    "name": "执着钻研",
+    "icon": "T09",
+    "rarity": "rare",
+    "effects": {
+      "highschool": "智力每月+1积累，社交-10",
+      "gaokao": "强推医学/科研/学术，社交专业不推荐",
+      "major": {
+        "boost": ["医学", "科研", "学术"],
+        "warn": ["市场营销", "人力资源"]
+      },
+      "career": "冷板凳上的大师"
+    },
+    "statModifiers": {
+      "highschool": { "intellect": 5, "mental": 10, "social": -10, "health": 0 },
+      "gaokao": { "baseBonus": 5, "volatility": 15, "critChance": 0.0, "critBonus": 0 }
+    }
+  },
+  {
+    "id": "T10",
+    "name": "灵光一闪",
+    "icon": "T10",
+    "rarity": "epic",
+    "effects": {
+      "highschool": "智力+15 社交+15，竞赛加成",
+      "gaokao": "创意类专业推荐：设计/美术/广告/AI",
+      "major": {
+        "boost": ["设计", "美术", "广告", "人工智能"],
+        "warn": []
+      },
+      "career": "创意产业的明星"
+    },
+    "statModifiers": {
+      "highschool": { "intellect": 15, "mental": 0, "social": 15, "health": -5 },
+      "gaokao": { "baseBonus": 5, "volatility": 25, "critChance": 0.1, "critBonus": 15 }
+    }
+  },
+  {
+    "id": "T11",
+    "name": "随遇而安",
+    "icon": "T11",
+    "rarity": "rare",
+    "effects": {
+      "highschool": "心理不掉，负面事件减半",
+      "gaokao": "稳定为主，推荐教师/公务员/辅导员",
+      "major": {
+        "boost": ["教育", "公共管理", "心理学"],
+        "warn": []
+      },
+      "career": "稳中求胜的务实派"
+    },
+    "statModifiers": {
+      "highschool": { "intellect": 0, "mental": 15, "social": 5, "health": 10 },
+      "gaokao": { "baseBonus": 0, "volatility": 5, "critChance": 0.0, "critBonus": 0 }
+    }
+  },
+  {
+    "id": "T12",
+    "name": "逆风翻盘",
+    "icon": "T12",
+    "rarity": "legendary",
+    "effects": {
+      "highschool": "成绩越低触发额外补习事件",
+      "gaokao": "高考分越低加成越高（逆风buff）",
+      "major": {
+        "boost": [],
+        "warn": []
+      },
+      "career": "绝境中的黑马"
+    },
+    "statModifiers": {
+      "highschool": { "intellect": 0, "mental": 20, "social": 0, "health": 10 },
+      "gaokao": { "baseBonus": -10, "volatility": 40, "critChance": 0.2, "critBonus": 50 }
+    }
+  }
+]

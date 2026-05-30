@@ -11,6 +11,7 @@ public class TalentCardUI : MonoBehaviour
     [SerializeField] private Text gaokaoText;
     [SerializeField] private Text majorText;
     [SerializeField] private Text careerText;
+    [SerializeField] private Text statBonusText;
     [SerializeField] private Image highlightBorder;
     [SerializeField] private Button selectBtn;
 
@@ -60,6 +61,24 @@ public class TalentCardUI : MonoBehaviour
             if (talent.effects?.major?.warn != null && talent.effects.major.warn.Length > 0)
                 majorStr += $"  ⚠️{string.Join("/", talent.effects.major.warn)}";
             majorText.text = majorStr;
+        }
+
+        if (statBonusText != null)
+        {
+            var sb = talent.statModifiers?.highschool;
+            if (sb != null)
+            {
+                var parts = new System.Collections.Generic.List<string>();
+                if (sb.intellect != 0) parts.Add($"智力{(sb.intellect > 0 ? "+" : "")}{sb.intellect}");
+                if (sb.mental != 0) parts.Add($"心理{(sb.mental > 0 ? "+" : "")}{sb.mental}");
+                if (sb.social != 0) parts.Add($"社交{(sb.social > 0 ? "+" : "")}{sb.social}");
+                if (sb.health != 0) parts.Add($"健康{(sb.health > 0 ? "+" : "")}{sb.health}");
+                statBonusText.text = parts.Count > 0 ? string.Join("  ", parts) : "";
+            }
+            else
+            {
+                statBonusText.text = "";
+            }
         }
 
         SetHighlighted(false);
