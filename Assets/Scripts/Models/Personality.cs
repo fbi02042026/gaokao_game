@@ -10,29 +10,26 @@ public class Personality
     public string description;
     public string icon;
     public string tagline;
-    
+
     public PersonalityType type;
-    
-    public int baseIntelligence;
-    public int basePhysical;
-    public int baseEmotion;
+
+    public int baseIntellect;
+    public int baseMental;
     public int baseSocial;
-    public int baseCreativity;
-    public int baseLuck;
-    public int baseWillpower;
-    
+    public int baseHealth;
+
     public List<string> strengths;
     public List<string> weaknesses;
-    
+
     public List<string> suitableMajors;
     public List<string> suitableCareers;
-    
+
     public List<string> bonusTalents;
     public List<string> lockedTalents;
-    
+
     public string specialAbility;
     public float specialEffectValue;
-    
+
     public int gaokaoBonus;
     public int careerBonus;
 
@@ -48,19 +45,16 @@ public class Personality
 
     public PlayerState ModifyPlayerState(PlayerState player)
     {
-        player.intelligence = Mathf.Clamp(player.intelligence + baseIntelligence, 0, 100);
-        player.physical = Mathf.Clamp(player.physical + basePhysical, 0, 100);
-        player.emotion = Mathf.Clamp(player.emotion + baseEmotion, 0, 100);
+        player.intellect = Mathf.Clamp(player.intellect + baseIntellect, 0, 100);
+        player.mental = Mathf.Clamp(player.mental + baseMental, 0, 100);
         player.social = Mathf.Clamp(player.social + baseSocial, 0, 100);
-        player.creativity = Mathf.Clamp(player.creativity + baseCreativity, 0, 100);
-        player.luck = Mathf.Clamp(player.luck + baseLuck, 0, 100);
-        player.willpower = Mathf.Clamp(player.willpower + baseWillpower, 0, 100);
-        
+        player.health = Mathf.Clamp(player.health + baseHealth, 0, 100);
+
         foreach (var talentId in bonusTalents)
         {
             player.UnlockTalent(talentId);
         }
-        
+
         return player;
     }
 
@@ -71,11 +65,11 @@ public class Personality
         {
             total += score;
         }
-        
+
         float personalityMultiplier = 1f + (gaokaoBonus / 100f);
-        float stabilityMultiplier = 1f + (player.willpower / 500f);
-        
-        return (int)(total * personalityMultiplier * stabilityMultiplier);
+        float mentalStability = 1f + (player.mental / 500f);
+
+        return (int)(total * personalityMultiplier * mentalStability);
     }
 
     public string GetCareerSuggestion(PlayerState player)
@@ -84,25 +78,25 @@ public class Personality
         {
             return "待探索";
         }
-        
+
         int bestMatch = 0;
         string bestCareer = suitableCareers[0];
-        
+
         foreach (var career in suitableCareers)
         {
             int matchScore = 0;
-            
-            matchScore += (100 - Mathf.Abs(player.intelligence - 70)) / 10;
+
+            matchScore += (100 - Mathf.Abs(player.intellect - 70)) / 10;
             matchScore += (100 - Mathf.Abs(player.social - 70)) / 10;
-            matchScore += (100 - Mathf.Abs(player.creativity - 70)) / 10;
-            
+            matchScore += (100 - Mathf.Abs(player.health - 70)) / 10;
+
             if (matchScore > bestMatch)
             {
                 bestMatch = matchScore;
                 bestCareer = career;
             }
         }
-        
+
         return bestCareer;
     }
 }
@@ -130,28 +124,27 @@ public class PersonalityData
     public Personality CalculatePersonality(PlayerState player)
     {
         int maxStat = Mathf.Max(
-            player.intelligence,
-            player.physical,
-            player.emotion,
+            player.intellect,
+            player.mental,
             player.social,
-            player.creativity
+            player.health
         );
 
         PersonalityType calculatedType;
-        
-        if (player.intelligence >= 80 && player.creativity >= 70)
+
+        if (player.intellect >= 80 && player.health >= 70)
         {
             calculatedType = PersonalityType.Academic;
         }
-        else if (player.creativity >= 80)
+        else if (player.social >= 80)
         {
             calculatedType = PersonalityType.Creative;
         }
-        else if (player.social >= 80)
+        else if (player.social >= 70 && player.mental >= 60)
         {
             calculatedType = PersonalityType.Social;
         }
-        else if (player.physical >= 80)
+        else if (player.health >= 80)
         {
             calculatedType = PersonalityType.Athletic;
         }
@@ -159,11 +152,11 @@ public class PersonalityData
         {
             calculatedType = PersonalityType.Perfectionist;
         }
-        else if (player.emotion <= 30)
+        else if (player.mental <= 30)
         {
             calculatedType = PersonalityType.Rebel;
         }
-        else if (player.studyDays >= 800 && player.intelligence < 60)
+        else if (player.studyDays >= 800 && player.intellect < 60)
         {
             calculatedType = PersonalityType.LateBloomer;
         }
@@ -183,16 +176,16 @@ public class Memory
     public string id;
     public string title;
     public string content;
-    
+
     public string relatedEventId;
     public string relatedNPCId;
-    
+
     public GamePhase unlockPhase;
     public bool isDejaVuTrigger;
-    
+
     public string dejaVuText;
     public List<MemoryChoice> choices;
-    
+
     public Memory()
     {
         choices = new List<MemoryChoice>();
@@ -204,7 +197,7 @@ public class Memory
 public class MemoryChoice
 {
     public string text;
-    public int happinessBonus;
+    public int satisfactionBonus;
     public int statBonus;
     public List<string> unlockTalents;
     public string specialEffect;

@@ -5,7 +5,6 @@ public enum GamePhase
     Province,
     TalentSelect,
     HighSchool,
-    Event,
     Gaokao,
     Zhiyuan,
     College,

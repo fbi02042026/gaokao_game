@@ -32,9 +32,9 @@ public class LifeEngine : MonoBehaviour
             achievedMilestones = new List<string>();
             currentLifeDay = 0;
             maxLifeDays = 365 * 50;
-            
+
             InitializeDefaultLifeEvents();
-            
+
             Debug.Log("[LifeEngine] 人生引擎初始化完成");
         }
 
@@ -46,7 +46,7 @@ public class LifeEngine : MonoBehaviour
                 day = 0,
                 title = "第一份工作",
                 description = "开启职业生涯",
-                effects = new StatEffects { intelligence = 5, social = 5 }
+                effects = new StatEffects { intellect = 5, social = 5 }
             });
 
             AddLifeEvent(new LifeEvent
@@ -55,7 +55,7 @@ public class LifeEngine : MonoBehaviour
                 day = 365,
                 title = "第一次加薪",
                 description = "努力工作得到回报",
-                effects = new StatEffects { emotion = 10, luck = 5 }
+                effects = new StatEffects { mental = 10, health = 5 }
             });
 
             AddLifeEvent(new LifeEvent
@@ -64,7 +64,7 @@ public class LifeEngine : MonoBehaviour
                 day = 730,
                 title = "晋升",
                 description = "成为部门主管",
-                effects = new StatEffects { intelligence = 10, social = 10, willpower = 5 }
+                effects = new StatEffects { intellect = 10, social = 10, mental = -5 }
             });
 
             AddLifeEvent(new LifeEvent
@@ -73,7 +73,7 @@ public class LifeEngine : MonoBehaviour
                 day = 1460,
                 title = "结婚",
                 description = "人生大事",
-                effects = new StatEffects { emotion = 20, social = 10 }
+                effects = new StatEffects { mental = 20, social = 10 }
             });
 
             AddLifeEvent(new LifeEvent
@@ -82,7 +82,7 @@ public class LifeEngine : MonoBehaviour
                 day = 1825,
                 title = "孩子出生",
                 description = "家庭新成员",
-                effects = new StatEffects { emotion = 15, willpower = 10 }
+                effects = new StatEffects { mental = 15, health = -10 }
             });
 
             AddLifeEvent(new LifeEvent
@@ -91,7 +91,7 @@ public class LifeEngine : MonoBehaviour
                 day = 3650,
                 title = "事业巅峰",
                 description = "成为行业精英",
-                effects = new StatEffects { intelligence = 15, social = 15, luck = 10 }
+                effects = new StatEffects { intellect = 15, social = 15, mental = -10 }
             });
 
             AddLifeEvent(new LifeEvent
@@ -100,7 +100,7 @@ public class LifeEngine : MonoBehaviour
                 day = 10950,
                 title = "退休",
                 description = "安享晚年",
-                effects = new StatEffects { emotion = 20, willpower = 10 }
+                effects = new StatEffects { mental = 20, health = 10 }
             });
         }
 
@@ -116,20 +116,20 @@ public class LifeEngine : MonoBehaviour
         {
             currentLifeDay = 0;
             achievedMilestones.Clear();
-            
+
             Debug.Log("[LifeEngine] 开始人生模拟");
         }
 
         public void AdvanceLifeDays(int days, PlayerState player)
         {
             currentLifeDay += days;
-            
+
             CheckAndTriggerLifeEvents(player);
-            
+
             CalculateCareerProgress(days, player);
-            
+
             OnLifeDayChanged?.Invoke(currentLifeDay);
-            
+
             if (currentLifeDay >= maxLifeDays)
             {
                 EndLifeSimulation(player);
@@ -151,54 +151,52 @@ public class LifeEngine : MonoBehaviour
 
         private void TriggerLifeEvent(LifeEvent evt, PlayerState player)
         {
-            player.AddStat("intelligence", evt.effects.intelligence);
-            player.AddStat("physical", evt.effects.physical);
-            player.AddStat("emotion", evt.effects.emotion);
+            player.AddStat("intellect", evt.effects.intellect);
+            player.AddStat("mental", evt.effects.mental);
             player.AddStat("social", evt.effects.social);
-            player.AddStat("creativity", evt.effects.creativity);
-            player.AddStat("luck", evt.effects.luck);
-            player.AddStat("willpower", evt.effects.willpower);
-            
+            player.AddStat("health", evt.effects.health);
+
             OnMilestoneAchieved?.Invoke(evt.id);
-            
+
             Debug.Log($"[LifeEngine] 触发人生事件: {evt.title}");
         }
 
         private void CalculateCareerProgress(int days, PlayerState player)
         {
-            float workEfficiency = 1f + (player.intelligence / 100f);
+            float workEfficiency = 1f + (player.intellect / 100f);
             float socialBonus = player.social / 200f;
-            
+
             float progress = days * (workEfficiency + socialBonus) * 0.01f;
-            
+
             if (player.careerLevel < 10 && progress >= 1f)
             {
                 player.careerLevel++;
                 Debug.Log($"[LifeEngine] 职级提升: {player.careerLevel}");
             }
-            
-            player.totalScore += progress * player.luck * 0.1f;
+
+            player.totalScore += progress * Random.Range(0.5f, 1.5f);
         }
 
         private void EndLifeSimulation(PlayerState player)
         {
             var result = CalculateLifeResult(player);
             OnLifeEnded?.Invoke(result);
-            
+
             Debug.Log($"[LifeEngine] 人生模拟结束，满意度: {result.satisfactionScore}");
         }
 
         public LifeResult CalculateLifeResult(PlayerState player)
         {
             int satisfactionScore = 0;
-            
+
             satisfactionScore += player.careerLevel * 10;
             satisfactionScore += player.GetAverageStats();
-            satisfactionScore += player.happiness;
+
             satisfactionScore += player.lifeSatisfaction;
-            
+            satisfactionScore /= 2;
+
             satisfactionScore = Mathf.Clamp(satisfactionScore, 0, 100);
-            
+
             LifeEnding ending;
             if (satisfactionScore >= 80)
             {
@@ -241,7 +239,7 @@ public class LifeEngine : MonoBehaviour
         public List<LifeEvent> GetUpcomingLifeEvents()
         {
             var upcoming = new List<LifeEvent>();
-            
+
             foreach (var kvp in lifeEvents)
             {
                 if (kvp.Value.day > currentLifeDay && !achievedMilestones.Contains(kvp.Key))
@@ -249,7 +247,7 @@ public class LifeEngine : MonoBehaviour
                     upcoming.Add(kvp.Value);
                 }
             }
-            
+
             upcoming.Sort((a, b) => a.day.CompareTo(b.day));
             return upcoming;
         }
@@ -300,11 +298,8 @@ public class LifeEngine : MonoBehaviour
     [Serializable]
     public class StatEffects
     {
-        public int intelligence;
-        public int physical;
-        public int emotion;
+        public int intellect;
+        public int mental;
         public int social;
-        public int creativity;
-        public int luck;
-        public int willpower;
+        public int health;
     }

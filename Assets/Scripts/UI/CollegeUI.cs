@@ -67,6 +67,7 @@ public class CollegeUI : MonoBehaviour
         if (majorText != null) majorText.text = major?.name ?? $"专业: {currentMajorId}";
 
         InitializeAttributeLabels();
+        TransitionToStressSystem();
         RefreshTopBar();
 
         if (graduationPanel != null) graduationPanel.SetActive(false);
@@ -120,6 +121,16 @@ public class CollegeUI : MonoBehaviour
     void SetLabelText(Text label, string text)
     {
         if (label != null) label.text = text;
+    }
+
+    void TransitionToStressSystem()
+    {
+        if (playerState == null || playerState.hasTransitionedToStress) return;
+
+        playerState.mental = Mathf.Clamp(100 - playerState.mental, 0, 100);
+        playerState.hasTransitionedToStress = true;
+
+        Debug.Log($"[CollegeUI] 心理→压力反转完成: mental={playerState.mental}");
     }
 
     void ShowNextEvent()

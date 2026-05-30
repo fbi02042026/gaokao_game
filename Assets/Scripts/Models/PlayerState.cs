@@ -20,19 +20,13 @@ public class PlayerState
     public string familyStatus = "";
     public int satisfaction = 3;
     public int currentAge = 22;
+    public bool hasTransitionedToStress = false;
     public GamePhase currentPhase = GamePhase.Home;
     public System.DateTime lastPlayTime = System.DateTime.Now;
     public List<string> completedEvents = new List<string>();
     public List<StringPair> choiceHistoryList = new List<StringPair>();
     public List<string> ownedItemIds = new List<string>();
-    
-    public int intelligence = 50;
-    public int physical = 50;
-    public int emotion = 50;
-    public int creativity = 50;
-    public int luck = 50;
-    public int willpower = 50;
-    public int happiness = 50;
+
     public int lifeSatisfaction = 50;
     public int careerLevel = 1;
     public float totalScore = 0;
@@ -59,13 +53,7 @@ public class PlayerState
                 case "mental": mental = Mathf.Clamp(mental + kv.Value, 0, 100); break;
                 case "social": social = Mathf.Clamp(social + kv.Value, 0, 100); break;
                 case "health": health = Mathf.Clamp(health + kv.Value, 0, 100); break;
-                case "intelligence": intelligence = Mathf.Clamp(intelligence + kv.Value, 0, 100); intellect = intelligence; break;
-                case "physical": physical = Mathf.Clamp(physical + kv.Value, 0, 100); health = physical; break;
-                case "emotion": emotion = Mathf.Clamp(emotion + kv.Value, 0, 100); mental = emotion; break;
-                case "creativity": creativity = Mathf.Clamp(creativity + kv.Value, 0, 100); break;
-                case "luck": luck = Mathf.Clamp(luck + kv.Value, 0, 100); break;
-                case "willpower": willpower = Mathf.Clamp(willpower + kv.Value, 0, 100); break;
-                case "happiness": happiness = Mathf.Clamp(happiness + kv.Value, 0, 100); satisfaction = Mathf.Clamp(satisfaction + kv.Value / 10, 1, 5); break;
+                case "satisfaction": satisfaction = Mathf.Clamp(satisfaction + kv.Value, 1, 5); break;
             }
         }
     }
@@ -85,23 +73,16 @@ public class PlayerState
     {
         switch (statName)
         {
-            case "intelligence": intelligence = Mathf.Clamp(intelligence + value, 0, 100); break;
-            case "physical": physical = Mathf.Clamp(physical + value, 0, 100); break;
-            case "emotion": emotion = Mathf.Clamp(emotion + value, 0, 100); break;
-            case "social": social = Mathf.Clamp(social + value, 0, 100); break;
-            case "creativity": creativity = Mathf.Clamp(creativity + value, 0, 100); break;
-            case "luck": luck = Mathf.Clamp(luck + value, 0, 100); break;
-            case "willpower": willpower = Mathf.Clamp(willpower + value, 0, 100); break;
-            case "happiness": happiness = Mathf.Clamp(happiness + value, 0, 100); break;
             case "intellect": intellect = Mathf.Clamp(intellect + value, 0, 100); break;
             case "mental": mental = Mathf.Clamp(mental + value, 0, 100); break;
+            case "social": social = Mathf.Clamp(social + value, 0, 100); break;
             case "health": health = Mathf.Clamp(health + value, 0, 100); break;
         }
     }
 
     public int GetAverageStats()
     {
-        return (int)((intelligence + physical + emotion + social + creativity + luck + willpower) / 7f);
+        return (int)((intellect + mental + social + health) / 4f);
     }
 
     public void UnlockTalent(string talentId)
@@ -120,18 +101,21 @@ public class PlayerState
         clone.mental = mental;
         clone.social = social;
         clone.health = health;
-        clone.intelligence = intelligence;
-        clone.physical = physical;
-        clone.emotion = emotion;
-        clone.creativity = creativity;
-        clone.luck = luck;
-        clone.willpower = willpower;
-        clone.happiness = happiness;
         clone.lifeSatisfaction = lifeSatisfaction;
         clone.careerLevel = careerLevel;
         clone.totalScore = totalScore;
         clone.gaokaoScore = gaokaoScore;
         clone.personality = personality;
+        clone.province = province;
+        clone.graduationChoice = graduationChoice;
+        clone.careerPath = careerPath;
+        clone.monthlyIncome = monthlyIncome;
+        clone.familyStatus = familyStatus;
+        clone.satisfaction = satisfaction;
+        clone.currentAge = currentAge;
+        clone.hasPastLifeMemory = hasPastLifeMemory;
+        clone.admittedCollegeId = admittedCollegeId;
+        clone.admittedMajorId = admittedMajorId;
         return clone;
     }
 }
