@@ -46,15 +46,23 @@ public class CollegeUI : MonoBehaviour
     [SerializeField] private Text resultNarrativeText;
     [SerializeField] private Button resultContinueBtn;
 
+    [Header("既视感")]
+    [SerializeField] private GameObject dejaVuBubble;
+    [SerializeField] private Text dejaVuHintText;
+
     private PlayerState playerState;
     private GameEvent currentEvent;
     private EventEngine eventEngine;
+    private DejaVuEngine dejaVuEngine;
+    private InheritEngine inheritEngine;
     private string currentCollegeId;
     private string currentMajorId;
 
     void Start()
     {
         eventEngine = FindObjectOfType<EventEngine>();
+        dejaVuEngine = FindObjectOfType<DejaVuEngine>();
+        inheritEngine = FindObjectOfType<InheritEngine>();
         playerState = GameStateManager.Instance?.GetPlayerState();
 
         currentCollegeId = playerState?.admittedCollegeId ?? "C01";
@@ -72,6 +80,7 @@ public class CollegeUI : MonoBehaviour
 
         if (graduationPanel != null) graduationPanel.SetActive(false);
         if (resultPanel != null) resultPanel.SetActive(false);
+        if (dejaVuBubble != null) dejaVuBubble.SetActive(false);
 
         kaoyanBtn?.onClick.AddListener(() => OnGraduation("考研"));
         jiuyeBtn?.onClick.AddListener(() => OnGraduation("就业"));
@@ -172,6 +181,7 @@ public class CollegeUI : MonoBehaviour
                 LoadEventIllustration();
                 ClearInteractionArea();
                 BuildInteractionArea();
+                CheckDejaVu();
             }
             return;
         }
@@ -184,6 +194,7 @@ public class CollegeUI : MonoBehaviour
 
         ClearInteractionArea();
         BuildInteractionArea();
+        CheckDejaVu();
     }
 
     void ClearInteractionArea()
@@ -243,6 +254,7 @@ public class CollegeUI : MonoBehaviour
             resultContinueBtn.onClick.AddListener(() =>
             {
                 resultPanel.SetActive(false);
+                if (dejaVuBubble != null) dejaVuBubble.SetActive(false);
                 ShowNextEvent();
             });
         }
@@ -257,21 +269,82 @@ public class CollegeUI : MonoBehaviour
     void OnGraduation(string path)
     {
         Debug.Log($"[CollegeUI] 毕业选择: {path}");
+
         playerState.graduationChoice = path;
 
-        var changes = path switch
+        var changes = new System.Collections.Generic.Dictionary<string, int>();
+        switch (path)
         {
-            "考研" => new System.Collections.Generic.Dictionary<string, int> { { "intellect", 10 } },
-            "就业" => new System.Collections.Generic.Dictionary<string, int> { { "social", 10 } },
-            "出国" => new System.Collections.Generic.Dictionary<string, int> { { "intellect", 5 }, { "social", 5 } },
-            "创业" => new System.Collections.Generic.Dictionary<string, int> { { "social", 10 }, { "mental", -5 } },
-            _ => new System.Collections.Generic.Dictionary<string, int>()
-        };
+            case "考研":
+                changes["intellect"] = 10;
+                break;
+            case "就业":
+                changes["social"] = 10;
+                break;
+            case "出国":
+                changes["intellect"] = 5;
+                changes["social"] = 5;
+                break;
+            case "创业":
+                changes["social"] = 15;
+                changes["health"] = -5;
+                break;
+        }
         playerState.ApplyChanges(changes);
 
-        GameStateManager.Instance?.SetStage("life");
-        GameStateManager.Instance?.QuickSave();
         GameManager.Instance.ChangePhase(GamePhase.Life);
+    }
+
+    void CheckDejaVu()
+    {
+        if (dejaVuEngine == null || inheritEngine == null)
+        {
+            if (dejaVuBubble != null) dejaVuBubble.SetActive(false);
+            return;
+        }
+
+        int maxLevel = inheritEngine.GetMaxDejaVuLevel();
+        if (maxLevel <= 0)
+        {
+            if (dejaVuBubble != null) dejaVuBubble.SetActive(false);
+            return;
+        }
+
+        var result = dejaVuEngine.CheckDejaVu(currentEvent.id, maxLevel);
+        if (result == null)
+        {
+            if (dejaVuBubble != null) dejaVuBubble.SetActive(false);
+            return;
+        }
+
+        if (dejaVuBubble != null)
+        {
+            dejaVuBubble.SetActive(true);
+            if (dejaVuHintText != null)
+            {
+                if (!string.IsNullOrEmpty(result.hint))
+                    dejaVuHintText.text = $"🌀 {result.hint}";
+                else
+                    dejaVuHintText.text = "🌀 直觉闪现...";
+            }
+        }
+
+        if (!string.IsNullOrEmpty(result.highlightChoiceId))
+        {
+            foreach (Transform child in interactionArea)
+            {
+                var btn = child.GetComponent<Button>();
+                if (btn != null)
+                {
+                    var btnText = btn.GetComponentInChildren<Text>();
+                    if (btnText != null && btnText.text.Contains(result.highlightChoiceId))
+                    {
+                        var glow = child.gameObject.AddComponent<DejaVuGlow>();
+                        glow.StartGlow();
+                    }
+                }
+            }
+        }
     }
 
     void LoadEventIllustration()
