@@ -137,15 +137,15 @@ public class EventEngineTests : MonoBehaviour
                 choiceContent = new ChoiceContent
                 {
                     description = "测试描述",
-                    choices = new List<ChoiceOption>
+                    choices = new ChoiceOption[]
                     {
                         new ChoiceOption { id = "A", text = "选项A", icon = "🔵" },
                         new ChoiceOption { id = "B", text = "选项B", icon = "🟢" }
                     }
                 },
-                outcomeList = new List<OutcomeEntry>
+                outcomeList = new SerializableOutcome[]
                 {
-                    new OutcomeEntry
+                    new SerializableOutcome
                     {
                         key = "A",
                         value = new EventOutcome
@@ -155,7 +155,7 @@ public class EventEngineTests : MonoBehaviour
                             narrative = "选择了A，智力+5，心态-2"
                         }
                     },
-                    new OutcomeEntry
+                    new SerializableOutcome
                     {
                         key = "B",
                         value = new EventOutcome
@@ -172,9 +172,9 @@ public class EventEngineTests : MonoBehaviour
                 id = "EVT_002", name = "测试事件B", tags = new string[] { "社交" },
                 interactionType = "dialog",
                 triggerCondition = null,
-                outcomeList = new List<OutcomeEntry>
+                outcomeList = new SerializableOutcome[]
                 {
-                    new OutcomeEntry
+                    new SerializableOutcome
                     {
                         key = "default",
                         value = new EventOutcome
@@ -191,9 +191,9 @@ public class EventEngineTests : MonoBehaviour
                 id = "EVT_003", name = "测试事件C", tags = new string[] { "志愿" },
                 interactionType = "slider",
                 triggerCondition = new TriggerCondition { minGrade = 4, minIntellect = 60 },
-                outcomeList = new List<OutcomeEntry>
+                outcomeList = new SerializableOutcome[]
                 {
-                    new OutcomeEntry
+                    new SerializableOutcome
                     {
                         key = "default",
                         value = new EventOutcome
