@@ -105,6 +105,7 @@ public class CollegeUI : MonoBehaviour
             "M03" => "college_med",
             "M01" => "college_cs",
             "M02" => "college_law",
+            "M04" => "college_biz",
             _ => "college_cs"
         };
 

@@ -6,12 +6,12 @@
 
 ## 一、代码完成度总览
 
-### 已完成（代码层面）：13/15 任务 = 87%
+### 已完成（代码+SDK）：14/15 任务 = 93%
 
 | 阶段 | 任务 | 状态 | 文件 |
 |------|------|:----:|------|
-| 阶段一 | Task 1.1 快手SDK安装 | ⚠️ 待手动 | 需下载unitypackage |
-| 阶段一 | Task 1.2 TapTap SDK安装 | ⚠️ 待解析 | manifest.json已配置 |
+| 阶段一 | Task 1.1 快手SDK安装 | ✅ 已下载提取 | `Plugins/kwaiGame/KSGame.dll` |
+| 阶段一 | Task 1.2 TapTap SDK安装 | ⚠️ 等Unity解析 | manifest.json已配置scopedRegistries |
 | 阶段一 | Task 1.3 SDKValidator.cs | ✅ | `Managers/SDKValidator.cs` |
 | 阶段二 | Task 2.1 登录重构 | ✅ | PlatformManager.cs L22-31 |
 | 阶段二 | Task 2.2 微信登录 | ✅ | PlatformManager.cs L155-213 |
@@ -102,26 +102,25 @@
 
 ---
 
-## 四、待完成项（需人工操作）
+## 四、待完成项
 
-### 🔴 必须操作（2项）
+### 🔴 必须操作（1项）
 
 | # | 任务 | 操作 | 备注 |
 |---|------|------|------|
-| 1 | **下载快手SDK** | 下载 [com.kwai.mini.game-sdk](https://static.yximgs.com/udata/pkg/KS-GAME/minigame/com.kwai.mini.game-sdk-1.1.0.unitypackage) → 拖入Unity导入 | 否则快手平台代码无法编译 |
-| 2 | **Unity解析TapTap包** | 打开Unity编辑器，等待Package Manager自动从npmjs解析 `com.taptap.tds.*` 和 `com.google.external-dependency-manager` | manifest.json已配好，只需开编辑器 |
+| 1 | **Unity解析TapTap包** | 打开Unity编辑器，等待Package Manager自动从npmjs解析 `com.taptap.tds.*` 和 `com.google.external-dependency-manager` | manifest.json已配好scopedRegistries |
 
 ### 🟡 必须配置（1项）
 
 | # | 任务 | 操作 | 位置 |
 |---|------|------|------|
-| 3 | **替换TAPTAP_CLIENT_ID** | 将 `YOUR_TAPTAP_CLIENT_ID` 改为TapTap开发者后台的Client ID | PlatformManager.cs L33 |
+| 2 | **替换TAPTAP_CLIENT_ID** | 将 `YOUR_TAPTAP_CLIENT_ID` 改为TapTap开发者后台的Client ID | PlatformManager.cs L33 |
 
 ### 🟢 场景搭建（1项）
 
 | # | 任务 | 操作 | 备注 |
 |---|------|------|------|
-| 4 | **DebugPanel场景搭建** | 创建Canvas → 添加DebugPanel脚本 → 拖入Button/Text引用 | 或通过Prefab自动化 |
+| 3 | **DebugPanel场景搭建** | 创建Canvas → 添加DebugPanel脚本 → 拖入Button/Text引用 | 或通过Prefab自动化 |
 
 **DebugPanel需要创建的UI控件：**
 - 1个Panel（root面板）
@@ -175,17 +174,21 @@
 ## 七、总结
 
 ```
-代码完成度：87%（13/15 任务）
+代码完成度：93%（14/15 任务）
 功能覆盖数：28 个公开方法 + 5 属性 + 4 事件
 平台覆盖数：5/7 平台（微信/抖音/快手/TapTap/Native）
 诊断状态：  0 错误 0 警告
 
-剩余工作：  2 项SDK安装 + 1 项配置 + 1 项场景搭建
-         （全部需要人工在Unity编辑器中操作）
+剩余工作：  1 项SDK解析 + 1 项配置 + 1 项场景搭建
+         （TapTap包需Unity解析，其余2项需人工操作）
 ```
 
+**快手SDK已安装文件**：
+- `Assets/Plugins/kwaiGame/KSGame.dll` — 有效 .NET 程序集（KSGame, Version=0.0.0.0）
+- `Assets/Plugins/kwaiGame/link.xml` — KS专用IL2CPP剪裁保护
+- `Assets/Plugins/kwaiGameAndroid/unityplugin-release.aar` — Android原生插件
+
 **立即下一步**：
-1. 下载快手SDK unitypackage
-2. 打开Unity编辑器让TapTap包解析
-3. 替换 TAPTAP_CLIENT_ID
-4. 搭建DebugPanel场景UI
+1. 打开Unity编辑器让TapTap包自动解析
+2. 替换 TAPTAP_CLIENT_ID
+3. 搭建DebugPanel场景UI

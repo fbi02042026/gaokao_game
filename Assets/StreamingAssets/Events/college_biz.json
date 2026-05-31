@@ -1,0 +1,65 @@
+[
+  {
+    "id": "BIZ_001", "name": "第一次案例分析", "stage": "college", "tags": ["经管", "入门"],
+    "triggerCondition": null, "interactionType": "choice",
+    "choiceContent": { "description": "教授布置第一个商业案例分析，你选哪家公司？", "choices": [
+      {"id": "A", "text": "瑞幸咖啡（逆境重生）", "icon": "☕"},
+      {"id": "B", "text": "比亚迪（新能源巨头）", "icon": "🚗"},
+      {"id": "C", "text": "华为（技术驱动）", "icon": "📡"}
+    ]},
+    "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key":"A","value":{"statKeys":["intellect","social"],"statValues":[5,5],"narrative":"瑞幸的翻身战很精彩，营销策略分析到位。"}},
+      {"key":"B","value":{"statKeys":["intellect","health"],"statValues":[8,3],"narrative":"新能源赛道分析深刻，教授给了A+。"}},
+      {"key":"C","value":{"statKeys":["intellect","mental"],"statValues":[8,3],"narrative":"剖析华为管理模式，触类旁通收获满满。"}}
+    ]
+  },
+  {
+    "id": "BIZ_002", "name": "创业路演大赛", "stage": "college", "tags": ["经管", "竞赛"],
+    "triggerCondition": {"minGrade": 2, "minIntellect": 0, "requiredEvent": null}, "interactionType": "merge",
+    "mergeContent": { "description": "48小时创业马拉松！合成商业计划书", "gridRows": 6, "gridCols": 8,
+      "availableItems": ["市场调研", "商业模式", "财务预测", "团队介绍"],
+      "mergeRuleKeys": ["市场调研+商业模式", "市场验证+财务预测", "团队介绍+完整BP"],
+      "mergeRuleValues": ["市场验证", "完整BP", "路演PPT"],
+      "targetItem": "路演PPT", "movesLimit": 20 },
+    "choiceContent": null, "sortContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key":"success","value":{"statKeys":["social","intellect"],"statValues":[15,8],"narrative":"路演PPT拿到投资意向书！创业圈崭露头角。"}},
+      {"key":"partial","value":{"statKeys":["intellect","social"],"statValues":[8,5],"narrative":"BP质量不错，学到了创业方法论。"}},
+      {"key":"fail","value":{"statKeys":["mental"],"statValues":[-8],"narrative":"项目没拿奖，但积累的人脉比奖金更值钱。"}}
+    ]
+  },
+  {
+    "id": "BIZ_003", "name": "投行面试", "stage": "college", "tags": ["经管", "职业"],
+    "triggerCondition": {"minGrade": 3, "minIntellect": 0, "requiredEvent": null}, "interactionType": "sort",
+    "sortContent": { "description": "排出你心仪的金融机构优先级", "items": ["中金公司", "中信证券", "高盛", "红杉资本"], "showProbability": true },
+    "choiceContent": null, "mergeContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key":"optimal","value":{"statKeys":["social","intellect"],"statValues":[10,5],"narrative":"排序符合行业认知，面试官眼前一亮！"}},
+      {"key":"risky","value":{"statKeys":["mental"],"statValues":[-5],"narrative":"面试全挂了...但春招还有机会。"}}
+    ]
+  },
+  {
+    "id": "BIZ_004", "name": "教授咨询", "stage": "college", "tags": ["经管", "社交"],
+    "triggerCondition": null, "interactionType": "dialog",
+    "dialogContent": { "description": "经管学院院长找你喝茶", "npcId": "npc_professor_biz", "lines": [
+      "你最近在看什么商业书？","经管这个专业，理论和实践要两手抓。",
+      "不要只盯着投行咨询，实体经济的商业逻辑更锻炼人。","记住：商业的本质是创造价值，不是赚钱。"
+    ]},
+    "choiceContent": null, "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null,
+    "outcomeList": [
+      {"key":"default","value":{"statKeys":["intellect","mental"],"statValues":[5,5],"narrative":"院长一席话，胜读十年书。"}}
+    ]
+  },
+  {
+    "id": "BIZ_005", "name": "毕业季抉择", "stage": "college", "tags": ["经管", "毕业"],
+    "triggerCondition": {"minGrade": 5, "minIntellect": 0, "requiredEvent": null}, "interactionType": "slider",
+    "sliderContent": { "description": "毕业季时间分配", "categories": [
+      {"name":"考证(CPA/CFA)","icon":"📜"},{"name":"实习","icon":"💼"},{"name":"社交人脉","icon":"🤝"}
+    ], "totalPoints": 10 },
+    "choiceContent": null, "mergeContent": null, "sortContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key":"default","value":{"statKeys":[],"statValues":[],"narrative":"大学最后一年的选择，决定了你职场的起点。"}}
+    ]
+  }
+]
