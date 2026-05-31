@@ -11,6 +11,9 @@ public class TalentEngine : MonoBehaviour
 
     private List<Talent> allTalents;
     private Talent currentTalent;
+    private int pityCounter = 0;
+    private const int PITY_RARE = 4;
+    private const int PITY_EPIC = 8;
 
     void Awake()
     {
@@ -63,26 +66,69 @@ public class TalentEngine : MonoBehaviour
 
         var pool = allTalents.Where(t => t.rarity != "legendary").ToList();
         var result = new List<Talent>();
+        bool hasRareOrBetter = false;
 
         for (int i = 0; i < 3 && pool.Count > 0; i++)
         {
-            var weighted = pool.Select(t => new { Talent = t, Weight = GetRarityWeight(t.rarity) }).ToList();
-            int totalWeight = weighted.Sum(w => w.Weight);
-            int rand = Random.Range(0, totalWeight);
-            int cumulative = 0;
-            foreach (var w in weighted)
+            Talent picked = null;
+
+            if (pityCounter >= PITY_EPIC)
             {
-                cumulative += w.Weight;
-                if (rand < cumulative)
+                var epics = pool.Where(t => t.rarity == "epic").ToList();
+                if (epics.Count > 0)
                 {
-                    result.Add(w.Talent);
-                    pool.Remove(w.Talent);
-                    break;
+                    picked = epics[Random.Range(0, epics.Count)];
+                    Debug.Log($"[TalentEngine] 保底触发! 必出史诗");
                 }
             }
+            else if (pityCounter >= PITY_RARE)
+            {
+                var rares = pool.Where(t => t.rarity == "rare" || t.rarity == "epic").ToList();
+                if (rares.Count > 0)
+                {
+                    picked = rares[Random.Range(0, rares.Count)];
+                    Debug.Log($"[TalentEngine] 保底触发! 必出稀有");
+                }
+            }
+
+            if (picked == null)
+            {
+                var weighted = pool.Select(t => new { Talent = t, Weight = GetRarityWeight(t.rarity) }).ToList();
+                int totalWeight = weighted.Sum(w => w.Weight);
+                if (totalWeight <= 0)
+                {
+                    picked = pool[Random.Range(0, pool.Count)];
+                }
+                else
+                {
+                    int rand = Random.Range(0, totalWeight);
+                    int cumulative = 0;
+                    foreach (var w in weighted)
+                    {
+                        cumulative += w.Weight;
+                        if (rand < cumulative)
+                        {
+                            picked = w.Talent;
+                            break;
+                        }
+                    }
+                    if (picked == null) picked = weighted[^1].Talent;
+                }
+            }
+
+            result.Add(picked);
+            pool.Remove(picked);
+
+            if (picked.rarity == "epic" || picked.rarity == "rare")
+                hasRareOrBetter = true;
         }
 
-        Debug.Log($"[TalentEngine] 抽卡结果: {string.Join(", ", result.Select(t => t.name))}");
+        if (hasRareOrBetter)
+            pityCounter = 0;
+        else
+            pityCounter++;
+
+        Debug.Log($"[TalentEngine] 抽卡结果 保底计数:{pityCounter}: {string.Join(", ", result.Select(t => t.name))}");
         return result;
     }
 
@@ -187,11 +233,179 @@ public class TalentEngine : MonoBehaviour
         return allTalents ?? new List<Talent>();
     }
 
+    public void ResetPityCounter()
+    {
+        pityCounter = 0;
+    }
+
+    public int GetPityCounter()
+    {
+        return pityCounter;
+    }
+
     public List<Talent> GetPlayerTalents(PlayerState state)
     {
         if (state == null || state.unlockedTalents == null || allTalents == null)
             return new List<Talent>();
 
         return allTalents.Where(t => state.unlockedTalents.Contains(t.id)).ToList();
+    }
+
+    public int GetTalentSubjectCompatibility(string talentId, List<string> playerSubjects)
+    {
+        if (playerSubjects == null || playerSubjects.Count == 0) return 0;
+
+        var talent = allTalents.Find(t => t.id == talentId);
+        if (talent?.effects?.major == null) return 0;
+
+        int score = 0;
+        var supportedCategories = talent.effects.major.boost ?? new string[0];
+
+        foreach (var subject in playerSubjects)
+        {
+            switch (subject)
+            {
+                case "物理":
+                    if (supportedCategories.Any(c => c == "工学" || c == "理学"))
+                        score += 15;
+                    break;
+                case "化学":
+                    if (supportedCategories.Any(c => c == "医学" || c == "工学"))
+                        score += 15;
+                    break;
+                case "生物":
+                    if (supportedCategories.Any(c => c == "医学" || c == "农学"))
+                        score += 15;
+                    break;
+                case "历史":
+                    if (supportedCategories.Any(c => c == "历史学" || c == "文学" || c == "哲学"))
+                        score += 15;
+                    break;
+                case "政治":
+                    if (supportedCategories.Any(c => c == "法学" || c == "管理学" || c == "经济学"))
+                        score += 15;
+                    break;
+                case "地理":
+                    if (supportedCategories.Any(c => c == "教育学"))
+                        score += 10;
+                    break;
+            }
+        }
+
+        return Mathf.Clamp(score, 0, 45);
+    }
+
+    public List<Talent> DrawTalentsForPlayer(PlayerState state)
+    {
+        if (allTalents == null || allTalents.Count == 0)
+        {
+            Debug.LogWarning("[TalentEngine] 天赋池为空");
+            return new List<Talent>();
+        }
+
+        var pool = allTalents.Where(t => t.rarity != "legendary").ToList();
+        var result = new List<Talent>();
+        var playerSubjects = state?.selectedSubjects ?? new List<string>();
+
+        bool hasRareOrBetter = false;
+
+        for (int i = 0; i < 3 && pool.Count > 0; i++)
+        {
+            Talent picked = null;
+
+            if (pityCounter >= PITY_EPIC)
+            {
+                var epics = pool.Where(t => t.rarity == "epic").ToList();
+                if (epics.Count > 0)
+                {
+                    picked = epics[Random.Range(0, epics.Count)];
+                    Debug.Log($"[TalentEngine] 保底触发! 必出史诗");
+                }
+            }
+            else if (pityCounter >= PITY_RARE)
+            {
+                var rares = pool.Where(t => t.rarity == "rare" || t.rarity == "epic").ToList();
+                if (rares.Count > 0)
+                {
+                    picked = rares[Random.Range(0, rares.Count)];
+                    Debug.Log($"[TalentEngine] 保底触发! 必出稀有");
+                }
+            }
+
+            if (picked == null)
+            {
+                var weighted = pool.Select(t => new
+                {
+                    Talent = t,
+                    Weight = GetRarityWeight(t.rarity) + GetTalentSubjectCompatibility(t.id, playerSubjects)
+                }).ToList();
+
+                int totalWeight = weighted.Sum(w => w.Weight);
+                if (totalWeight <= 0)
+                {
+                    picked = pool[Random.Range(0, pool.Count)];
+                }
+                else
+                {
+                    int rand = Random.Range(0, totalWeight);
+                    int cumulative = 0;
+                    foreach (var w in weighted)
+                    {
+                        cumulative += w.Weight;
+                        if (rand < cumulative)
+                        {
+                            picked = w.Talent;
+                            break;
+                        }
+                    }
+                    if (picked == null) picked = weighted[^1].Talent;
+                }
+            }
+
+            result.Add(picked);
+            pool.Remove(picked);
+
+            if (picked.rarity == "epic" || picked.rarity == "rare")
+                hasRareOrBetter = true;
+        }
+
+        if (hasRareOrBetter)
+            pityCounter = 0;
+        else
+            pityCounter++;
+
+        Debug.Log($"[TalentEngine] 定向抽卡(选科:{string.Join(",", playerSubjects)}) 保底计数:{pityCounter}: {string.Join(", ", result.Select(t => t.name))}");
+        return result;
+    }
+
+    public string GetSubjectRecommendations(string talentId)
+    {
+        var talent = allTalents.Find(t => t.id == talentId);
+        if (talent?.effects?.major?.boost == null) return "";
+
+        var categories = talent.effects.major.boost;
+        var subjects = new List<string>();
+
+        foreach (var cat in categories)
+        {
+            switch (cat)
+            {
+                case "工学": subjects.Add("物理"); subjects.Add("化学"); break;
+                case "理学": subjects.Add("物理"); break;
+                case "医学": subjects.Add("化学"); subjects.Add("生物"); break;
+                case "农学": subjects.Add("生物"); break;
+                case "哲学": subjects.Add("历史"); subjects.Add("政治"); break;
+                case "法学": subjects.Add("政治"); break;
+                case "经济学": subjects.Add("政治"); break;
+                case "管理学": subjects.Add("政治"); break;
+                case "文学": subjects.Add("历史"); break;
+                case "历史学": subjects.Add("历史"); break;
+                case "教育学": subjects.Add("历史"); subjects.Add("物理"); break;
+                case "艺术学": subjects.Add("历史"); break;
+            }
+        }
+
+        var unique = subjects.Distinct().ToList();
+        return unique.Count > 0 ? string.Join("、", unique) : "";
     }
 }

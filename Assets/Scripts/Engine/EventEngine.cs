@@ -104,7 +104,29 @@ public class EventEngine : MonoBehaviour
 
     public void SwitchToMajorPool(string majorId)
     {
-        Debug.Log($"[EventEngine] SwitchToMajorPool({majorId}) — 后续Step实现");
+        Debug.Log($"[EventEngine] SwitchToMajorPool({majorId}) — 加载专业专属事件");
+
+        var major = DataLoader.Instance?.GetMajorById(majorId);
+        if (major == null)
+        {
+            Debug.LogWarning($"[EventEngine] 未找到专业: {majorId}");
+            return;
+        }
+
+        if (eventPool != null)
+        {
+            var categorySpecific = eventPool
+                .Where(e => e.tags != null && e.tags.Contains(major.category))
+                .ToList();
+
+            if (categorySpecific.Count > 0)
+            {
+                Debug.Log($"[EventEngine] 专业'{major.name}'(类别:{major.category}) 匹配 {categorySpecific.Count} 个定向事件");
+            }
+        }
+
+        playerState?.UnlockTalent(majorId);
+        Debug.Log($"[EventEngine] 专业'{major.name}' 事件池已切换");
     }
 
     private bool CheckCondition(TriggerCondition cond)

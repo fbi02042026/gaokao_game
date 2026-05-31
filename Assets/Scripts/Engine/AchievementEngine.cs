@@ -138,6 +138,73 @@ public class AchievementEngine : MonoBehaviour
         }
     }
 
+    public void CheckSubjectSelection(List<string> selectedSubjects)
+    {
+        if (selectedSubjects == null || selectedSubjects.Count == 0) return;
+
+        foreach (var ach in allAchievements)
+        {
+            if (unlockedSet.Contains(ach.id)) continue;
+
+            if (ach.id == "ACH_MAJOR_02" && selectedSubjects.Contains("物理") && selectedSubjects.Contains("化学") && selectedSubjects.Contains("生物"))
+                UnlockAchievement(ach);
+            if (ach.id == "ACH_MAJOR_03" && selectedSubjects.Contains("历史") && selectedSubjects.Contains("政治") && selectedSubjects.Contains("地理"))
+                UnlockAchievement(ach);
+            if (ach.id == "ACH_MAJOR_01" && selectedSubjects.Contains("物理") && selectedSubjects.Contains("政治"))
+                UnlockAchievement(ach);
+        }
+    }
+
+    public void CheckCollegeAdmission(string collegeId, string collegeLevel)
+    {
+        foreach (var ach in allAchievements)
+        {
+            if (unlockedSet.Contains(ach.id)) continue;
+
+            if (ach.id == "ACH_MAJOR_04" && (collegeId == "U01" || collegeId == "U02"))
+                UnlockAchievement(ach);
+            if (ach.id == "ACH_MAJOR_05" && collegeLevel == "985")
+                UnlockAchievement(ach);
+            if (ach.id == "ACH_MAJOR_06" && (collegeLevel == "211" || collegeLevel == "985"))
+                UnlockAchievement(ach);
+        }
+    }
+
+    public void CheckMajorChoice(string majorId)
+    {
+        foreach (var ach in allAchievements)
+        {
+            if (unlockedSet.Contains(ach.id)) continue;
+            if (ach.id == "ACH_MAJOR_09" && majorId == "M01") UnlockAchievement(ach);
+            if (ach.id == "ACH_MAJOR_10" && majorId == "M03") UnlockAchievement(ach);
+        }
+    }
+
+    public void CheckTalentMajorMatch(string talentId, string majorCategory)
+    {
+        if (string.IsNullOrEmpty(talentId)) return;
+
+        var talentEngine = TalentEngine.Instance;
+        if (talentEngine == null) return;
+
+        foreach (var ach in allAchievements)
+        {
+            if (unlockedSet.Contains(ach.id)) continue;
+
+            if (ach.id == "ACH_MAJOR_07")
+            {
+                int compatibility = talentEngine.GetMajorMatchModifier(talentId, majorCategory);
+                if (compatibility >= 20) UnlockAchievement(ach);
+            }
+
+            if (ach.id == "ACH_MAJOR_08")
+            {
+                int compatibility = talentEngine.GetMajorMatchModifier(talentId, majorCategory);
+                if (compatibility <= -25) UnlockAchievement(ach);
+            }
+        }
+    }
+
     void UnlockAchievement(Achievement ach)
     {
         if (unlockedSet.Contains(ach.id)) return;

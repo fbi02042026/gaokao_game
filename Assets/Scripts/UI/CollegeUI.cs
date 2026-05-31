@@ -75,6 +75,12 @@ public class CollegeUI : MonoBehaviour
         if (collegeNameText != null) collegeNameText.text = college?.name ?? $"院校: {currentCollegeId}";
         if (majorText != null) majorText.text = major?.name ?? $"专业: {currentMajorId}";
 
+        var talentId = TalentEngine.Instance?.GetCurrentTalent()?.id ?? "";
+        var achEngine = FindObjectOfType<AchievementEngine>();
+        achEngine?.CheckMajorChoice(currentMajorId);
+        achEngine?.CheckTalentMajorMatch(talentId, major?.category);
+        achEngine?.CheckCollegeAdmission(currentCollegeId, college?.level);
+
         InitializeAttributeLabels();
         TransitionToStressSystem();
         RefreshTopBar();

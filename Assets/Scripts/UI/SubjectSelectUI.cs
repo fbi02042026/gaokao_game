@@ -206,7 +206,7 @@ public class SubjectSelectUI : MonoBehaviour
 
         foreach (var talent in talents)
         {
-            string rec = GetTalentSubjectRecommendation(talent.id);
+            string rec = talentEngine.GetSubjectRecommendations(talent.id);
             if (!string.IsNullOrEmpty(rec))
                 hints.Add($"- {talent.name}: 推荐 {rec}");
         }
@@ -214,18 +214,6 @@ public class SubjectSelectUI : MonoBehaviour
         talentHintText.text = hints.Count > 0
             ? "建议参考：\n" + string.Join("\n", hints)
             : "";
-    }
-
-    string GetTalentSubjectRecommendation(string talentId)
-    {
-        return talentId switch
-        {
-            "T01" or "T02" or "T03" => "物理 + 化学",
-            "T04" or "T05" => "历史 + 政治",
-            "T06" or "T07" => "物理 + 生物",
-            "T08" => "历史 + 地理",
-            _ => ""
-        };
     }
 
     void OnConfirm()
@@ -257,6 +245,10 @@ public class SubjectSelectUI : MonoBehaviour
 
         GameStateManager.Instance?.QuickSave();
         Debug.Log($"[SubjectSelectUI] 选科完成: {string.Join(", ", playerState.selectedSubjects)}");
+
+        var achEngine = FindObjectOfType<AchievementEngine>();
+        achEngine?.CheckSubjectSelection(playerState.selectedSubjects);
+
         OnSelectComplete();
     }
 

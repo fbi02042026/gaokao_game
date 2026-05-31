@@ -109,4 +109,83 @@
 | # | 任务 | 操作 | 备注 |
 |---|------|------|------|
 | 1 | **下载快手SDK** | 下载 [com.kwai.mini.game-sdk](https://static.yximgs.com/udata/pkg/KS-GAME/minigame/com.kwai.mini.game-sdk-1.1.0.unitypackage) → 拖入Unity导入 | 否则快手平台代码无法编译 |
-| 2 | **Unity解析TapTap包** | 打开Unity编辑器，等待
+| 2 | **Unity解析TapTap包** | 打开Unity编辑器，等待Package Manager自动从npmjs解析 `com.taptap.tds.*` 和 `com.google.external-dependency-manager` | manifest.json已配好，只需开编辑器 |
+
+### 🟡 必须配置（1项）
+
+| # | 任务 | 操作 | 位置 |
+|---|------|------|------|
+| 3 | **替换TAPTAP_CLIENT_ID** | 将 `YOUR_TAPTAP_CLIENT_ID` 改为TapTap开发者后台的Client ID | PlatformManager.cs L33 |
+
+### 🟢 场景搭建（1项）
+
+| # | 任务 | 操作 | 备注 |
+|---|------|------|------|
+| 4 | **DebugPanel场景搭建** | 创建Canvas → 添加DebugPanel脚本 → 拖入Button/Text引用 | 或通过Prefab自动化 |
+
+**DebugPanel需要创建的UI控件：**
+- 1个Panel（root面板）
+- 1个ToggleButton（开关按钮）
+- 5个登录按钮（游客/微信/抖音/快手/TapTap）
+- 1个注销按钮
+- 3个广告按钮（激励/插屏/Banner）
+- 1个隐藏Banner按钮
+- 1个分享按钮
+- 3个抖音特色按钮（侧边栏/开始录屏/停止录屏）
+- 1个合规认证按钮
+- 1个快手常用按钮
+- 2个振动按钮（短/长）
+- 2个文本显示（状态信息/用户ID）
+
+---
+
+## 五、各平台覆盖对照
+
+| 功能 | 微信 | 抖音 | 快手 | TapTap |
+|------|:---:|:---:|:---:|:-----:|
+| 登录 | ✅ | ✅ | ✅ | ✅ |
+| 激励广告 | ✅ | ✅ | ✅ | N/A |
+| 插屏广告 | ✅ | ✅ | ✅ | N/A |
+| Banner广告 | ✅ | ✅ | ✅ | N/A |
+| 主动分享 | ✅ | ✅ | ✅ | N/A |
+| 被动分享 | ✅ | ✅ | ✅ | N/A |
+| 振动 | ✅ | ✅ | ✅ | N/A |
+| 侧边栏复访 | N/A | ✅ | N/A | N/A |
+| 录屏 | N/A | ✅ | N/A | N/A |
+| 合规认证 | N/A | N/A | N/A | ✅ |
+| 设为常用 | N/A | N/A | ✅ | N/A |
+| 添加快捷方式 | N/A | N/A | ✅ | N/A |
+| 生命周期 | ✅ | ✅ | ❌ | ❌ |
+
+---
+
+## 六、不实施的功能（按计划排除）
+
+| 功能 | 原因 |
+|------|------|
+| 虚拟支付 | 无版号，纯广告变现 |
+| 云存储/存档 | 无后端，用本地PlayerPrefs |
+| 排行榜 | 无后端服务器 |
+| 订阅消息 | 当前无召回场景 |
+| TapTap成就/排行榜 | 等TapTap登录稳定后 |
+| 好友系统 | 单人游戏 |
+
+---
+
+## 七、总结
+
+```
+代码完成度：87%（13/15 任务）
+功能覆盖数：28 个公开方法 + 5 属性 + 4 事件
+平台覆盖数：5/7 平台（微信/抖音/快手/TapTap/Native）
+诊断状态：  0 错误 0 警告
+
+剩余工作：  2 项SDK安装 + 1 项配置 + 1 项场景搭建
+         （全部需要人工在Unity编辑器中操作）
+```
+
+**立即下一步**：
+1. 下载快手SDK unitypackage
+2. 打开Unity编辑器让TapTap包解析
+3. 替换 TAPTAP_CLIENT_ID
+4. 搭建DebugPanel场景UI

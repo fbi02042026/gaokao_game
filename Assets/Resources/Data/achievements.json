@@ -59,5 +59,15 @@
   {"id": "ACH_SENIOR_02", "name": "广纳贤言", "description": "观看10条学长学姐评价", "icon": "senior_02", "category": "学长成就", "totalRequired": 10},
   {"id": "ACH_SENIOR_03", "name": "信息收集者", "description": "观看5个专业的评价", "icon": "senior_03", "category": "学长成就", "totalRequired": 5},
   {"id": "ACH_SENIOR_04", "name": "全面调研", "description": "观看10个专业的评价", "icon": "senior_04", "category": "学长成就", "totalRequired": 10},
-  {"id": "ACH_SENIOR_05", "name": "学霸粉丝", "description": "观看学霸型学长评价5条", "icon": "senior_05", "category": "学长成就", "totalRequired": 5}
+  {"id": "ACH_SENIOR_05", "name": "学霸粉丝", "description": "观看学霸型学长评价5条", "icon": "senior_05", "category": "学长成就", "totalRequired": 5},
+  {"id": "ACH_MAJOR_01", "name": "文理双修", "description": "选科选择物理+政治", "icon": "major_01", "category": "专业成就", "totalRequired": 1},
+  {"id": "ACH_MAJOR_02", "name": "理科全才", "description": "选科选择物化生", "icon": "major_02", "category": "专业成就", "totalRequired": 1},
+  {"id": "ACH_MAJOR_03", "name": "文科全才", "description": "选科选择历政地", "icon": "major_03", "category": "专业成就", "totalRequired": 1},
+  {"id": "ACH_MAJOR_04", "name": "清北录取", "description": "被清华大学或北京大学录取", "icon": "major_04", "category": "专业成就", "totalRequired": 1},
+  {"id": "ACH_MAJOR_05", "name": "985名校", "description": "被985工程院校录取", "icon": "major_05", "category": "专业成就", "totalRequired": 1},
+  {"id": "ACH_MAJOR_06", "name": "211院校", "description": "被211工程院校录取", "icon": "major_06", "category": "专业成就", "totalRequired": 1},
+  {"id": "ACH_MAJOR_07", "name": "天赋匹配度100%", "description": "天赋与专业完美匹配(匹配度≥40)", "icon": "major_07", "category": "专业成就", "totalRequired": 1},
+  {"id": "ACH_MAJOR_08", "name": "逆流而上", "description": "选择天赋警告的专业", "icon": "major_08", "category": "专业成就", "totalRequired": 1},
+  {"id": "ACH_MAJOR_09", "name": "计算机人", "description": "被计算机专业录取", "icon": "major_09", "category": "专业成就", "totalRequired": 1},
+  {"id": "ACH_MAJOR_10", "name": "医学精英", "description": "被临床医学专业录取", "icon": "major_10", "category": "专业成就", "totalRequired": 1}
 ]
