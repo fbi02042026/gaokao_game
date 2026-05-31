@@ -43,6 +43,7 @@ public class ZhiyuanUI : MonoBehaviour
     private string currentTalentId;
     private int playerScore;
     private string playerProvince;
+    private List<string> playerSubjects;
 
     void Start()
     {
@@ -50,6 +51,7 @@ public class ZhiyuanUI : MonoBehaviour
         playerScore = state?.gaokaoScore ?? 500;
         playerProvince = state?.province ?? "北京";
         currentTalentId = TalentEngine.Instance?.GetCurrentTalent()?.id ?? "";
+        playerSubjects = state?.selectedSubjects ?? new List<string>();
 
         if (scoreText != null) scoreText.text = $"你的分数: {playerScore}";
         if (provinceText != null) provinceText.text = $"{playerProvince}省";
@@ -122,6 +124,29 @@ public class ZhiyuanUI : MonoBehaviour
                 else
                     talentTag.text = "";
             }
+        }
+
+        var subjectTag = cardGo.transform.Find("SubjectTag")?.GetComponent<Text>();
+        if (subjectTag != null && playerSubjects.Count > 0)
+        {
+            int accessibleCount = 0;
+            if (college.majors != null)
+            {
+                var allMajors = DataLoader.Instance?.GetAllMajors();
+                foreach (var majorId in college.majors)
+                {
+                    var major = allMajors?.Find(m => m.id == majorId);
+                    if (major != null && SubjectSelectUI.CanApplyToMajor(playerSubjects, major))
+                        accessibleCount++;
+                }
+            }
+
+            if (accessibleCount == 0 && college.majors != null && college.majors.Length > 0)
+                subjectTag.text = "⚠️ 选科受限";
+            else if (accessibleCount < (college.majors?.Length ?? 0) && college.majors != null && college.majors.Length > 0)
+                subjectTag.text = $"📋 部分可报({accessibleCount}/{college.majors.Length})";
+            else
+                subjectTag.text = "";
         }
 
         var seniorBtn = cardGo.transform.Find("SeniorBtn")?.GetComponent<Button>();

@@ -174,7 +174,7 @@ public class LifeEngine : MonoBehaviour
                 Debug.Log($"[LifeEngine] 职级提升: {player.careerLevel}");
             }
 
-            player.totalScore += progress * Random.Range(0.5f, 1.5f);
+            player.totalScore += progress * UnityEngine.Random.Range(0.5f, 1.5f);
         }
 
         private void EndLifeSimulation(PlayerState player)

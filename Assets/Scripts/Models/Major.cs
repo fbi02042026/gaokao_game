@@ -9,6 +9,7 @@ public class Major
     public string description;
     public string[] career;
     public string salary;
+    public string[] requiredSubjects;
     public NpcReview[] npcReviews;
 }
 

@@ -186,4 +186,12 @@ public class TalentEngine : MonoBehaviour
     {
         return allTalents ?? new List<Talent>();
     }
+
+    public List<Talent> GetPlayerTalents(PlayerState state)
+    {
+        if (state == null || state.unlockedTalents == null || allTalents == null)
+            return new List<Talent>();
+
+        return allTalents.Where(t => state.unlockedTalents.Contains(t.id)).ToList();
+    }
 }

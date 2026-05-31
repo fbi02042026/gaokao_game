@@ -175,6 +175,11 @@ public class DataLoader : MonoBehaviour
         return majors;
     }
 
+    public List<Major> GetAllMajors()
+    {
+        return majors ?? new List<Major>();
+    }
+
     public List<Province> GetProvinces()
     {
         return provinces ?? new List<Province>();

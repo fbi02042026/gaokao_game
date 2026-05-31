@@ -35,6 +35,7 @@ public class PlayerState
     public bool hasPastLifeMemory = false;
     public Dictionary<string, int> subjectScores = new Dictionary<string, int>();
     public List<string> unlockedTalents = new List<string>();
+    public List<string> selectedSubjects = new List<string>();
 
     [System.Serializable]
     public class StringPair
