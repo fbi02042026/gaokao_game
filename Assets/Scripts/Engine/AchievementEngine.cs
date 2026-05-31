@@ -119,6 +119,7 @@ public class AchievementEngine : MonoBehaviour
             if (ach.id == "ACH_LIFE_02" && choice == "就业") UnlockAchievement(ach);
             if (ach.id == "ACH_LIFE_03" && choice == "出国") UnlockAchievement(ach);
             if (ach.id == "ACH_LIFE_04" && choice == "创业") UnlockAchievement(ach);
+            if (ach.id == "ACH_LIFE_16" && choice == "考公") UnlockAchievement(ach);
         }
     }
 

@@ -40,6 +40,7 @@ public class CollegeUI : MonoBehaviour
     [SerializeField] private Button jiuyeBtn;
     [SerializeField] private Button chuguoBtn;
     [SerializeField] private Button chuangyeBtn;
+    [SerializeField] private Button kaogongBtn;
 
     [Header("结果")]
     [SerializeField] private GameObject resultPanel;
@@ -86,6 +87,7 @@ public class CollegeUI : MonoBehaviour
         jiuyeBtn?.onClick.AddListener(() => OnGraduation("就业"));
         chuguoBtn?.onClick.AddListener(() => OnGraduation("出国"));
         chuangyeBtn?.onClick.AddListener(() => OnGraduation("创业"));
+        kaogongBtn?.onClick.AddListener(() => OnGraduation("考公"));
 
         StartCoroutine(LoadCollegeEvents());
     }
@@ -288,6 +290,10 @@ public class CollegeUI : MonoBehaviour
             case "创业":
                 changes["social"] = 15;
                 changes["health"] = -5;
+                break;
+            case "考公":
+                changes["mental"] = 10;
+                changes["social"] = 5;
                 break;
         }
         playerState.ApplyChanges(changes);

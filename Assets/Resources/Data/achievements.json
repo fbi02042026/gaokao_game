@@ -44,6 +44,7 @@
   {"id": "ACH_LIFE_13", "name": "月入过万", "description": "月收入达到10000", "icon": "life_13", "category": "人生成就", "totalRequired": 1},
   {"id": "ACH_LIFE_14", "name": "高薪人士", "description": "月收入达到20000", "icon": "life_14", "category": "人生成就", "totalRequired": 1},
   {"id": "ACH_LIFE_15", "name": "四平八稳", "description": "四维属性全部达到60", "icon": "life_15", "category": "人生成就", "totalRequired": 4},
+  {"id": "ACH_LIFE_16", "name": "体制内精英", "description": "毕业选择考公", "icon": "life_16", "category": "人生成就", "totalRequired": 1},
   {"id": "ACH_COLLECT_01", "name": "多周目玩家", "description": "完成2周目游戏", "icon": "collect_01", "category": "收集成就", "totalRequired": 2},
   {"id": "ACH_COLLECT_02", "name": "老玩家", "description": "完成5周目游戏", "icon": "collect_02", "category": "收集成就", "totalRequired": 5},
   {"id": "ACH_COLLECT_03", "name": "骨灰级玩家", "description": "完成10周目游戏", "icon": "collect_03", "category": "收集成就", "totalRequired": 10},

@@ -94,6 +94,7 @@ public class LifeUI : MonoBehaviour
             "就业" => major?.career?[0] ?? "职场新人",
             "出国" => "海外留学生",
             "创业" => "初创公司创始人",
+            "考公" => "基层公务员",
             _ => "职场新人"
         };
 
@@ -103,6 +104,7 @@ public class LifeUI : MonoBehaviour
             "就业" => 8000,
             "出国" => 5000,
             "创业" => 2000,
+            "考公" => 5000,
             _ => 6000
         };
 
@@ -145,6 +147,26 @@ public class LifeUI : MonoBehaviour
                 new LifeChoice("继续读博深造", "你留在学术圈，成了年轻学者", 0, "intellect", 10, "social", -3),
                 new LifeChoice("进大厂做研究员", "年薪可观，用上了所有所学", 15000, "intellect", 3, "mental", -3),
                 new LifeChoice("考公务员求稳定", "工作稳定，但有点浪费专业", 5000, "health", 5, "mental", 5)
+            ));
+        }
+        else if (playerState.graduationChoice == "考公")
+        {
+            lifeEvents.Add(new LifeEventData(22, "公务员上岸！你被分配到了基层岗位",
+                new LifeChoice("扎根基层服务群众", "虽然辛苦但很有成就感", 4000, "mental", 8, "social", 3),
+                new LifeChoice("利用业余时间备考遴选", "为以后的发展打基础", 4000, "intellect", 8, "health", -3),
+                new LifeChoice("躺平求稳享受生活", "工作轻松，下班后的生活很丰富", 4000, "health", 5, "social", 5)
+            ));
+
+            lifeEvents.Add(new LifeEventData(24, "单位内部有竞聘副科的机会",
+                new LifeChoice("全力准备竞聘", "成功了！职级提升", 6000, "social", 5, "mental", -3),
+                new LifeChoice("踏实做好分内事", "稳扎稳打，口碑很好", 5000, "mental", 5, "health", 3),
+                new LifeChoice("考虑辞职去企业", "体制内一眼望到头有点不甘心", 10000, "intellect", 5, "social", -8)
+            ));
+
+            lifeEvents.Add(new LifeEventData(27, "工作五年了，你开始思考人生意义",
+                new LifeChoice("继续在体制内深耕", "稳步晋升，生活安稳", 8000, "mental", 8, "social", 3),
+                new LifeChoice("发展副业增加收入", "开个网店/做自媒体", 12000, "social", 8, "health", -5),
+                new LifeChoice("申请调动到大城市", "换个环境，机会更多", 9000, "intellect", 5, "social", 5)
             ));
         }
         else if (playerState.graduationChoice == "就业")

@@ -315,7 +315,9 @@ public class ResultUI : MonoBehaviour
             {
                 "考研" => "scholar",
                 "就业" => "business",
+                "出国" => "freedom",
                 "创业" => "freedom",
+                "考公" => "official",
                 _ => "freedom"
             },
             "good" => playerState.graduationChoice switch
@@ -324,6 +326,7 @@ public class ResultUI : MonoBehaviour
                 "就业" => "programmer",
                 "出国" => "artist",
                 "创业" => "business",
+                "考公" => "civil_servant",
                 _ => "civil_servant"
             },
             "bittersweet" => "hardship",
