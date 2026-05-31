@@ -1,0 +1,130 @@
+[
+  {
+    "id": "GK_001", "name": "语文考前十分钟", "stage": "gaokao", "tags": ["高考", "心态"],
+    "triggerCondition": null, "interactionType": "choice",
+    "choiceContent": { "description": "语文开考前十分钟，你在做什么？", "choices": [
+      {"id": "A", "text": "继续看笔记，生怕忘掉", "icon": "📖"},
+      {"id": "B", "text": "闭眼深呼吸，调整心态", "icon": "🧘"},
+      {"id": "C", "text": "和同学聊两句缓解紧张", "icon": "💬"}
+    ]},
+    "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "A", "value": {"statKeys": ["mental"], "statValues": [-5], "unlockEvents": null, "narrative": "越看越慌，脑子里一团浆糊..."}},
+      {"key": "B", "value": {"statKeys": ["mental", "intellect"], "statValues": [5, 2], "unlockEvents": null, "narrative": "心如止水，专注力拉满！"}},
+      {"key": "C", "value": {"statKeys": ["social", "mental"], "statValues": [3, 3], "unlockEvents": null, "narrative": "聊完反而放松了不少，轻装上阵。"}}
+    ]
+  },
+  {
+    "id": "GK_002", "name": "作文题抉择", "stage": "gaokao", "tags": ["高考", "语文", "选择"],
+    "triggerCondition": null, "interactionType": "choice",
+    "choiceContent": { "description": "作文题出来了，你选择哪个立意？", "choices": [
+      {"id": "A", "text": "保守立意，中规中矩", "icon": "📋"},
+      {"id": "B", "text": "剑走偏锋，写独特观点", "icon": "⚡"},
+      {"id": "C", "text": "结合时事，写家国情怀", "icon": "🏠"}
+    ]},
+    "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "A", "value": {"statKeys": ["intellect"], "statValues": [3], "unlockEvents": null, "narrative": "稳妥发挥，分数不会太差。"}},
+      {"key": "B", "value": {"statKeys": ["intellect", "mental"], "statValues": [8, -8], "unlockEvents": null, "narrative": "冒险成功，作文拿了高分！但风险也大。"}},
+      {"key": "C", "value": {"statKeys": ["intellect", "social"], "statValues": [5, 3], "unlockEvents": null, "narrative": "立意深远，语文成绩超出预期！"}}
+    ]
+  },
+  {
+    "id": "GK_003", "name": "数学最后大题", "stage": "gaokao", "tags": ["高考", "数学", "限时"],
+    "triggerCondition": null, "interactionType": "timing",
+    "timingContent": { "description": "最后一道大题只剩3分钟！快速求解", "duration": 3, "targetCount": 3 },
+    "choiceContent": null, "mergeContent": null, "sortContent": null, "sliderContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "success", "value": {"statKeys": ["intellect"], "statValues": [15], "unlockEvents": null, "narrative": "三分钟内搞定！数学140+稳了！"}},
+      {"key": "fail", "value": {"statKeys": ["intellect", "mental"], "statValues": [3, -10], "unlockEvents": null, "narrative": "来不及了...但基础分也没丢。"}}
+    ]
+  },
+  {
+    "id": "GK_004", "name": "英语听力专注", "stage": "gaokao", "tags": ["高考", "英语"],
+    "triggerCondition": null, "interactionType": "sort",
+    "sortContent": { "description": "按听到的内容顺序排列答案", "items": ["第1题", "第3题", "第5题", "第7题"], "showProbability": true },
+    "choiceContent": null, "mergeContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "optimal", "value": {"statKeys": ["intellect"], "statValues": [8], "unlockEvents": null, "narrative": "听力全对！英语140+！"}},
+      {"key": "risky", "value": {"statKeys": ["intellect", "mental"], "statValues": [3, -5], "unlockEvents": null, "narrative": "听漏了两题，但整体还行。"}}
+    ]
+  },
+  {
+    "id": "GK_005", "name": "理综时间分配", "stage": "gaokao", "tags": ["高考", "理综", "策略"],
+    "triggerCondition": null, "interactionType": "slider",
+    "sliderContent": { "description": "理综三小时，把时间分配给三科", "categories": [
+      {"name": "物理", "icon": "⚛️"}, {"name": "化学", "icon": "🧪"}, {"name": "生物", "icon": "🧬"}
+    ], "totalPoints": 10 },
+    "choiceContent": null, "mergeContent": null, "sortContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "default", "value": {"statKeys": ["intellect"], "statValues": [5], "unlockEvents": null, "narrative": "时间分配合理，理综发挥稳定。"}}
+    ]
+  },
+  {
+    "id": "GK_006", "name": "文综最后五分钟", "stage": "gaokao", "tags": ["高考", "文综"],
+    "triggerCondition": null, "interactionType": "timing",
+    "timingContent": { "description": "最后五分钟！大题还没写完！快速补完", "duration": 5, "targetCount": 5 },
+    "choiceContent": null, "mergeContent": null, "sortContent": null, "sliderContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "success", "value": {"statKeys": ["intellect", "mental"], "statValues": [10, 5], "unlockEvents": null, "narrative": "在最后关头写完了！文综228！"}},
+      {"key": "fail", "value": {"statKeys": ["intellect"], "statValues": [-8], "unlockEvents": null, "narrative": "没写完...大题扣了不少分。"}}
+    ]
+  },
+  {
+    "id": "GK_007", "name": "最后一科结束", "stage": "gaokao", "tags": ["高考", "情感"],
+    "triggerCondition": null, "interactionType": "choice",
+    "choiceContent": { "description": "英语停笔那一刻，你心里在想什么？", "choices": [
+      {"id": "A", "text": "终于解放了！冲向食堂！", "icon": "🏃"},
+      {"id": "B", "text": "好担心数学那道题...", "icon": "😰"},
+      {"id": "C", "text": "不管了，反正都结束了", "icon": "😌"}
+    ]},
+    "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "A", "value": {"statKeys": ["mental", "social"], "statValues": [10, 3], "unlockEvents": null, "narrative": "解放了！先吃顿好的再说！"}},
+      {"key": "B", "value": {"statKeys": ["mental"], "statValues": [-15], "unlockEvents": null, "narrative": "考完就开始焦虑，晚上睡不着..."}},
+      {"key": "C", "value": {"statKeys": ["mental"], "statValues": [5], "unlockEvents": null, "narrative": "心态平和，不管结果如何都接受。"}}
+    ]
+  },
+  {
+    "id": "GK_008", "name": "走出考场", "stage": "gaokao", "tags": ["高考", "情感"],
+    "triggerCondition": null, "interactionType": "dialog",
+    "dialogContent": { "description": "考场外的人群中，你看到了...", "npcId": "npc_teacher", "lines": [
+      "考得怎么样？", "别想了，答案已经不重要了。",
+      "你已经很努力了，不管结果如何爸妈都为你骄傲。", "先回家休息吧，这三年真的辛苦了。"
+    ]},
+    "choiceContent": null, "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null,
+    "outcomeList": [
+      {"key": "default", "value": {"statKeys": ["mental"], "statValues": [8], "unlockEvents": null, "narrative": "听到这句话，三年的辛苦都值了。"}}
+    ]
+  },
+  {
+    "id": "GK_009", "name": "估分抉择", "stage": "gaokao", "tags": ["高考", "估分"],
+    "triggerCondition": null, "interactionType": "choice",
+    "choiceContent": { "description": "估分出来了，和平时差不多，你会怎么做？", "choices": [
+      {"id": "A", "text": "保守估分，稳字当头", "icon": "🛡️"},
+      {"id": "B", "text": "大胆估分，冲一冲好学校", "icon": "🚀"},
+      {"id": "C", "text": "等出分再说，先好好玩", "icon": "🎮"}
+    ]},
+    "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "A", "value": {"statKeys": ["mental"], "statValues": [5], "unlockEvents": null, "narrative": "保守策略，心里有底不慌。"}},
+      {"key": "B", "value": {"statKeys": ["mental", "intellect"], "statValues": [-5, 5], "unlockEvents": null, "narrative": "搏一搏，说不定就上清北了呢！"}},
+      {"key": "C", "value": {"statKeys": ["mental", "health"], "statValues": [10, 5], "unlockEvents": null, "narrative": "难得的放松，先玩个够！"}}
+    ]
+  },
+  {
+    "id": "GK_010", "name": "复读 or 走", "stage": "gaokao", "tags": ["高考", "抉择"],
+    "triggerCondition": {"minGrade": 0, "minIntellect": 0, "requiredEvent": "GK_007"}, "interactionType": "choice",
+    "choiceContent": { "description": "成绩不理想，你会选择？", "choices": [
+      {"id": "A", "text": "复读，来年再战", "icon": "📚"},
+      {"id": "B", "text": "走，能走就走", "icon": "🚶"},
+      {"id": "C", "text": "出国试试", "icon": "✈️"}
+    ]},
+    "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "A", "value": {"statKeys": ["mental", "intellect"], "statValues": [-20, 10], "unlockEvents": null, "narrative": "再来一年，压力巨大但也许值得。"}},
+      {"key": "B", "value": {"statKeys": ["mental"], "statValues": [5], "unlockEvents": null, "narrative": "向前看，大学里依然可以努力。"}},
+      {"key": "C", "value": {"statKeys": ["social"], "statValues": [5], "unlockEvents": null, "narrative": "换个赛道，也许风景更好。"}}
+    ]
+  }
+]

@@ -1,46 +1,52 @@
 [
-  {
-    "id": "M01",
-    "name": "计算机科学与技术",
-    "category": "工学",
-    "description": "研究计算机系统的设计与开发",
-    "career": ["软件开发","算法工程师","产品经理"],
-    "salary": "8k-40k",
-    "npcReviews": [
-      {"npc":"周学长","text":"计算机不是只会敲代码，更是一种思维方式"}
-    ]
-  },
-  {
-    "id": "M02",
-    "name": "哲学",
-    "category": "哲学",
-    "description": "研究世界基本问题",
-    "career": ["教育","研究","公务员"],
-    "salary": "6k-15k",
-    "npcReviews": [
-      {"npc":"小禾","text":"哲学帮你建立独特的世界观，但就业考验个人能力"}
-    ]
-  },
-  {
-    "id": "M03",
-    "name": "临床医学",
-    "category": "医学",
-    "description": "培养临床医生",
-    "career": ["住院医师","主治医师","科室主任"],
-    "salary": "6k-30k",
-    "npcReviews": [
-      {"npc":"陈师兄","text":"学医最重要的是能熬，规培3年真的很苦"}
-    ]
-  },
-  {
-    "id": "M04",
-    "name": "经济学",
-    "category": "经济学",
-    "description": "研究资源配置与经济规律",
-    "career": ["金融分析师","投资经理","经济顾问"],
-    "salary": "8k-50k",
-    "npcReviews": [
-      {"npc":"林学姐","text":"经济学的思维方式会改变你看世界的方式"}
-    ]
-  }
+  {"id": "M01", "name": "计算机科学与技术", "category": "工学", "description": "研究计算机系统的设计与开发", "career": ["软件开发", "算法工程师", "产品经理"], "salary": "8k-40k", "npcReviews": [{"npc": "周学长", "text": "计算机不是只会敲代码，更是一种思维方式"}]},
+  {"id": "M02", "name": "哲学", "category": "哲学", "description": "研究世界基本问题", "career": ["教育", "研究", "公务员"], "salary": "6k-15k", "npcReviews": [{"npc": "小禾", "text": "哲学帮你建立独特的世界观，但就业考验个人能力"}]},
+  {"id": "M03", "name": "临床医学", "category": "医学", "description": "培养临床医生", "career": ["住院医师", "主治医师", "科室主任"], "salary": "6k-30k", "npcReviews": [{"npc": "陈师兄", "text": "学医最重要的是能熬，规培3年真的很苦"}]},
+  {"id": "M04", "name": "经济学", "category": "经济学", "description": "研究资源配置与经济规律", "career": ["金融分析师", "投资经理", "经济顾问"], "salary": "8k-50k", "npcReviews": [{"npc": "林学姐", "text": "经济学的思维方式会改变你看世界的方式"}]},
+  {"id": "M05", "name": "人工智能", "category": "工学", "description": "研究机器智能与深度学习", "career": ["AI工程师", "算法研究员", "数据科学家"], "salary": "15k-80k", "npcReviews": [{"npc": "张博士", "text": "AI是风口，但数学基础不过关会很难"}]},
+  {"id": "M06", "name": "法学", "category": "法学", "description": "研究法律理论与实务", "career": ["律师", "法官", "检察官", "法务"], "salary": "6k-40k", "npcReviews": [{"npc": "李律师", "text": "法考是最大的门槛，过了就一片光明"}]},
+  {"id": "M07", "name": "金融学", "category": "经济学", "description": "研究货币、资本与金融市场", "career": ["银行", "证券", "基金", "投行"], "salary": "8k-60k", "npcReviews": [{"npc": "王经理", "text": "金融圈看重学校牌子，清北复交是标配"}]},
+  {"id": "M08", "name": "会计学", "category": "管理学", "description": "研究财务管理与审计", "career": ["会计师", "审计师", "财务总监", "CFO"], "salary": "5k-30k", "npcReviews": [{"npc": "赵学姐", "text": "CPA是会计人的分水岭，越早考越好"}]},
+  {"id": "M09", "name": "汉语言文学", "category": "文学", "description": "研究汉语与文学作品", "career": ["教师", "编辑", "记者", "公务员"], "salary": "5k-20k", "npcReviews": [{"npc": "何学姐", "text": "考公优势巨大，汉语言是万金油专业"}]},
+  {"id": "M10", "name": "数学与应用数学", "category": "理学", "description": "研究数学理论与应用", "career": ["教师", "量化分析师", "数据科学家", "精算师"], "salary": "8k-50k", "npcReviews": [{"npc": "钱老师", "text": "数学是基础学科，转什么方向都可以"}]},
+  {"id": "M11", "name": "物理学", "category": "理学", "description": "研究物质运动规律", "career": ["研究员", "教师", "工程师", "技术研发"], "salary": "6k-35k", "npcReviews": [{"npc": "孙学长", "text": "纯物理就业难，但交叉方向很有前景"}]},
+  {"id": "M12", "name": "化学", "category": "理学", "description": "研究物质的组成与变化", "career": ["研究员", "化学工程师", "质检员", "教师"], "salary": "5k-25k", "npcReviews": [{"npc": "周学姐", "text": "化学本科就业一般，读研才有出路"}]},
+  {"id": "M13", "name": "生物科学", "category": "理学", "description": "研究生命现象与规律", "career": ["研究员", "生物工程师", "教师", "医药代表"], "salary": "5k-30k", "npcReviews": [{"npc": "吴博士", "text": "生物专业需要读到博士才能出头"}]},
+  {"id": "M14", "name": "历史学", "category": "历史学", "description": "研究人类社会历史", "career": ["教师", "研究员", "博物馆", "考古"], "salary": "5k-15k", "npcReviews": [{"npc": "郑学长", "text": "历史专业冷门，但做研究很有意义"}]},
+  {"id": "M15", "name": "土木工程", "category": "工学", "description": "研究建筑与基础设施", "career": ["结构工程师", "项目经理", "造价工程师"], "salary": "6k-25k", "npcReviews": [{"npc": "冯工", "text": "土木黄金期已过，但不会失业"}]},
+  {"id": "M16", "name": "机械工程", "category": "工学", "description": "研究机械设计与制造", "career": ["机械工程师", "工艺工程师", "设备管理"], "salary": "6k-25k", "npcReviews": [{"npc": "褚经理", "text": "机械是工业基础，就业稳定但工资不高"}]},
+  {"id": "M17", "name": "电气工程", "category": "工学", "description": "研究电力与自动化", "career": ["电气工程师", "电网", "自动化", "智能制造"], "salary": "7k-30k", "npcReviews": [{"npc": "卫工", "text": "电网是铁饭碗，南方电网和国家电网都香"}]},
+  {"id": "M18", "name": "自动化", "category": "工学", "description": "研究控制系统与智能算法", "career": ["控制工程师", "算法工程师", "嵌入式开发"], "salary": "8k-35k", "npcReviews": [{"npc": "蒋工", "text": "自动化就业面广，转AI也很容易"}]},
+  {"id": "M19", "name": "建筑学", "category": "工学", "description": "研究建筑设计与人居环境", "career": ["建筑师", "设计师", "城市规划师"], "salary": "6k-30k", "npcReviews": [{"npc": "沈设计师", "text": "建筑学需要美术功底，加班是常态"}]},
+  {"id": "M20", "name": "新闻学", "category": "文学", "description": "研究新闻传播与媒体", "career": ["记者", "编辑", "新媒体运营", "自媒体"], "salary": "5k-20k", "npcReviews": [{"npc": "韩编辑", "text": "传统媒体式微，但新媒体机会多"}]},
+  {"id": "M21", "name": "英语", "category": "文学", "description": "研究英语语言与文化", "career": ["翻译", "教师", "外贸", "外企"], "salary": "5k-25k", "npcReviews": [{"npc": "范学姐", "text": "英语是工具，最好结合其他专业"}]},
+  {"id": "M22", "name": "教育学", "category": "教育学", "description": "研究教育理论与实践", "career": ["教师", "教育管理", "培训师"], "salary": "5k-20k", "npcReviews": [{"npc": "陶老师", "text": "教育学当老师需要额外考教师资格证"}]},
+  {"id": "M23", "name": "心理学", "category": "理学", "description": "研究人类心理与行为", "career": ["心理咨询师", "HR", "用户研究", "教师"], "salary": "5k-25k", "npcReviews": [{"npc": "潘学姐", "text": "心理学就业难，但大厂用户研究岗位很香"}]},
+  {"id": "M24", "name": "软件工程", "category": "工学", "description": "研究软件开发与管理", "career": ["软件开发", "测试", "项目经理", "产品经理"], "salary": "8k-40k", "npcReviews": [{"npc": "俞学长", "text": "软件工程比CS更偏工程实践，好就业"}]},
+  {"id": "M25", "name": "数据科学与大数据技术", "category": "工学", "description": "研究大数据分析与挖掘", "career": ["数据分析师", "数据工程师", "BI工程师"], "salary": "10k-45k", "npcReviews": [{"npc": "臧数据", "text": "数据岗位需求大，但竞争也越来越激烈"}]},
+  {"id": "M26", "name": "电子商务", "category": "管理学", "description": "研究电子商务运营与技术", "career": ["电商运营", "产品经理", "项目经理", "数字营销"], "salary": "6k-30k", "npcReviews": [{"npc": "桂运营", "text": "电商行业变化快，需要持续学习"}]},
+  {"id": "M27", "name": "工商管理", "category": "管理学", "description": "研究企业运营与管理", "career": ["管理培训生", "HR", "咨询顾问", "创业"], "salary": "6k-30k", "npcReviews": [{"npc": "师经理", "text": "MBA是工商管理的进阶，读了才有用"}]},
+  {"id": "M28", "name": "市场营销", "category": "管理学", "description": "研究市场与消费者行为", "career": ["营销策划", "品牌经理", "销售", "运营"], "salary": "5k-25k", "npcReviews": [{"npc": "季总监", "text": "市场营销看重实战经验，学校学的不够用"}]},
+  {"id": "M29", "name": "信息安全", "category": "工学", "description": "研究网络安全与防护", "career": ["安全工程师", "渗透测试", "安全运维", "CISO"], "salary": "8k-40k", "npcReviews": [{"npc": "聂安全", "text": "网络安全人才缺口大，越老越吃香"}]},
+  {"id": "M30", "name": "电子信息工程", "category": "工学", "description": "研究电子与信息系统", "career": ["硬件工程师", "嵌入式开发", "通信工程师"], "salary": "7k-30k", "npcReviews": [{"npc": "焦工程师", "text": "硬件不如软件赚钱，但技术壁垒高"}]},
+  {"id": "M31", "name": "通信工程", "category": "工学", "description": "研究通信系统与技术", "career": ["通信工程师", "网络优化", "运营商"], "salary": "6k-28k", "npcReviews": [{"npc": "伍工", "text": "运营商工作稳定，但晋升空间有限"}]},
+  {"id": "M32", "name": "航空航天类", "category": "工学", "description": "研究飞行器设计与航天技术", "career": ["航天工程师", "航空设计师", "研究员"], "salary": "7k-35k", "npcReviews": [{"npc": "松工程师", "text": "航空航天待遇一般，但情怀无价"}]},
+  {"id": "M33", "name": "车辆工程", "category": "工学", "description": "研究汽车设计与制造", "career": ["汽车工程师", "新能源车企", "质量工程师"], "salary": "6k-28k", "npcReviews": [{"npc": "连工程师", "text": "新能源车企崛起，车辆工程焕发新生"}]},
+  {"id": "M34", "name": "能源与动力工程", "category": "工学", "description": "研究能源转换与动力系统", "career": ["热能工程师", "电力工程师", "空调工程师"], "salary": "6k-25k", "npcReviews": [{"npc": "寇经理", "text": "传统能源饱和，新能源方向是未来"}]},
+  {"id": "M35", "name": "材料科学与工程", "category": "工学", "description": "研究材料的结构与性能", "career": ["材料工程师", "研发工程师", "质检工程师"], "salary": "6k-25k", "npcReviews": [{"npc": "裘工程师", "text": "材料是基础学科，读研才有好出路"}]},
+  {"id": "M36", "name": "环境工程", "category": "工学", "description": "研究污染防治与环境保护", "career": ["环保工程师", "环评师", "EHS工程师"], "salary": "5k-22k", "npcReviews": [{"npc": "双工", "text": "环保行业政策驱动，但这两年就业还行"}]},
+  {"id": "M37", "name": "食品科学与工程", "category": "工学", "description": "研究食品加工与安全", "career": ["食品工程师", "质量控制", "研发"], "salary": "5k-20k", "npcReviews": [{"npc": "仇经理", "text": "食品行业稳定但工资不高，适合考公"}]},
+  {"id": "M38", "name": "生物医学工程", "category": "工学", "description": "研究医学仪器与生物材料", "career": ["医疗器械", "研发工程师", "技术支持"], "salary": "7k-30k", "npcReviews": [{"npc": "夙工程师", "text": "医疗器械是黄金赛道，利润高技术含量也高"}]},
+  {"id": "M39", "name": "政治学与行政学", "category": "法学", "description": "研究政治理论与政府管理", "career": ["公务员", "党建", "政策研究", "NGO"], "salary": "5k-20k", "npcReviews": [{"npc": "蓬处", "text": "政治学考公优势巨大，党务口需求大"}]},
+  {"id": "M40", "name": "社会学", "category": "法学", "description": "研究社会结构与社会问题", "career": ["研究员", "社会工作", "咨询顾问", "公务员"], "salary": "5k-20k", "npcReviews": [{"npc": "柴学姐", "text": "社会学偏学术，但做用户研究很有优势"}]},
+  {"id": "M41", "name": "人力资源管理", "category": "管理学", "description": "研究人力资源开发与管理", "career": ["HR", "猎头", "培训师", "管理咨询"], "salary": "5k-25k", "npcReviews": [{"npc": "郁经理", "text": "HR入门容易，但成为HRD需要多年积累"}]},
+  {"id": "M42", "name": "物流管理", "category": "管理学", "description": "研究供应链与物流运作", "career": ["物流管理", "供应链", "采购", "仓储"], "salary": "5k-22k", "npcReviews": [{"npc": "元总监", "text": "电商带动物流，快递公司待遇在提升"}]},
+  {"id": "M43", "name": "视觉传达设计", "category": "艺术学", "description": "研究平面与视觉设计", "career": ["设计师", "品牌设计", "UI设计", "广告"], "salary": "5k-30k", "npcReviews": [{"npc": "冒设计", "text": "设计靠作品集说话，学校牌子不太重要"}]},
+  {"id": "M44", "name": "广播电视编导", "category": "艺术学", "description": "研究影视节目制作", "career": ["编导", "摄像", "后期制作", "新媒体"], "salary": "5k-25k", "npcReviews": [{"npc": "融编导", "text": "影视行业周期性强，但短视频赛道很火"}]},
+  {"id": "M45", "name": "护理学", "category": "医学", "description": "培养护理人才", "career": ["护士", "护理管理", "医疗管理"], "salary": "4k-15k", "npcReviews": [{"npc": "寿护士", "text": "护士缺口大，但夜班和医患关系是痛点"}]},
+  {"id": "M46", "name": "药学", "category": "医学", "description": "研究药物研发与临床用药", "career": ["药师", "医药代表", "药物研发", "CRA"], "salary": "5k-25k", "npcReviews": [{"npc": "融药师", "text": "药学本科就业一般，CRA方向待遇不错"}]},
+  {"id": "M47", "name": "公共事业管理", "category": "管理学", "description": "研究公共事务与行政管理", "career": ["公务员", "事业单位", "NGO", "政策研究"], "salary": "5k-18k", "npcReviews": [{"npc": "师姐", "text": "公管专业万金油，考公考编都适合"}]},
+  {"id": "M48", "name": "统计学", "category": "理学", "description": "研究数据收集与分析", "career": ["数据分析师", "统计师", "精算师", "算法工程师"], "salary": "8k-40k", "npcReviews": [{"npc": "荣统计", "text": "统计学是万能专业，转什么都吃香"}]},
+  {"id": "M49", "name": "行政管理", "category": "管理学", "description": "研究政府与组织管理", "career": ["公务员", "行政助理", "文员", "HR"], "salary": "4k-18k", "npcReviews": [{"npc": "左姐", "text": "行政工资不高，但工作稳定压力小"}]},
+  {"id": "M50", "name": "国际经济与贸易", "category": "经济学", "description": "研究国际商务与贸易", "career": ["外贸", "报关", "跨境电商", "银行国际部"], "salary": "5k-25k", "npcReviews": [{"npc": "宦经理", "text": "外贸受国际形势影响大，但这两年回暖了"}]}
 ]

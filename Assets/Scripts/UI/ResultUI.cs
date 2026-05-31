@@ -54,6 +54,7 @@ public class ResultUI : MonoBehaviour
         talentEngine = FindObjectOfType<TalentEngine>();
 
         DisplaySummary();
+        GameManager.Instance?.RecordCurrentPlaythrough();
         DisplayPersonality();
 
         sharePersonalityBtn?.onClick.AddListener(() => ShareManager.Instance?.Share("personality"));

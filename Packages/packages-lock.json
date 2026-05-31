@@ -1,11 +1,10 @@
 {
   "dependencies": {
     "com.google.external-dependency-manager": {
-      "version": "1.2.179",
+      "version": "file:com.google.external-dependency-manager",
       "depth": 0,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://package.openupm.com"
+      "source": "embedded",
+      "dependencies": {}
     },
     "com.leancloud.realtime": {
       "version": "2.3.0",
@@ -24,41 +23,37 @@
       "url": "https://registry.npmjs.org"
     },
     "com.tapsdk.antiaddiction": {
-      "version": "3.30.3",
+      "version": "file:com.tapsdk.antiaddiction",
       "depth": 0,
-      "source": "registry",
+      "source": "embedded",
       "dependencies": {
         "com.taptap.tds.common": "3.30.3"
-      },
-      "url": "https://registry.npmjs.org"
+      }
     },
     "com.taptap.tds.bootstrap": {
-      "version": "3.30.3",
+      "version": "file:com.taptap.tds.bootstrap",
       "depth": 0,
-      "source": "registry",
+      "source": "embedded",
       "dependencies": {
         "com.taptap.tds.login": "3.30.3",
         "com.leancloud.realtime": "2.3.0"
-      },
-      "url": "https://registry.npmjs.org"
+      }
     },
     "com.taptap.tds.common": {
-      "version": "3.30.3",
+      "version": "file:com.taptap.tds.common",
       "depth": 0,
-      "source": "registry",
+      "source": "embedded",
       "dependencies": {
         "com.leancloud.storage": "2.3.0"
-      },
-      "url": "https://registry.npmjs.org"
+      }
     },
     "com.taptap.tds.login": {
-      "version": "3.30.3",
+      "version": "file:com.taptap.tds.login",
       "depth": 0,
-      "source": "registry",
+      "source": "embedded",
       "dependencies": {
         "com.taptap.tds.common": "3.30.3"
-      },
-      "url": "https://registry.npmjs.org"
+      }
     },
     "com.unity.2d.animation": {
       "version": "9.2.0",

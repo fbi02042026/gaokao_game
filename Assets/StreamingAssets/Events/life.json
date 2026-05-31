@@ -1,0 +1,274 @@
+[
+  {
+    "id": "LIFE_001", "name": "大学入学第一天", "stage": "life", "tags": ["入学", "情感"],
+    "triggerCondition": null, "interactionType": "dialog",
+    "dialogContent": { "description": "拖着行李箱走进校门...", "npcId": "npc_teacher", "lines": [
+      "欢迎新同学！", "大学和高中不一样，要学会自律。",
+      "四年很快，好好珍惜。", "加油！"
+    ]},
+    "choiceContent": null, "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null,
+    "outcomeList": [
+      {"key": "default", "value": {"statKeys": ["social", "mental"], "statValues": [3, 5], "unlockEvents": null, "narrative": "新的起点，一切从今天开始。"}}
+    ]
+  },
+  {
+    "id": "LIFE_002", "name": "社团招新", "stage": "life", "tags": ["社交", "选择"],
+    "triggerCondition": null, "interactionType": "choice",
+    "choiceContent": { "description": "百团大战！你要加入哪个社团？", "choices": [
+      {"id": "A", "text": "学生会（积累人脉）", "icon": "🏛️"},
+      {"id": "B", "text": "辩论队（锻炼口才）", "icon": "🎤"},
+      {"id": "C", "text": "技术社团（coding）", "icon": "💻"},
+      {"id": "D", "text": "不参加，专心学习", "icon": "📚"}
+    ]},
+    "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "A", "value": {"statKeys": ["social"], "statValues": [10], "unlockEvents": null, "narrative": "学生会经历让人快速成长，人脉资源丰富。"}},
+      {"key": "B", "value": {"statKeys": ["social", "intellect"], "statValues": [5, 5], "unlockEvents": null, "narrative": "辩论队让你的逻辑思维和口才突飞猛进。"}},
+      {"key": "C", "value": {"statKeys": ["intellect"], "statValues": [12], "unlockEvents": null, "narrative": "技术栈飞速成长，秋招offer拿到手软。"}},
+      {"key": "D", "value": {"statKeys": ["intellect", "social"], "statValues": [8, -5], "unlockEvents": null, "narrative": "成绩优异，但社交圈子比较窄。"}}
+    ]
+  },
+  {
+    "id": "LIFE_003", "name": "第一次期末", "stage": "life", "tags": ["考试", "限时"],
+    "triggerCondition": null, "interactionType": "timing",
+    "timingContent": { "description": "期末最后一门，抢最后的复习时间！", "duration": 10, "targetCount": 5 },
+    "choiceContent": null, "mergeContent": null, "sortContent": null, "sliderContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "success", "value": {"statKeys": ["intellect"], "statValues": [10], "unlockEvents": null, "narrative": "复习到位，期末成绩全A！"}},
+      {"key": "fail", "value": {"statKeys": ["intellect", "mental"], "statValues": [2, -8], "unlockEvents": null, "narrative": "有几门差点挂科，吓出一身冷汗。"}}
+    ]
+  },
+  {
+    "id": "LIFE_004", "name": "大三暑假抉择", "stage": "life", "tags": ["实习", "策略"],
+    "triggerCondition": null, "interactionType": "slider",
+    "sliderContent": { "description": "大三暑假怎么安排？", "categories": [
+      {"name": "大厂实习", "icon": "🏢"}, {"name": "考研备考", "icon": "📖"}, {"name": "科研项目", "icon": "🔬"}
+    ], "totalPoints": 10 },
+    "choiceContent": null, "mergeContent": null, "sortContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "default", "value": {"statKeys": ["intellect", "social"], "statValues": [5, 3], "unlockEvents": null, "narrative": "暑假的积累决定了毕业去向。"}}
+    ]
+  },
+  {
+    "id": "LIFE_005", "name": "考研还是就业", "stage": "life", "tags": ["毕业", "抉择", "考研"],
+    "triggerCondition": null, "interactionType": "choice",
+    "choiceContent": { "description": "大三了，你要考研还是直接就业？", "choices": [
+      {"id": "A", "text": "考研深造", "icon": "🎓"},
+      {"id": "B", "text": "秋招就业", "icon": "💼"},
+      {"id": "C", "text": "出国读研", "icon": "✈️"},
+      {"id": "D", "text": "创业试试", "icon": "🚀"}
+    ]},
+    "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "A", "value": {"statKeys": ["intellect", "mental"], "statValues": [5, -10], "unlockEvents": null, "narrative": "考研路漫漫，但为了更好的学历值得。"}},
+      {"key": "B", "value": {"statKeys": ["social"], "statValues": [8], "unlockEvents": null, "narrative": "秋招上岸！职场生涯正式开始。"}},
+      {"key": "C", "value": {"statKeys": ["social", "intellect"], "statValues": [5, 5], "unlockEvents": null, "narrative": "出国读研，开拓视野。"}},
+      {"key": "D", "value": {"statKeys": ["social", "mental"], "statValues": [3, -5], "unlockEvents": null, "narrative": "创业维艰，但也充满可能。"}}
+    ]
+  },
+  {
+    "id": "LIFE_006", "name": "考研备考", "stage": "life", "tags": ["考研", "备考"],
+    "triggerCondition": {"minGrade": 0, "minIntellect": 0, "requiredEvent": "LIFE_005"}, "interactionType": "merge",
+    "mergeContent": { "description": "把各科知识合成为高分试卷！", "gridRows": 8, "gridCols": 9,
+      "availableItems": ["政治", "英语", "专业课", "真题"],
+      "mergeRuleKeys": ["政治+真题", "英语+真题", "专业课+知识体系"],
+      "mergeRuleValues": ["政治押题", "英语高分", "专业课精通"],
+      "targetItem": "高分试卷", "movesLimit": 25 },
+    "choiceContent": null, "sortContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "success", "value": {"statKeys": ["intellect"], "statValues": [20], "unlockEvents": null, "narrative": "成功上岸！研究生录取通知书到手！"}},
+      {"key": "partial", "value": {"statKeys": ["intellect", "mental"], "statValues": [8, -5], "unlockEvents": null, "narrative": "调剂到了普通院校，但还是读上了。"}},
+      {"key": "fail", "value": {"statKeys": ["mental"], "statValues": [-15], "unlockEvents": null, "narrative": "考研失利...但调剂还是有机会的。"}}
+    ]
+  },
+  {
+    "id": "LIFE_007", "name": "秋招面试", "stage": "life", "tags": ["就业", "面试"],
+    "triggerCondition": {"minGrade": 0, "minIntellect": 0, "requiredEvent": "LIFE_005"}, "interactionType": "sort",
+    "sortContent": { "description": "排出你心仪公司的面试优先级", "items": ["字节跳动", "阿里巴巴", "腾讯", "创业公司"], "showProbability": true },
+    "choiceContent": null, "mergeContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "optimal", "value": {"statKeys": ["social", "intellect"], "statValues": [10, 5], "unlockEvents": null, "narrative": "拿下大厂offer！起薪30W+！"}},
+      {"key": "risky", "value": {"statKeys": ["social"], "statValues": [3], "unlockEvents": null, "narrative": "进了一家创业公司，从头学起。"}}
+    ]
+  },
+  {
+    "id": "LIFE_008", "name": "留学申请", "stage": "life", "tags": ["出国", "申请"],
+    "triggerCondition": {"minGrade": 0, "minIntellect": 0, "requiredEvent": "LIFE_005"}, "interactionType": "choice",
+    "choiceContent": { "description": "留学申请结果出来了...", "choices": [
+      {"id": "A", "text": "常春藤全奖！", "icon": "🏆"},
+      {"id": "B", "text": "TOP30半奖", "icon": "🎓"},
+      {"id": "C", "text": "普通院校自费", "icon": "📄"}
+    ]},
+    "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "A", "value": {"statKeys": ["intellect", "social"], "statValues": [15, 10], "unlockEvents": null, "narrative": "全奖藤校！学术巅峰！"}},
+      {"key": "B", "value": {"statKeys": ["intellect", "social"], "statValues": [8, 5], "unlockEvents": null, "narrative": "TOP30录取，含金量十足！"}},
+      {"key": "C", "value": {"statKeys": ["social"], "statValues": [3], "unlockEvents": null, "narrative": "自费留学，回本周期长，但经历珍贵。"}}
+    ]
+  },
+  {
+    "id": "LIFE_009", "name": "创业启动", "stage": "life", "tags": ["创业", "梦想"],
+    "triggerCondition": {"minGrade": 0, "minIntellect": 0, "requiredEvent": "LIFE_005"}, "interactionType": "choice",
+    "choiceContent": { "description": "创业项目拿到了第一笔投资...", "choices": [
+      {"id": "A", "text": "all in全职创业", "icon": "🔥"},
+      {"id": "B", "text": "边读研边创业", "icon": "📚"},
+      {"id": "C", "text": "先兼职试试水", "icon": "💧"}
+    ]},
+    "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "A", "value": {"statKeys": ["mental", "social"], "statValues": [-15, 5], "unlockEvents": null, "narrative": "全职创业，压力巨大，九死一生。"}},
+      {"key": "B", "value": {"statKeys": ["intellect", "social"], "statValues": [5, 3], "unlockEvents": null, "narrative": "双线并行，稳中求进。"}},
+      {"key": "C", "value": {"statKeys": ["mental"], "statValues": [5], "unlockEvents": null, "narrative": "保守策略，试水后发现方向不对。"}}
+    ]
+  },
+  {
+    "id": "LIFE_010", "name": "考公报岗", "stage": "life", "tags": ["考公", "备考"],
+    "triggerCondition": {"minGrade": 0, "minIntellect": 0, "requiredEvent": "LIFE_005"}, "interactionType": "sort",
+    "sortContent": { "description": "排出你心仪的岗位优先级", "items": ["部委", "省厅", "市区", "街道办"], "showProbability": true },
+    "choiceContent": null, "mergeContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "optimal", "value": {"statKeys": ["social", "mental"], "statValues": [10, 10], "unlockEvents": null, "narrative": "上岸省厅！铁饭碗到手！"}},
+      {"key": "risky", "value": {"statKeys": ["mental"], "statValues": [-5], "unlockEvents": null, "narrative": "分数不够，调剂到了街道办。"}}
+    ]
+  },
+  {
+    "id": "LIFE_011", "name": "职场第一次汇报", "stage": "life", "tags": ["职场", "成长"],
+    "triggerCondition": null, "interactionType": "dialog",
+    "dialogContent": { "description": "领导突然叫你汇报项目进度...", "npcId": "npc_boss", "lines": [
+      "小王，这个项目进展怎么样了？", "数据支撑在哪里？", "好，想法不错，但执行还要加强。", "下次汇报记得准备PPT。"
+    ]},
+    "choiceContent": null, "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null,
+    "outcomeList": [
+      {"key": "default", "value": {"statKeys": ["social", "intellect"], "statValues": [5, 3], "unlockEvents": null, "narrative": "职场第一课：永远要准备好Plan B。"}}
+    ]
+  },
+  {
+    "id": "LIFE_012", "name": "大学恋爱", "stage": "life", "tags": ["情感", "社交"],
+    "triggerCondition": null, "interactionType": "choice",
+    "choiceContent": { "description": "在图书馆遇到了心动的人...", "choices": [
+      {"id": "A", "text": "鼓起勇气要微信", "icon": "💪"},
+      {"id": "B", "text": "默默关注就好", "icon": "👀"},
+      {"id": "C", "text": "算了不打扰学习", "icon": "📚"}
+    ]},
+    "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "A", "value": {"statKeys": ["social", "mental"], "statValues": [10, 8], "unlockEvents": null, "narrative": "缘分来了挡不住！后来TA成了你的另一半。"}},
+      {"key": "B", "value": {"statKeys": ["mental"], "statValues": [-3], "unlockEvents": null, "narrative": "错过了...也许下次还有机会吧。"}},
+      {"key": "C", "value": {"statKeys": ["intellect"], "statValues": [3], "unlockEvents": null, "narrative": "单身四年，但GPA全系第一。"}}
+    ]
+  },
+  {
+    "id": "LIFE_013", "name": "裁员危机", "stage": "life", "tags": ["职场", "危机"],
+    "triggerCondition": null, "interactionType": "choice",
+    "choiceContent": { "description": "公司突然宣布裁员，你是...", "choices": [
+      {"id": "A", "text": "被裁了（n+1赔偿）", "icon": "💔"},
+      {"id": "B", "text": "留下但降薪", "icon": "📉"},
+      {"id": "C", "text": "主动跳槽", "icon": "🚀"}
+    ]},
+    "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "A", "value": {"statKeys": ["mental", "social"], "statValues": [-20, 5], "unlockEvents": null, "narrative": "被裁了...但拿了赔偿，重新出发。"}},
+      {"key": "B", "value": {"statKeys": ["mental"], "statValues": [-10], "unlockEvents": null, "narrative": "降薪留任，但至少还有工作。"}},
+      {"key": "C", "value": {"statKeys": ["intellect", "social"], "statValues": [5, 3], "unlockEvents": null, "narrative": "主动出击，跳槽到更好的公司。"}}
+    ]
+  },
+  {
+    "id": "LIFE_014", "name": "35岁人生岔路", "stage": "life", "tags": ["中年", "抉择"],
+    "triggerCondition": null, "interactionType": "choice",
+    "choiceContent": { "description": "35岁，职场天花板出现了...", "choices": [
+      {"id": "A", "text": "转型管理岗位", "icon": "👔"},
+      {"id": "B", "text": "转行从头开始", "icon": "🔄"},
+      {"id": "C", "text": "创业当老板", "icon": "💰"},
+      {"id": "D", "text": "考公图稳定", "icon": "🏛️"}
+    ]},
+    "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "A", "value": {"statKeys": ["social", "mental"], "statValues": [10, 5], "unlockEvents": null, "narrative": "晋升管理层，成为部门总监。"}},
+      {"key": "B", "value": {"statKeys": ["intellect"], "statValues": [3], "unlockEvents": null, "narrative": "转行虽难，但新赛道有新机会。"}},
+      {"key": "C", "value": {"statKeys": ["social", "mental"], "statValues": [-10, 10], "unlockEvents": null, "narrative": "创业做老板，收入翻倍但压力也翻倍。"}},
+      {"key": "D", "value": {"statKeys": ["mental"], "statValues": [10], "unlockEvents": null, "narrative": "成功上岸，体制内稳定到老。"}}
+    ]
+  },
+  {
+    "id": "LIFE_015", "name": "父母生病", "stage": "life", "tags": ["家庭", "情感"],
+    "triggerCondition": null, "interactionType": "dialog",
+    "dialogContent": { "description": "深夜接到家里的电话...", "npcId": "npc_parent", "lines": [
+      "爸住院了，心脏有点问题...", "你工作忙，就不用回来了。", "我们自己能照顾好。", "有空多打打电话。"
+    ]},
+    "choiceContent": null, "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null,
+    "outcomeList": [
+      {"key": "default", "value": {"statKeys": ["mental"], "statValues": [-15], "unlockEvents": null, "narrative": "工作再忙，也要多陪陪家人..."}}
+    ]
+  },
+  {
+    "id": "LIFE_016", "name": "第一桶金", "stage": "life", "tags": ["财富", "投资"],
+    "triggerCondition": null, "interactionType": "choice",
+    "choiceContent": { "description": "工作五年攒了50万，你打算怎么用？", "choices": [
+      {"id": "A", "text": "付首付买房", "icon": "🏠"},
+      {"id": "B", "text": "投资理财", "icon": "📈"},
+      {"id": "C", "text": "继续深造", "icon": "🎓"},
+      {"id": "D", "text": "环游世界", "icon": "🌍"}
+    ]},
+    "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "A", "value": {"statKeys": ["mental"], "statValues": [8], "unlockEvents": null, "narrative": "有房有家，安心感满满。"}},
+      {"key": "B", "value": {"statKeys": ["intellect"], "statValues": [5], "unlockEvents": null, "narrative": "投资收益不错，资产翻倍！"}},
+      {"key": "C", "value": {"statKeys": ["intellect"], "statValues": [10], "unlockEvents": null, "narrative": "MBA学历加持，职场上了一个台阶。"}},
+      {"key": "D", "value": {"statKeys": ["mental", "social"], "statValues": [15, 5], "unlockEvents": null, "narrative": "见过世界的人，眼界不一样。"}}
+    ]
+  },
+  {
+    "id": "LIFE_017", "name": "结婚", "stage": "life", "tags": ["情感", "家庭"],
+    "triggerCondition": null, "interactionType": "dialog",
+    "dialogContent": { "description": "在婚礼现场，看着TA走过来...", "npcId": "npc_partner", "lines": [
+      "从今天起，你愿意和我一起吗？", "无论贫穷还是富有，疾病还是健康。", "都不离不弃，直到死亡将我们分开。", "我愿意。"
+    ]},
+    "choiceContent": null, "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null,
+    "outcomeList": [
+      {"key": "default", "value": {"statKeys": ["mental", "social"], "statValues": [15, 10], "unlockEvents": null, "narrative": "从此有人与你共黄昏，有人问你粥可温。"}}
+    ]
+  },
+  {
+    "id": "LIFE_018", "name": "孩子出生", "stage": "life", "tags": ["家庭", "成长"],
+    "triggerCondition": null, "interactionType": "choice",
+    "choiceContent": { "description": "护士抱着新生儿走过来...", "choices": [
+      {"id": "A", "text": "含泪抱过孩子", "icon": "😭"},
+      {"id": "B", "text": "手忙脚乱不知所措", "icon": "😳"},
+      {"id": "C", "text": "拍照发朋友圈", "icon": "📱"}
+    ]},
+    "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "A", "value": {"statKeys": ["mental"], "statValues": [15], "unlockEvents": null, "narrative": "这一刻，终于理解了父母的爱。"}},
+      {"key": "B", "value": {"statKeys": ["social", "mental"], "statValues": [5, -5], "unlockEvents": null, "narrative": "新手爸妈手忙脚乱，但慢慢就上手了。"}},
+      {"key": "C", "value": {"statKeys": ["social"], "statValues": [8], "unlockEvents": null, "narrative": "收获无数点赞，人生的新角色开始了。"}}
+    ]
+  },
+  {
+    "id": "LIFE_019", "name": "退休那天", "stage": "life", "tags": ["退休", "回忆"],
+    "triggerCondition": null, "interactionType": "dialog",
+    "dialogContent": { "description": "收拾办公室的最后一件物品...", "npcId": "npc_colleague", "lines": [
+      "三十年了，就这么结束了。", "还记得刚来时的样子吗？", "这辈子值了。", "好好享受退休生活吧。"
+    ]},
+    "choiceContent": null, "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null,
+    "outcomeList": [
+      {"key": "default", "value": {"statKeys": ["mental"], "statValues": [10], "unlockEvents": null, "narrative": "三十功名尘与土，八千里路云和月。"}}
+    ]
+  },
+  {
+    "id": "LIFE_020", "name": "人生的终点", "stage": "life", "tags": ["终章", "回顾"],
+    "triggerCondition": null, "interactionType": "choice",
+    "choiceContent": { "description": "回首这一生，你会如何评价？", "choices": [
+      {"id": "A", "text": "功成名就，无憾此生", "icon": "🏆"},
+      {"id": "B", "text": "平凡但幸福", "icon": "💕"},
+      {"id": "C", "text": "还有很多未完成的梦想", "icon": "🌙"},
+      {"id": "D", "text": "一切都是最好的安排", "icon": "☀️"}
+    ]},
+    "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "A", "value": {"statKeys": ["mental"], "statValues": [20], "unlockEvents": null, "narrative": "这一生，你活成了自己想要的样子。"}},
+      {"key": "B", "value": {"statKeys": ["mental", "social"], "statValues": [15, 10], "unlockEvents": null, "narrative": "平凡是真，陪伴是最长情的告白。"}},
+      {"key": "C", "value": {"statKeys": [], "statValues": [], "unlockEvents": null, "narrative": "遗憾也是一种美，来世再追寻。"}},
+      {"key": "D", "value": {"statKeys": ["mental"], "statValues": [15], "unlockEvents": null, "narrative": "接受命运，也战胜了命运。"}}
+    ]
+  }
+]

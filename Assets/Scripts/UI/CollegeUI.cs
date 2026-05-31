@@ -102,10 +102,10 @@ public class CollegeUI : MonoBehaviour
     {
         string stageFile = currentMajorId switch
         {
-            "M03" => "college_med",
-            "M01" => "college_cs",
-            "M02" => "college_law",
-            "M04" => "college_biz",
+            "M03" or "M45" or "M46" => "college_med",
+            "M01" or "M05" or "M24" or "M25" or "M29" or "M30" => "college_cs",
+            "M02" or "M06" or "M39" or "M40" => "college_law",
+            "M04" or "M07" or "M08" or "M26" or "M27" or "M28" or "M41" or "M42" or "M47" or "M49" or "M50" => "college_biz",
             _ => "college_cs"
         };
 

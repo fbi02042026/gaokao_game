@@ -1,32 +1,33 @@
 [
-  {
-    "id": "P01",
-    "name": "浙江",
-    "code": "zj",
-    "gaokaoMode": "3+3"
-  },
-  {
-    "id": "P02",
-    "name": "北京",
-    "code": "bj",
-    "gaokaoMode": "3+3"
-  },
-  {
-    "id": "P03",
-    "name": "河南",
-    "code": "hn",
-    "gaokaoMode": "3+1+2"
-  },
-  {
-    "id": "P04",
-    "name": "广东",
-    "code": "gd",
-    "gaokaoMode": "3+1+2"
-  },
-  {
-    "id": "P05",
-    "name": "四川",
-    "code": "sc",
-    "gaokaoMode": "3+1+2"
-  }
+  {"id": "P01", "name": "浙江", "code": "zj", "gaokaoMode": "3+3"},
+  {"id": "P02", "name": "北京", "code": "bj", "gaokaoMode": "3+3"},
+  {"id": "P03", "name": "河南", "code": "hn", "gaokaoMode": "3+1+2"},
+  {"id": "P04", "name": "广东", "code": "gd", "gaokaoMode": "3+1+2"},
+  {"id": "P05", "name": "四川", "code": "sc", "gaokaoMode": "3+1+2"},
+  {"id": "P06", "name": "江苏", "code": "js", "gaokaoMode": "3+1+2"},
+  {"id": "P07", "name": "山东", "code": "sd", "gaokaoMode": "3+3"},
+  {"id": "P08", "name": "湖南", "code": "hn2", "gaokaoMode": "3+1+2"},
+  {"id": "P09", "name": "湖北", "code": "hb", "gaokaoMode": "3+1+2"},
+  {"id": "P10", "name": "河北", "code": "he", "gaokaoMode": "3+1+2"},
+  {"id": "P11", "name": "福建", "code": "fj", "gaokaoMode": "3+1+2"},
+  {"id": "P12", "name": "安徽", "code": "ah", "gaokaoMode": "3+1+2"},
+  {"id": "P13", "name": "陕西", "code": "sx", "gaokaoMode": "3+1+2"},
+  {"id": "P14", "name": "江西", "code": "jx", "gaokaoMode": "3+1+2"},
+  {"id": "P15", "name": "辽宁", "code": "ln", "gaokaoMode": "3+1+2"},
+  {"id": "P16", "name": "重庆", "code": "cq", "gaokaoMode": "3+1+2"},
+  {"id": "P17", "name": "云南", "code": "yn", "gaokaoMode": "3+1+2"},
+  {"id": "P18", "name": "贵州", "code": "gz", "gaokaoMode": "3+1+2"},
+  {"id": "P19", "name": "广西", "code": "gx", "gaokaoMode": "3+1+2"},
+  {"id": "P20", "name": "山西", "code": "sx2", "gaokaoMode": "3+1+2"},
+  {"id": "P21", "name": "吉林", "code": "jl", "gaokaoMode": "3+1+2"},
+  {"id": "P22", "name": "黑龙江", "code": "hlj", "gaokaoMode": "3+1+2"},
+  {"id": "P23", "name": "上海", "code": "sh", "gaokaoMode": "3+3"},
+  {"id": "P24", "name": "天津", "code": "tj", "gaokaoMode": "3+3"},
+  {"id": "P25", "name": "甘肃", "code": "gs", "gaokaoMode": "3+1+2"},
+  {"id": "P26", "name": "海南", "code": "hi", "gaokaoMode": "3+3"},
+  {"id": "P27", "name": "内蒙古", "code": "nmg", "gaokaoMode": "3+1+2"},
+  {"id": "P28", "name": "宁夏", "code": "nx", "gaokaoMode": "3+1+2"},
+  {"id": "P29", "name": "青海", "code": "qh", "gaokaoMode": "3+1+2"},
+  {"id": "P30", "name": "新疆", "code": "xj", "gaokaoMode": "3+1+2"},
+  {"id": "P31", "name": "西藏", "code": "xz", "gaokaoMode": "3+1+2"}
 ]

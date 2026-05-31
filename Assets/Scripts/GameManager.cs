@@ -129,6 +129,34 @@ public class GameManager : MonoBehaviour
 
         if (UIManager.Instance != null)
             UIManager.Instance.ShowPanel(newPhase);
+
+        LoadPhaseEvents(newPhase);
+    }
+
+    private void LoadPhaseEvents(GamePhase phase)
+    {
+        string stageName = phase switch
+        {
+            GamePhase.HighSchool => "highschool",
+            GamePhase.Gaokao => "gaokao",
+            GamePhase.Zhiyuan => "zhiyuan",
+            GamePhase.College => "college_cs",
+            GamePhase.Life => "life",
+            _ => null
+        };
+
+        if (string.IsNullOrEmpty(stageName)) return;
+
+        var eventEngine = FindObjectOfType<EventEngine>();
+        if (eventEngine == null)
+        {
+            var go = new GameObject("EventEngine");
+            eventEngine = go.AddComponent<EventEngine>();
+        }
+
+        eventEngine.SetPlayerState(currentPlayer);
+        StartCoroutine(eventEngine.LoadEventsFromStreamingAssets(stageName));
+        Debug.Log($"[GameManager] 加载阶段事件: {stageName}");
     }
 
     public void SaveGame(int slotIndex = 0)
@@ -229,9 +257,48 @@ public class GameManager : MonoBehaviour
         currentPlayer.gender = savedGender;
         currentPlayer.hasPastLifeMemory = true;
 
+        var dejaVu = FindObjectOfType<DejaVuEngine>();
+        if (dejaVu != null && currentPlayer.playthroughMemories != null)
+        {
+            dejaVu.LoadMemories(currentPlayer.playthroughMemories);
+            Debug.Log($"[GameManager] 二周目加载 {dejaVu.GetMemoryCount()} 条前世记忆");
+        }
+
         isGameRunning = true;
         ChangePhase(GamePhase.TalentSelect);
 
-        Debug.Log("[GameManager] 开始二周目");
+        Debug.Log("[GameManager] 开始二周目（触发前世记忆系统）");
+    }
+
+    public void RecordCurrentPlaythrough()
+    {
+        if (currentPlayer == null || !currentPlayer.hasPastLifeMemory) return;
+
+        var memory = new PlaythroughMemory
+        {
+            generation = currentPlayer.playthroughMemories?.Count ?? 1,
+            talentId = TalentEngine.Instance?.GetCurrentTalent()?.id ?? "",
+            finalMajor = currentPlayer.admittedMajorId,
+            finalCollege = currentPlayer.admittedCollegeId,
+            endingType = currentPlayer.graduationChoice,
+            choiceRecords = new List<ChoiceRecord>()
+        };
+
+        foreach (var pair in currentPlayer.choiceHistoryList)
+        {
+            memory.choiceRecords.Add(new ChoiceRecord
+            {
+                eventId = pair.key,
+                choiceId = pair.value,
+                outcomeNarrative = "",
+                statChangesList = new List<IntPair>()
+            });
+        }
+
+        currentPlayer.playthroughMemories ??= new List<PlaythroughMemory>();
+        currentPlayer.playthroughMemories.Add(memory);
+
+        var dejaVu = FindObjectOfType<DejaVuEngine>();
+        dejaVu?.RecordMemory(memory);
     }
 }

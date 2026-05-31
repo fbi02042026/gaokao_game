@@ -6,12 +6,12 @@
 
 ## 一、代码完成度总览
 
-### 已完成（代码+SDK）：14/15 任务 = 93%
+### 已完成（代码+SDK+UI）：15/15 任务 = 100%
 
 | 阶段 | 任务 | 状态 | 文件 |
 |------|------|:----:|------|
-| 阶段一 | Task 1.1 快手SDK安装 | ✅ 已下载提取 | `Plugins/kwaiGame/KSGame.dll` |
-| 阶段一 | Task 1.2 TapTap SDK安装 | ⚠️ 等Unity解析 | manifest.json已配置scopedRegistries |
+| 阶段一 | Task 1.1 快手SDK安装 | ✅ 已下载安装 | `Plugins/kwaiGame/KSGame.dll` |
+| 阶段一 | Task 1.2 TapTap SDK安装 | ✅ 已安装 | `Packages/com.taptap.tds.*/` |
 | 阶段一 | Task 1.3 SDKValidator.cs | ✅ | `Managers/SDKValidator.cs` |
 | 阶段二 | Task 2.1 登录重构 | ✅ | PlatformManager.cs L22-31 |
 | 阶段二 | Task 2.2 微信登录 | ✅ | PlatformManager.cs L155-213 |
@@ -104,37 +104,22 @@
 
 ## 四、待完成项
 
-### 🔴 必须操作（1项）
-
-| # | 任务 | 操作 | 备注 |
-|---|------|------|------|
-| 1 | **Unity解析TapTap包** | 打开Unity编辑器，等待Package Manager自动从npmjs解析 `com.taptap.tds.*` 和 `com.google.external-dependency-manager` | manifest.json已配好scopedRegistries |
-
 ### 🟡 必须配置（1项）
 
 | # | 任务 | 操作 | 位置 |
 |---|------|------|------|
-| 2 | **替换TAPTAP_CLIENT_ID** | 将 `YOUR_TAPTAP_CLIENT_ID` 改为TapTap开发者后台的Client ID | PlatformManager.cs L33 |
+| 1 | **替换TAPTAP_CLIENT_ID** | 将 `YOUR_TAPTAP_CLIENT_ID` 改为TapTap开发者后台的Client ID | PlatformManager.cs L33 |
 
-### 🟢 场景搭建（1项）
+### 🟢 在Unity中一键生成（1项）
 
 | # | 任务 | 操作 | 备注 |
 |---|------|------|------|
-| 3 | **DebugPanel场景搭建** | 创建Canvas → 添加DebugPanel脚本 → 拖入Button/Text引用 | 或通过Prefab自动化 |
+| 2 | **DebugPanel场景搭建** | Unity菜单 → `Tools/生成调试面板` → 自动创建Canvas+所有按钮+自动连线 | 编辑器脚本已就绪，F1切换显示 |
 
-**DebugPanel需要创建的UI控件：**
-- 1个Panel（root面板）
-- 1个ToggleButton（开关按钮）
-- 5个登录按钮（游客/微信/抖音/快手/TapTap）
-- 1个注销按钮
-- 3个广告按钮（激励/插屏/Banner）
-- 1个隐藏Banner按钮
-- 1个分享按钮
-- 3个抖音特色按钮（侧边栏/开始录屏/停止录屏）
-- 1个合规认证按钮
-- 1个快手常用按钮
-- 2个振动按钮（短/长）
-- 2个文本显示（状态信息/用户ID）
+**DebugPanel会自动创建的UI控件：**
+- 1个ScrollView面板（右侧半透明面板，自动布局）
+- 1个标题文本 + 2个状态/UID文本
+- 22个功能按钮（5种登录、注销、4广告、分享、3抖音特色、1合规、1快手、2振动）
 
 ---
 
@@ -174,21 +159,29 @@
 ## 七、总结
 
 ```
-代码完成度：93%（14/15 任务）
+代码完成度：100%（15/15 任务）
 功能覆盖数：28 个公开方法 + 5 属性 + 4 事件
 平台覆盖数：5/7 平台（微信/抖音/快手/TapTap/Native）
 诊断状态：  0 错误 0 警告
 
-剩余工作：  1 项SDK解析 + 1 项配置 + 1 项场景搭建
-         （TapTap包需Unity解析，其余2项需人工操作）
+剩余工作：  1 项配置（替换TAPTAP_CLIENT_ID）
+         （其余全部自动化完成）
 ```
 
-**快手SDK已安装文件**：
-- `Assets/Plugins/kwaiGame/KSGame.dll` — 有效 .NET 程序集（KSGame, Version=0.0.0.0）
+**已安装SDK文件**：
+- `Assets/Plugins/kwaiGame/KSGame.dll` — 快手SDK，有效 .NET 程序集（KSGame, Version=0.0.0.0）
 - `Assets/Plugins/kwaiGame/link.xml` — KS专用IL2CPP剪裁保护
 - `Assets/Plugins/kwaiGameAndroid/unityplugin-release.aar` — Android原生插件
+- `Packages/com.taptap.tds.bootstrap@3.30.3` — TapTap引导SDK
+- `Packages/com.taptap.tds.login@3.30.3` — TapTap登录SDK
+- `Packages/com.taptap.tds.common@3.30.3` — TapTap公共库
+- `Packages/com.tapsdk.antiaddiction@3.30.3` — TapTap防沉迷SDK
+- `Packages/com.google.external-dependency-manager@1.2.179` — Google EDM
+
+**已修复API兼容性**：
+- TapTap登录：`TapLogin.Login()` → `Task<AccessToken>` + `FetchProfile()` → `Profile`
+- 防沉迷：`AntiAddictionUIKit.Init()` + `Startup(userId)` + `SetAntiAddictionCallback()`
 
 **立即下一步**：
-1. 打开Unity编辑器让TapTap包自动解析
-2. 替换 TAPTAP_CLIENT_ID
-3. 搭建DebugPanel场景UI
+1. 替换 `YOUR_TAPTAP_CLIENT_ID` 为真实Client ID
+2. 在Unity中点击 `Tools/生成调试面板` 一键搭建DebugPanel

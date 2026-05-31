@@ -190,5 +190,105 @@
       "highschool": { "intellect": 0, "mental": 0, "social": 0, "health": 0 },
       "gaokao": { "baseBonus": 0, "volatility": 20, "critChance": 0.15, "critBonus": 40 }
     }
+  },
+  {
+    "id": "T13", "name": "过目不忘", "icon": "📖", "rarity": "rare",
+    "effects": { "highschool": "记忆类事件效果翻倍", "gaokao": "英语/文科科目+15分", "major": { "boost": ["文学", "历史学", "医学"], "warn": [] }, "career": "知识渊博型，适合做研究和教育" },
+    "statModifiers": { "highschool": { "intellect": 15, "mental": 0, "social": 0, "health": 0 }, "gaokao": { "baseBonus": 10, "volatility": 0, "critChance": 0, "critBonus": 0 } }
+  },
+  {
+    "id": "T14", "name": "天生领袖", "icon": "👑", "rarity": "rare",
+    "effects": { "highschool": "社团职位自动升一级", "gaokao": "不直接影响", "major": { "boost": ["管理学", "法学", "经济学"], "warn": ["理学", "工学"] }, "career": "团队leader型，适合管理和创业" },
+    "statModifiers": { "highschool": { "intellect": 0, "mental": 5, "social": 20, "health": 0 }, "gaokao": { "baseBonus": 0, "volatility": 0, "critChance": 0, "critBonus": 0 } }
+  },
+  {
+    "id": "T15", "name": "省钱达人", "icon": "💰", "rarity": "common",
+    "effects": { "highschool": "消费事件花费减半", "gaokao": "不直接影响", "major": { "boost": ["管理学", "经济学"], "warn": [] }, "career": "理财型，早年积累财富" },
+    "statModifiers": { "highschool": { "intellect": 0, "mental": 0, "social": 0, "health": 5 }, "gaokao": { "baseBonus": 0, "volatility": 0, "critChance": 0, "critBonus": 0 } }
+  },
+  {
+    "id": "T16", "name": "艺术细胞", "icon": "🎨", "rarity": "rare",
+    "effects": { "highschool": "美术/音乐类事件加成，作文加分", "gaokao": "作文+10分", "major": { "boost": ["艺术学", "文学", "建筑学"], "warn": ["工学", "医学"] }, "career": "创意型，但收入不稳定" },
+    "statModifiers": { "highschool": { "intellect": 5, "mental": 5, "social": 0, "health": 0 }, "gaokao": { "baseBonus": 5, "volatility": 0, "critChance": 0, "critBonus": 0 } }
+  },
+  {
+    "id": "T17", "name": "体育健将", "icon": "🏃", "rarity": "common",
+    "effects": { "highschool": "体测满分，健康+20", "gaokao": "健康状态好，心态+5", "major": { "boost": ["教育学", "医学", "工学"], "warn": [] }, "career": "体育老师/教练型" },
+    "statModifiers": { "highschool": { "intellect": 0, "mental": 5, "social": 5, "health": 20 }, "gaokao": { "baseBonus": 0, "volatility": 0, "critChance": 0, "critBonus": 0 } }
+  },
+  {
+    "id": "T18", "name": "语言天才", "icon": "🗣️", "rarity": "rare",
+    "effects": { "highschool": "英语课事件全部高分通过", "gaokao": "英语+20分", "major": { "boost": ["文学", "经济学", "法学"], "warn": ["理学"] }, "career": "翻译/外交型，出国方便" },
+    "statModifiers": { "highschool": { "intellect": 10, "mental": 0, "social": 5, "health": 0 }, "gaokao": { "baseBonus": 15, "volatility": 0, "critChance": 0, "critBonus": 0 } }
+  },
+  {
+    "id": "T19", "name": "早起鸟", "icon": "🐦", "rarity": "common",
+    "effects": { "highschool": "早自习效率+30%", "gaokao": "语文/上午科目+5分", "major": { "boost": ["教育学", "文学", "历史学"], "warn": [] }, "career": "规律作息型，精力充沛" },
+    "statModifiers": { "highschool": { "intellect": 5, "mental": 5, "social": 0, "health": 5 }, "gaokao": { "baseBonus": 3, "volatility": 0, "critChance": 0, "critBonus": 0 } }
+  },
+  {
+    "id": "T20", "name": "夜猫子", "icon": "🦉", "rarity": "common",
+    "effects": { "highschool": "晚自习效率+30%，但健康-5", "gaokao": "数学/深夜科目+8分，但心态-5", "major": { "boost": ["工学", "理学", "艺术学"], "warn": ["医学", "教育学"] }, "career": "程序员型，晚间效率高" },
+    "statModifiers": { "highschool": { "intellect": 8, "mental": 0, "social": 0, "health": -5 }, "gaokao": { "baseBonus": 5, "volatility": 0, "critChance": 0, "critBonus": 0 } }
+  },
+  {
+    "id": "T21", "name": "完美主义", "icon": "🔍", "rarity": "common",
+    "effects": { "highschool": "作业/考试细节分+10%，但事件耗时更长", "gaokao": "基础+5分，但心态-5", "major": { "boost": ["医学", "法学", "工学"], "warn": ["艺术学"] }, "career": "质量型，但容易过度工作" },
+    "statModifiers": { "highschool": { "intellect": 8, "mental": -5, "social": 0, "health": 0 }, "gaokao": { "baseBonus": 5, "volatility": 0, "critChance": 0, "critBonus": 0 } }
+  },
+  {
+    "id": "T22", "name": "拖延症", "icon": "⏰", "rarity": "common",
+    "effects": { "highschool": "任务期限前效率激增，但平时效率-20%", "gaokao": "波动+25%，ddl战士", "major": { "boost": ["艺术学", "文学"], "warn": ["医学", "法学"] }, "career": "压力驱动型，需要高强度工作" },
+    "statModifiers": { "highschool": { "intellect": 0, "mental": -8, "social": 0, "health": 0 }, "gaokao": { "baseBonus": 0, "volatility": 25, "critChance": 0.05, "critBonus": 15 } }
+  },
+  {
+    "id": "T23", "name": "高度自律", "icon": "📅", "rarity": "rare",
+    "effects": { "highschool": "日常事件自动选最优解", "gaokao": "发挥稳定，波动-15", "major": { "boost": ["医学", "法学", "工学", "理学"], "warn": ["艺术学"] }, "career": "高效执行型，职场晋升快" },
+    "statModifiers": { "highschool": { "intellect": 5, "mental": 10, "social": 0, "health": 5 }, "gaokao": { "baseBonus": 5, "volatility": -15, "critChance": 0, "critBonus": 0 } }
+  },
+  {
+    "id": "T24", "name": "好奇心旺盛", "icon": "❓", "rarity": "common",
+    "effects": { "highschool": "探索类事件触发概率翻倍", "gaokao": "不直接影响", "major": { "boost": ["理学", "工学", "历史学"], "warn": [] }, "career": "研究型，适合深耕学术" },
+    "statModifiers": { "highschool": { "intellect": 8, "mental": 0, "social": 3, "health": 0 }, "gaokao": { "baseBonus": 0, "volatility": 0, "critChance": 0, "critBonus": 0 } }
+  },
+  {
+    "id": "T25", "name": "批判性思维", "icon": "⚖️", "rarity": "rare",
+    "effects": { "highschool": "辩论/分析类事件加成", "gaokao": "作文+8分，选择题正确率+5%", "major": { "boost": ["法学", "哲学", "政治学"], "warn": [] }, "career": "咨询/法律型" },
+    "statModifiers": { "highschool": { "intellect": 12, "mental": 0, "social": 3, "health": 0 }, "gaokao": { "baseBonus": 8, "volatility": 0, "critChance": 0, "critBonus": 0 } }
+  },
+  {
+    "id": "T26", "name": "数据敏感", "icon": "📊", "rarity": "rare",
+    "effects": { "highschool": "数学/统计类事件加成", "gaokao": "数学+15分", "major": { "boost": ["经济学", "理学", "工学"], "warn": ["文学", "艺术学"] }, "career": "量化分析师/数据科学家" },
+    "statModifiers": { "highschool": { "intellect": 15, "mental": 0, "social": 0, "health": 0 }, "gaokao": { "baseBonus": 10, "volatility": 0, "critChance": 0, "critBonus": 0 } }
+  },
+  {
+    "id": "T27", "name": "百折不挠", "icon": "💢", "rarity": "epic",
+    "effects": { "highschool": "失败后下一次尝试效率+50%", "gaokao": "复读后第二年+30分", "major": { "boost": [], "warn": [] }, "career": "逆境反弹型，适合创业" },
+    "statModifiers": { "highschool": { "intellect": 0, "mental": 15, "social": 0, "health": 0 }, "gaokao": { "baseBonus": 0, "volatility": 10, "critChance": 0.1, "critBonus": 30 } }
+  },
+  {
+    "id": "T28", "name": "社交恐惧", "icon": "😨", "rarity": "common",
+    "effects": { "highschool": "社交事件效果减半，但智力+10", "gaokao": "不直接影响", "major": { "boost": ["理学", "工学", "农学"], "warn": ["管理学", "文学"] }, "career": "技术宅型，不善言辞但技术强" },
+    "statModifiers": { "highschool": { "intellect": 10, "mental": -5, "social": -15, "health": 0 }, "gaokao": { "baseBonus": 5, "volatility": 0, "critChance": 0, "critBonus": 0 } }
+  },
+  {
+    "id": "T29", "name": "时间管理大师", "icon": "⏱️", "rarity": "rare",
+    "effects": { "highschool": "活动安排更高效，智力社交双+5", "gaokao": "时间分配合理，各科+3分", "major": { "boost": ["管理学", "经济学", "工学"], "warn": [] }, "career": "高效多线程型，适合管理层" },
+    "statModifiers": { "highschool": { "intellect": 5, "mental": 5, "social": 5, "health": 0 }, "gaokao": { "baseBonus": 8, "volatility": 0, "critChance": 0, "critBonus": 0 } }
+  },
+  {
+    "id": "T30", "name": "家庭背景", "icon": "🏠", "rarity": "epic",
+    "effects": { "highschool": "初始资源丰富，省份/院校选择更多", "gaokao": "不直接影响，但职业起薪+20%", "major": { "boost": ["经济学", "管理学", "法学"], "warn": [] }, "career": "继承型，创业资源多" },
+    "statModifiers": { "highschool": { "intellect": 0, "mental": 10, "social": 15, "health": 5 }, "gaokao": { "baseBonus": 0, "volatility": 0, "critChance": 0, "critBonus": 0 } }
+  },
+  {
+    "id": "T31", "name": "竞赛达人", "icon": "🏅", "rarity": "rare",
+    "effects": { "highschool": "学科竞赛类事件有额外加成", "gaokao": "竞赛奖项可抵自主招生分", "major": { "boost": ["工学", "理学"], "warn": [] }, "career": "科研竞赛型，保研加分" },
+    "statModifiers": { "highschool": { "intellect": 12, "mental": 5, "social": 3, "health": 0 }, "gaokao": { "baseBonus": 5, "volatility": 0, "critChance": 0.05, "critBonus": 20 } }
+  },
+  {
+    "id": "T32", "name": "风险偏好", "icon": "🎲", "rarity": "epic",
+    "effects": { "highschool": "随机事件影响放大50%", "gaokao": "波动+30%，但成功收益也更高", "major": { "boost": ["经济学", "管理学"], "warn": ["医学"] }, "career": "创业/投资型，高风险高回报" },
+    "statModifiers": { "highschool": { "intellect": 0, "mental": -5, "social": 5, "health": 0 }, "gaokao": { "baseBonus": 0, "volatility": 30, "critChance": 0.15, "critBonus": 35 } }
   }
 ]

@@ -33,6 +33,7 @@ public class PlayerState
     public int studyDays = 0;
     public PersonalityType personality;
     public bool hasPastLifeMemory = false;
+    public List<PlaythroughMemory> playthroughMemories = new List<PlaythroughMemory>();
     public Dictionary<string, int> subjectScores = new Dictionary<string, int>();
     public List<string> unlockedTalents = new List<string>();
     public List<string> selectedSubjects = new List<string>();

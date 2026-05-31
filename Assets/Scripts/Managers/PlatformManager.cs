@@ -311,24 +311,37 @@ public class PlatformManager : MonoBehaviour
 #if UNITY_ANDROID || UNITY_IOS
         try
         {
-            TapTap.Login.TapLogin.Login();
-            TapTap.Login.TapLogin.OnLoginResult += (result) =>
+            TapTap.Login.TapLogin.Init(TAPTAP_CLIENT_ID);
+            TapTap.Login.TapLogin.Login().ContinueWith(task =>
             {
-                if (result.IsSuccess)
+                if (task.IsFaulted || task.Result == null)
                 {
-                    PlatformUserId = result.TDSUser.objectId;
-                    UserId = "tt_" + result.TDSUser.objectId.Substring(0, 8);
-                    NickName = result.TDSUser.nickname;
+                    Debug.LogWarning($"[PlatformManager] TapTap登录失败, 降级游客");
+                    GuestLogin();
+                    return;
+                }
+                var token = task.Result;
+                TapTap.Login.TapLogin.FetchProfile().ContinueWith(profileTask =>
+                {
+                    if (profileTask.IsFaulted || profileTask.Result == null)
+                    {
+                        PlatformUserId = token.kid;
+                        UserId = "tt_" + (token.kid?.Substring(0, Math.Min(8, token.kid?.Length ?? 0)) ?? "guest");
+                        NickName = "TapTap玩家";
+                    }
+                    else
+                    {
+                        var profile = profileTask.Result;
+                        PlatformUserId = profile.openid;
+                        UserId = "tt_" + (profile.openid?.Substring(0, Math.Min(8, profile.openid?.Length ?? 0)) ?? "guest");
+                        NickName = profile.name ?? "TapTap玩家";
+                        AvatarUrl = profile.avatar;
+                    }
                     IsLoggedIn = true;
                     Debug.Log($"[PlatformManager] TapTap登录成功: {UserId}");
                     OnLoginSuccess?.Invoke();
-                }
-                else
-                {
-                    Debug.LogWarning($"[PlatformManager] TapTap登录失败: {result.error}, 降级游客");
-                    GuestLogin();
-                }
-            };
+                });
+            });
         }
         catch (Exception e)
         {
@@ -895,12 +908,19 @@ public class PlatformManager : MonoBehaviour
 #if UNITY_ANDROID || UNITY_IOS
         try
         {
-            TapTap.AntiAddiction.AntiAddiction.StartUp(TAPTAP_CLIENT_ID, (code, msg) =>
+            var config = new TapTap.AntiAddiction.Model.AntiAddictionConfig
+            {
+                gameId = TAPTAP_CLIENT_ID,
+                showSwitchAccount = true
+            };
+            TapTap.AntiAddiction.AntiAddictionUIKit.Init(config);
+            TapTap.AntiAddiction.AntiAddictionUIKit.SetAntiAddictionCallback((code, msg) =>
             {
                 bool passed = code == 500;
                 Debug.Log($"[PlatformManager] 合规认证结果: code={code}, passed={passed}, msg={msg}");
                 callback?.Invoke(passed);
             });
+            TapTap.AntiAddiction.AntiAddictionUIKit.Startup(PlatformUserId ?? UserId);
         }
         catch (Exception e)
         {

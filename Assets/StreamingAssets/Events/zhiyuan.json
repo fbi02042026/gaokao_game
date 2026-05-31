@@ -1,0 +1,91 @@
+[
+  {
+    "id": "ZY_001", "name": "选学校还是选专业", "stage": "zhiyuan", "tags": ["志愿", "抉择"],
+    "triggerCondition": null, "interactionType": "choice",
+    "choiceContent": { "description": "分数不上不下，你的策略是什么？", "choices": [
+      {"id": "A", "text": "学校优先，专业无所谓", "icon": "🏫"},
+      {"id": "B", "text": "专业优先，学校降一档", "icon": "📖"},
+      {"id": "C", "text": "城市优先，其他都好说", "icon": "🌆"}
+    ]},
+    "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "A", "value": {"statKeys": ["social"], "statValues": [3], "unlockEvents": null, "narrative": "学校牌子硬，以后面试有底气。"}},
+      {"key": "B", "value": {"statKeys": ["intellect"], "statValues": [5], "unlockEvents": null, "narrative": "选了喜欢的专业，学起来更有劲。"}},
+      {"key": "C", "value": {"statKeys": ["social", "mental"], "statValues": [5, 3], "unlockEvents": null, "narrative": "大城市机会多，见识也不一样。"}}
+    ]
+  },
+  {
+    "id": "ZY_002", "name": "志愿排序博弈", "stage": "zhiyuan", "tags": ["志愿", "策略"],
+    "triggerCondition": null, "interactionType": "sort",
+    "sortContent": { "description": "排出你的志愿优先级顺序", "items": ["清华计算机", "北大光华", "浙大竺院", "复旦经院"], "showProbability": true },
+    "choiceContent": null, "mergeContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "optimal", "value": {"statKeys": ["intellect", "mental"], "statValues": [5, 5], "unlockEvents": null, "narrative": "冲稳保垫皆有，策略满分！"}},
+      {"key": "risky", "value": {"statKeys": ["mental"], "statValues": [-10], "unlockEvents": null, "narrative": "全是冲刺院校，滑档风险极大..."}}
+    ]
+  },
+  {
+    "id": "ZY_003", "name": "家人的意见", "stage": "zhiyuan", "tags": ["志愿", "家庭"],
+    "triggerCondition": null, "interactionType": "dialog",
+    "dialogContent": { "description": "父母在客厅讨论你的志愿...", "npcId": "npc_parent", "lines": [
+      "我觉得还是学医好，稳定。", "计算机也不错，现在工资高。",
+      "你自己怎么想的？", "不管你选什么，我们都支持你。"
+    ]},
+    "choiceContent": null, "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null,
+    "outcomeList": [
+      {"key": "default", "value": {"statKeys": ["social", "mental"], "statValues": [3, 5], "unlockEvents": null, "narrative": "家人的支持是最坚强的后盾。"}}
+    ]
+  },
+  {
+    "id": "ZY_004", "name": "最后一刻改志愿", "stage": "zhiyuan", "tags": ["志愿", "冒险"],
+    "triggerCondition": null, "interactionType": "choice",
+    "choiceContent": { "description": "截止前30分钟，你突然想改最后一个志愿...", "choices": [
+      {"id": "A", "text": "不改了，相信第一直觉", "icon": "🛡️"},
+      {"id": "B", "text": "换成更喜欢的专业", "icon": "🔄"},
+      {"id": "C", "text": "冲一个更好的学校", "icon": "🚀"}
+    ]},
+    "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "A", "value": {"statKeys": ["mental"], "statValues": [5], "unlockEvents": null, "narrative": "不改了，反正都分析过了。"}},
+      {"key": "B", "value": {"statKeys": ["intellect", "mental"], "statValues": [3, -5], "unlockEvents": null, "narrative": "换了专业，结果发现选对了！"},
+      {"key": "C", "value": {"statKeys": ["mental", "intellect"], "statValues": [-8, 5], "unlockEvents": null, "narrative": "冲一把！结果真的冲上了！"}}
+    ]
+  },
+  {
+    "id": "ZY_005", "name": "录取通知书", "stage": "zhiyuan", "tags": ["志愿", "情感"],
+    "triggerCondition": null, "interactionType": "choice",
+    "choiceContent": { "description": "打开录取通知书的那一刻...", "choices": [
+      {"id": "A", "text": "第一志愿录取！完美！", "icon": "🎉"},
+      {"id": "B", "text": "第二志愿，有点小遗憾", "icon": "😔"},
+      {"id": "C", "text": "被调剂了...需要调整心态", "icon": "😢"}
+    ]},
+    "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "A", "value": {"statKeys": ["mental", "social"], "statValues": [15, 5], "unlockEvents": null, "narrative": "第一志愿录取！三年的努力有了最好的回报！"}},
+      {"key": "B", "value": {"statKeys": ["mental"], "statValues": [5], "unlockEvents": null, "narrative": "虽然不是第一志愿，但也不差，接受现实。"}},
+      {"key": "C", "value": {"statKeys": ["mental"], "statValues": [-15], "unlockEvents": null, "narrative": "被调剂了...这个专业完全不是自己想要的。"}}
+    ]
+  },
+  {
+    "id": "ZY_006", "name": "城市抉择", "stage": "zhiyuan", "tags": ["志愿", "城市"],
+    "triggerCondition": null, "interactionType": "sort",
+    "sortContent": { "description": "按你对城市的喜好排序", "items": ["北京", "上海", "杭州", "成都"], "showProbability": false },
+    "choiceContent": null, "mergeContent": null, "sliderContent": null, "timingContent": null, "dialogContent": null,
+    "outcomeList": [
+      {"key": "optimal", "value": {"statKeys": ["social"], "statValues": [5], "unlockEvents": null, "narrative": "选到了喜欢的城市，大学四年会很精彩！"}},
+      {"key": "risky", "value": {"statKeys": [], "statValues": [], "unlockEvents": null, "narrative": "虽然不是最喜欢的城市，但也充满期待。"}}
+    ]
+  },
+  {
+    "id": "ZY_007", "name": "学长学姐建议", "stage": "zhiyuan", "tags": ["志愿", "参考"],
+    "triggerCondition": null, "interactionType": "dialog",
+    "dialogContent": { "description": "加了目标院校的新生群，学长给了建议", "npcId": "npc_senior", "lines": [
+      "欢迎新生！有什么问题尽管问。", "这个专业课挺难的，期末要提前复习。",
+      "不过学校资源很好，多参加竞赛。", "最重要的一点：别挂科！"
+    ]},
+    "choiceContent": null, "mergeContent": null, "sortContent": null, "sliderContent": null, "timingContent": null,
+    "outcomeList": [
+      {"key": "default", "value": {"statKeys": ["intellect"], "statValues": [3], "unlockEvents": null, "narrative": "提前了解专业情况，心里有底了。"}}
+    ]
+  }
+]

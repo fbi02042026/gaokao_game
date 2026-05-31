@@ -1,34 +1,42 @@
 [
   {
-    "id": "D1",
-    "name": "模糊预感",
-    "icon": "🌀",
-    "rarity": "common",
-    "hintLevel": 1,
+    "id": "D1", "name": "模糊预感", "icon": "🌀", "rarity": "common", "hintLevel": 1,
     "description": "遇到上次选过的选项时，浮现'上次好像选了这个...'"
   },
   {
-    "id": "D2",
-    "name": "隐约记得",
-    "icon": "🔮",
-    "rarity": "rare",
-    "hintLevel": 2,
+    "id": "D2", "name": "隐约记得", "icon": "🔮", "rarity": "rare", "hintLevel": 2,
     "description": "既视感提示更具体：'上次选了这个，好像结果不太好...'"
   },
   {
-    "id": "D3",
-    "name": "前世回响",
-    "icon": "👁️",
-    "rarity": "epic",
-    "hintLevel": 3,
+    "id": "D3", "name": "前世回响", "icon": "👁️", "rarity": "epic", "hintLevel": 3,
     "description": "既视感提示包含结果方向：'上次选了这个，后来...'"
   },
   {
-    "id": "D4",
-    "name": "直觉闪现",
-    "icon": "⚡",
-    "rarity": "epic",
-    "hintLevel": 4,
+    "id": "D4", "name": "直觉闪现", "icon": "⚡", "rarity": "epic", "hintLevel": 4,
     "description": "既视感事件中，最佳选项微微发光"
+  },
+  {
+    "id": "D5", "name": "历史重演", "icon": "🔁", "rarity": "rare", "hintLevel": 2,
+    "description": "当选择与上一周目相同的选项时，显示'历史正在重演...'"
+  },
+  {
+    "id": "D6", "name": "未来碎片", "icon": "🔮", "rarity": "epic", "hintLevel": 3,
+    "description": "特殊事件中提前显示一个结果片段，提示最可能的结局方向"
+  },
+  {
+    "id": "D7", "name": "命运分歧", "icon": "⚔️", "rarity": "rare", "hintLevel": 2,
+    "description": "关键抉择点显示'这是改变命运的机会'"
+  },
+  {
+    "id": "D8", "name": "完美记忆", "icon": "🧩", "rarity": "legendary", "hintLevel": 5,
+    "description": "二周目时自动解锁全部历史选择，最佳路径提示"
+  },
+  {
+    "id": "D9", "name": "命运交织", "icon": "🌟", "rarity": "epic", "hintLevel": 3,
+    "description": "三周目时，获得独特天赋'命运之子'，全程命运指引"
+  },
+  {
+    "id": "D10", "name": "时间悖论", "icon": "⏰", "rarity": "rare", "hintLevel": 2,
+    "description": "同一选项连续选择三次时，触发时间悖论事件"
   }
 ]
