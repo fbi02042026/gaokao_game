@@ -30,6 +30,8 @@ public class GameBootstrapper : MonoBehaviour
 
     private void CreateRequiredSystems()
     {
+        CreateSystem<AchievementEngine>("AchievementEngine");
+        CreateSystem<TierEngine>("TierEngine");
         CreateSystem<DejaVuEngine>("DejaVuEngine");
         CreateSystem<TalentEngine>("TalentEngine");
         CreateSystem<SeniorEvalEngine>("SeniorEvalEngine");
